@@ -1,0 +1,77 @@
+class BikeTourPlus { 
+  1 <@>- * User;
+  1 <@>- * Gear;
+  1 <@>- * Lodge;
+  1 <@>- * Season;
+  1 <@>- * Tour;
+}
+
+class User {
+  abstract;
+  unique email;
+  password;
+}
+
+class Manager { //defaults set by controller
+  isA User;
+
+}
+
+class Participant {
+  isA User;
+  emergencyContact;
+  int startWeekAvailability;
+  int endWeekAvailability;
+  int desiredWeeks;
+  boolean lodgeRequested;
+  boolean hasCancelled;
+  authCode;
+}
+
+class Guide {
+  isA User;
+  emergencyContact;
+}
+
+class Season {
+  Date startDate;
+  int numberOfWeeks;
+  int guideCost;
+}
+
+class Tour {
+  int startWeek;
+  int numberOfWeeks;
+  int endWeek = {startWeek + numberOfWeeks};
+}
+
+class Lodge {
+  name;
+  address;
+  int rating;
+}
+
+class Gear {
+  abstract;
+  name; 
+}
+
+class SingleGear {
+  isA Gear;
+  int price;
+}
+
+class Combo {
+  isA Gear;
+}
+
+association {
+  1 Season bikingSeason <@>- * Tour tours;
+  0..1 Tour onlyTour -- * Participant bikers;
+  * Tour tours -- 1 Guide guide;
+  * Tour tours -> 1 Lodge lodging;
+  
+  * Participant renters -> * Gear equipment;
+  2..* SingleGear singleItems -- * Combo gearCombos;
+}
+
