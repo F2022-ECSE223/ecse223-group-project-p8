@@ -1,0 +1,50 @@
+Feature: View Bike Tour(p11)
+  As a manager, I want to view the bike tours so that I can keep track of the participants' and guides' activities
+
+  Background: 
+    Given the following BikeTourPlus system exists: (p11)
+      | startDate  | nrWeeks | priceOfGuidePerWeek |
+      | 2023-03-13 |      10 |                 100 |
+    Given the following pieces of gear exist in the system: (p11)
+      | name     | pricePerWeek |
+      | helmet   |           25 |
+      | e-bike   |          150 |
+      | bike bag |           19 |
+      | tire kit |           15 |
+    Given the following combos exist in the system: (p11)
+      | name        | discount | items                  | quantity |
+      | small combo |       10 | e-bike,helmet          |      1,2 |
+      | large combo |       25 | e-bike,helmet,bike bag |    1,2,2 |
+    Given the following guides exist in the system: (p11)
+      | email          | password | name | emergencyContact |
+      | jeff@email.com | pass1    | Jeff | (555)555-5555    |
+      | john@email.com | pass2    | John | (444)444-4444    |
+    Given the following participants exist in the system: (p11)
+      | email           | password | name  | emergencyContact | nrWeeks | weeksAvailableFrom | weeksAvailableUntil | lodgeRequired |
+      | peter@email.com | pass1    | Peter | (666)555-5555    |       1 |                  1 |                   2 | true          |
+      | tyler@email.com | pass2    | Tyler | (777)444-4444    |       2 |                  2 |                   5 | false         |
+      | mary@email.com  | pass3    | Mary  | (555)666-6666    |       1 |                  1 |                   2 | false         |
+    Given the following participants request the following pieces of gear: (p11)
+      | email           | gear     | quantity |
+      | peter@email.com | helmet   |        1 |
+      | peter@email.com | bike bag |        2 |
+    Given the following participants request the following combos: (p11)
+      | email           | gear        | quantity |
+      | peter@email.com | small combo |        1 |
+      | tyler@email.com | large combo |        2 |
+      | mary@email.com  | large combo |        1 |
+    Given the following bike tours exist in the system: (p11)
+      | id | startWeek | endWeek | participants                   | guide          |
+      |  1 |         1 |       1 | peter@email.com,mary@email.com | jeff@email.com |
+      |  2 |         2 |       3 | tyler@email.com                | jeff@email.com |
+
+  Scenario: Successfully view bike tour
+    When the manager attempts to view the bike tour with id "<id>" (p11)
+    # totalCostsForBookableItems for Peter: helmet (25) + 2 bike bags (19*2) + discounted small combo (e-bike (150) + helmet (25))*0.90 = 220
+    # (round down in case of 0.5)
+    # totalCostsForBookableItems for Mary: large combo (e-bike (150) + helmet (25) + bike bag (19)) = 184
+    # totalCostsForBookableItems for Tyler: 2 large combos (e-bike (150) + helmet (25) + bike bag (19))*2 = 368
+    Then the following bike tour information shall be provided: (p11)
+      | id | startWeek | endWeek | guideEmail     | guideName | totalCostForGuide | participantsEmail              | participantsName  | totalCostsForBookableItems | totalCostsForBikeTour |
+      |  1 |         1 |       1 | jeff@email.com | Jeff      |               100 | peter@email.com,mary@email.com | Peter,Mary        |                    220,184 |               320,284 |
+      |  2 |         2 |       3 | jeff@email.com | Jeff      |               200 | tyler@email.com                | Tyler             |                        368 |                   568 |
