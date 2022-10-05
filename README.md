@@ -15,4 +15,3 @@ For more information about the BikeTourPlus application, please consult the [wik
 | Team Member C | RalphChoucha    |
 | Team Member D | jacqueszaarour  |
 | Team Member E | liu-yuyu        |
-| Team Member F | ...             |
