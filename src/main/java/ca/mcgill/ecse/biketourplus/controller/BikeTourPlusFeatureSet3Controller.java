@@ -17,7 +17,9 @@ public class BikeTourPlusFeatureSet3Controller {
       return "Not implemented!";
    }
 
-   public static void removeBookableItemFromParticipant(String email, String bookableItemName) {
+   public static String removeBookableItemFromParticipant(String email, String bookableItemName) {
+      // TODO Implement the method, return error message (if any) 
+      return "Not implemented!";
    }
 
 }

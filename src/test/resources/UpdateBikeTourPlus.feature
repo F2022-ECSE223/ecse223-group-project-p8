@@ -25,4 +25,4 @@ Feature: Update BikeTourPlus Information (p8)
       | startDate  | nrWeeks | priceOfGuidePerWeek | error                                                             |
       | 2023-01-13 |      -1 |                 100 | The number of riding weeks must be greater than or equal to zero  |
       | 2023-01-13 |      10 |                  -1 | The price of guide per week must be greater than or equal to zero |
-      | 2023-31-31 |      10 |                 100 | Invalid date                                                      |
+      | 2021-01-13 |      10 |                 100 | The start date cannot be from previous year or earlier            |

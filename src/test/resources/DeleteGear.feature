@@ -14,7 +14,7 @@ Feature: Delete Gear (p3)
 
   Scenario: Delete a piece of gear successfully
     When the manager attempts to delete the piece of gear with name "<name>" (p3)
-    Then a piece of pear shall not exist with name "<name>" (p3)
+    Then a piece of gear shall not exist with name "<name>" (p3)
     Then the number of pieces of gear shall be "<numberOfGear>" (p3)
 
     Examples: 

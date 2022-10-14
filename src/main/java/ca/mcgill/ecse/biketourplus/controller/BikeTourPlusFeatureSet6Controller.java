@@ -21,8 +21,9 @@ public class BikeTourPlusFeatureSet6Controller {
    }
 
    // this method does not need to be implemented by a team with five team members
-   public static void removeGearFromCombo(String gearName, String comboName) {
-
+   public static String removeGearFromCombo(String gearName, String comboName) {
+      // TODO Implement the method, return error message (if any) 
+      return "Not implemented!";
    }
 
 }
