@@ -4,7 +4,7 @@ _(Edit this file as needed, then remove this sentence)._
 
 ## Project Overview
 
-_Provide a one-sentence overview of your project here._
+The goal of our project is to develop a tool to create and manage local bike tours.
 
 For more information about the BikeTourPlus application, please consult the [wiki](../../wiki).
 
@@ -12,7 +12,7 @@ For more information about the BikeTourPlus application, please consult the [wik
 
 | Name          | GitHub username |
 | ------------- | --------------- |
-| Team Member A | ...             |
+| Lukas Bebee   | LukeBebee       |
 | Team Member B | ...             |
 | Team Member C | ...             |
 | Team Member D | ...             |
