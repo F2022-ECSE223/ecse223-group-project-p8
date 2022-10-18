@@ -40,11 +40,11 @@ Feature: View Bike Tour(p11)
 
   Scenario: Successfully view bike tour
     When the manager attempts to view the bike tour with id "<id>" (p11)
-    # totalCostsForBookableItems for Peter: helmet (25) + 2 bike bags (19*2) + discounted small combo (e-bike (150) + 2 helmets (25*2))*0.90 = 243
+    # totalCostsForBookableItems for Peter: helmet (25) + 2 bike bags (19*2) + discounted small combo (e-bike (150) + 2 helmets (25*2))*0.90 = 243, Then 243 * number of weeks = 243 *( 1 - 1 + 1 ) = 243
     # (round down in case of 0.5)
-    # totalCostsForBookableItems for Mary: large combo (e-bike (150) + 2 helmets (25*2) + 2 bike bags (19*2)) = 238
-    # totalCostsForBookableItems for Tyler: 2 large combos (e-bike (150) + 2 helmets (25*2) + 2 bike bags (19*2))*2 = 476
+    # totalCostsForBookableItems for Mary: large combo (e-bike (150) + 2 helmets (25*2) + 2 bike bags (19*2)) = 238, Then 238 * number of weeks = 238 * ( 1 - 1 + 1) = 238
+    # totalCostsForBookableItems for Tyler: 2 large combos (e-bike (150) + 2 helmets (25*2) + 2 bike bags (19*2))*2 = 476,  Then 476 * number of weeks = 476 *( 3 - 2 + 1 ) = 952
     Then the following bike tour information shall be provided: (p11)
       | id | startWeek | endWeek | guideEmail     | guideName | totalCostForGuide | participantsEmail              | participantsName  | totalCostsForBookableItems | totalCostsForBikeTour |
       |  1 |         1 |       1 | jeff@email.com | Jeff      |               100 | peter@email.com,mary@email.com | Peter,Mary        |                    243,238 |               343,338 |
-      |  2 |         2 |       3 | jeff@email.com | Jeff      |               200 | tyler@email.com                | Tyler             |                        476 |                   676 |
+      |  2 |         2 |       3 | jeff@email.com | Jeff      |               200 | tyler@email.com                | Tyler             |                        952 |                  1152 |
