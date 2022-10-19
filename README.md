@@ -1,6 +1,4 @@
-# :bike::heavy_plus_sign: ECSE223 BikeTourPlus Project: Team N
-
-_(Edit this file as needed, then remove this sentence)._
+# :bike::heavy_plus_sign: ECSE223 BikeTourPlus Project: Team 8
 
 ## Project Overview
 
@@ -13,8 +11,7 @@ For more information about the BikeTourPlus application, please consult the [wik
 | Name          | GitHub username |
 | ------------- | --------------- |
 | Lukas Bebee   | LukeBebee       |
-| Team Member B | ...             |
-| Team Member C | ...             |
-| Team Member D | ...             |
-| Team Member E | ...             |
-| Team Member F | ...             |
+| Brian Morava  | Morava83        |
+|Jacques Zaarour| jacqueszaarour  |
+| Yuyu Liu      | liu-yuyu        |
+| Raplph Choucha| RalphChoucha    |
