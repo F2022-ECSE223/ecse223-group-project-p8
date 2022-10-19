@@ -6,7 +6,9 @@ public class BikeTourPlusFeatureSet2Controller {
 
    public static String updateBikeTourPlus(Date startDate, int nrWeeks, int priceOfGuidePerWeek) {
       // TODO Implement the method, return error message (if any) 
-      return "Not implemented!";
+      return "Not implemented yet!";
+
+      // hello there how are tyou
    }
 
    public static void deleteParticipant(String email) {
@@ -14,6 +16,8 @@ public class BikeTourPlusFeatureSet2Controller {
 
    // this method does not need to be implemented by a team with five team members
    public static void deleteCombo(String name) {
+      //im not doing this one
+
    }
 
 }
