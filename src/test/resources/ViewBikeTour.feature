@@ -45,7 +45,7 @@ Feature: View Bike Tour(p11)
 		# (round down in case of 0.5)
 		Then the following bike tour information shall be provided: (p11)
 		| id | startWeek | endWeek | guideEmail     | guideName | totalCostForGuide | participantsEmail              | participantsName | totalCostsForBookableItems | totalCostsForBikeTour |
-		|  1 |         1 |       1 | jeff@email.com |      Jeff |               100 | peter@email.com,mary@email.com |       Peter,Mary |                    220,184 |               320,284 |
+		|  1 |         1 |       1 | jeff@email.com |      Jeff |               100 | peter@email.com,mary@email.com |       Peter,Mary |                    243,238 |               343,338 |
 
 	Scenario: Successfully view bike tour 2
 		When the manager attempts to view the bike tour with id "2" (p11)

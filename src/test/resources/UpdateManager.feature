@@ -27,9 +27,9 @@ Feature: Update Manager (p5)
     Then the system shall raise the error "<error>" (p5)
 
     Examples: 
-      | password | error                                           |
-      | P!p      | Password must be at least three characters long |
-      | p2P      | Password must contain one character out of !#$  |
-      |          | Password cannot be empty                        |
-      | !2P      | Password must contain one lower-case character  |
-      | !2p      | Password must contain one upper-case character  |
+      | password | error                                          |
+      | P!p      | Password must be at least four characters long |
+      | p2P2     | Password must contain one character out of !#$ |
+      |          | Password cannot be empty                       |
+      | !2P2     | Password must contain one lower-case character |
+      | !2p2     | Password must contain one upper-case character |

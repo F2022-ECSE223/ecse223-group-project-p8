@@ -22,6 +22,7 @@ Feature: Add and Remove Gear And Combo for Participant (p10)
       | email           | password | name  | emergencyContact | nrWeeks | weeksAvailableFrom | weeksAvailableUntil | lodgeRequired |
       | peter@email.com | pass1    | Peter | (666)555-5555    |       1 |                  1 |                   2 | true          |
       | tyler@email.com | pass2    | Tyler | (777)444-4444    |       2 |                  2 |                   5 | false         |
+      | mary@email.com  | pass3    | Mary  | (555)666-6666    |       1 |                  1 |                   2 | false         |
     Given the following participants request the following pieces of gear: (p10)
       | email           | gear     | quantity |
       | peter@email.com | helmet   |        1 |
