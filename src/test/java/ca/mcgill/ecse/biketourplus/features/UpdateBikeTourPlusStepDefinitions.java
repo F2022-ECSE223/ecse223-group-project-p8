@@ -1,6 +1,7 @@
 package ca.mcgill.ecse.biketourplus.features;
 
 import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
+import ca.mcgill.ecse.biketourplus.controller.BikeTourPlusFeatureSet2Controller;
 import ca.mcgill.ecse.biketourplus.model.BikeTourPlus;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,12 +12,16 @@ import java.util.List;
 import java.util.Map;
 
 public class UpdateBikeTourPlusStepDefinitions {
+
+// add global variable for error
+
+
     @Given("the following BikeTourPlus system exists: \\(p8)")
     public void the_following_bike_tour_plus_system_exists_p8(io.cucumber.datatable.DataTable dataTable) {
 
         /* Current situation:
-         * I believe this should work, but the initialization of the three strings 
-         * feels breakable so that may need to change
+         * I believe this should work
+         * clear error each time
          */
 
 
@@ -34,12 +39,10 @@ public class UpdateBikeTourPlusStepDefinitions {
 
         List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 
-        // if (rows.size() != 1) {;} potentially want to ensure 1 row for this?
-
-        // is initializing these to null bad???
-        String startDateString = "";
-        String nrWeeksString = "";
-        String priceOfGuidePerWeekString = "";
+        
+        String startDateString = null;
+        String nrWeeksString = null;
+        String priceOfGuidePerWeekString = null;
 
 
         for (Map<String, String> row : rows) {
@@ -48,7 +51,7 @@ public class UpdateBikeTourPlusStepDefinitions {
             priceOfGuidePerWeekString = row.get("priceOfGuidePerWeek");
         }
         
-        // set attributes
+        // set attributes (can do with constructor)
             // startDate
         Date startDate=Date.valueOf(startDateString);
         btp.setStartDate(startDate);
@@ -67,7 +70,7 @@ public class UpdateBikeTourPlusStepDefinitions {
     public void the_manager_attempts_to_update_the_bike_tour_plus_information_to_start_date_number_of_weeks_and_price_of_guide_per_week_p8(
         String string, String string2, String string3) {
         /* Current situation:
-         * I don't know how we update the instance of btp from here
+         * Done
          */
         
         // Write code here that turns the phrase above into concrete actions
@@ -79,8 +82,8 @@ public class UpdateBikeTourPlusStepDefinitions {
             // priceOfGuidePerWeek
         int price = Integer.parseInt(string3);
 
+        BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(startDate, nrWeeks, price);
 
-        throw new io.cucumber.java.PendingException();
     }
 
     @Then("the BikeTourPlus information shall be start date {string}, number of weeks {string}, and price of guide per week {string} \\(p8)")
@@ -88,10 +91,11 @@ public class UpdateBikeTourPlusStepDefinitions {
         String string, String string2, String string3) {
 
         /* Current situation:
-         * Not started
-         * 
-         * We need to check to make sure the instance of btp has the right attributes
-         */
+         * Simple
+         * use getters on global instance of BTP
+         */ 
+        //btp.getStartDate();
+        
 
         // Write code here that turns the phrase above into concrete actions
         
@@ -108,6 +112,9 @@ public class UpdateBikeTourPlusStepDefinitions {
         // btp.setNrWeeks(nrWeeks);
         // btp.setPriceOfGuidePerWeek(price)
 
+        // assertEqual()
+        // error += (insert error here)
+
 
 
 
@@ -118,7 +125,10 @@ public class UpdateBikeTourPlusStepDefinitions {
     public void the_system_shall_raise_the_error_p8(String string) {
         // Write code here that turns the phrase above into concrete actions
 
-
+        /*
+         * if error string is not "" we raise an exception
+         * 
+         */
 
 
 
