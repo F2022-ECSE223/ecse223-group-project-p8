@@ -13,6 +13,14 @@ import java.util.Map;
 public class UpdateBikeTourPlusStepDefinitions {
     @Given("the following BikeTourPlus system exists: \\(p8)")
     public void the_following_bike_tour_plus_system_exists_p8(io.cucumber.datatable.DataTable dataTable) {
+
+        /* Current situation:
+         * I believe this should work, but the initialization of the three strings 
+         * feels breakable so that may need to change
+         */
+
+
+
         // Write code here that turns the phrase above into concrete actions
         // For automatic transformation, change DataTable to one of
         // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
@@ -57,21 +65,19 @@ public class UpdateBikeTourPlusStepDefinitions {
 
     @When("the manager attempts to update the BikeTourPlus information to start date {string}, number of weeks {string}, and price of guide per week {string} \\(p8)")
     public void the_manager_attempts_to_update_the_bike_tour_plus_information_to_start_date_number_of_weeks_and_price_of_guide_per_week_p8(
-            String string, String string2, String string3) {
+        String string, String string2, String string3) {
+        /* Current situation:
+         * I don't know how we update the instance of btp from here
+         */
+        
         // Write code here that turns the phrase above into concrete actions
 
-        /* Pseudocode
-         * 
-         * 
-         * 
-         */
-
-        //     // startDate
-        // Date startDate=Date.valueOf(string);
-        //     // nrWeeks
-        // int nrWeeks = Integer.parseInt(string2);
-        //     // priceOfGuidePerWeek
-        // int price = Integer.parseInt(string3);
+            // startDate
+        Date startDate=Date.valueOf(string);
+            // nrWeeks
+        int nrWeeks = Integer.parseInt(string2);
+            // priceOfGuidePerWeek
+        int price = Integer.parseInt(string3);
 
 
         throw new io.cucumber.java.PendingException();
@@ -79,7 +85,14 @@ public class UpdateBikeTourPlusStepDefinitions {
 
     @Then("the BikeTourPlus information shall be start date {string}, number of weeks {string}, and price of guide per week {string} \\(p8)")
     public void the_bike_tour_plus_information_shall_be_start_date_number_of_weeks_and_price_of_guide_per_week_p8(
-            String string, String string2, String string3) {
+        String string, String string2, String string3) {
+
+        /* Current situation:
+         * Not started
+         * 
+         * We need to check to make sure the instance of btp has the right attributes
+         */
+
         // Write code here that turns the phrase above into concrete actions
         
 
