@@ -13,10 +13,10 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
+
 public class UpdateBikeTourPlusStepDefinitions {
 
 private String error;
-private String desiredError;
 private BikeTourPlus BTP;
 
 
@@ -28,12 +28,7 @@ private BikeTourPlus BTP;
      */
     @Given("the following BikeTourPlus system exists: \\(p8)")
     public void the_following_bike_tour_plus_system_exists_p8(io.cucumber.datatable.DataTable dataTable) {
-        /* Current situation:
-         * Done
-         */
-
         // clear errors 
-        
         error = "";
 
         // create instance of BikeTourPlus (default values of 0 and null so this clears from previous tests)
@@ -78,10 +73,7 @@ private BikeTourPlus BTP;
     @When("the manager attempts to update the BikeTourPlus information to start date {string}, number of weeks {string}, and price of guide per week {string} \\(p8)")
     public void the_manager_attempts_to_update_the_bike_tour_plus_information_to_start_date_number_of_weeks_and_price_of_guide_per_week_p8(
         String string, String string2, String string3) {
-        /* Current situation:
-         * Done
-         */
-
+        
         // strings into proper types to call controller
         Date startDate=Date.valueOf(string);
         int nrWeeks = Integer.parseInt(string2);
@@ -106,10 +98,6 @@ private BikeTourPlus BTP;
     @Then("the BikeTourPlus information shall be start date {string}, number of weeks {string}, and price of guide per week {string} \\(p8)")
     public void the_bike_tour_plus_information_shall_be_start_date_number_of_weeks_and_price_of_guide_per_week_p8(
         String string, String string2, String string3) {
-
-        /* Current situation:
-         * Done?
-         */ 
         
         // get attributes of instance
         Date instanceStartDate = BTP.getStartDate();
@@ -120,7 +108,7 @@ private BikeTourPlus BTP;
         Date startDate = Date.valueOf(string);
         int nrWeeks = Integer.parseInt(string2);
         int price = Integer.parseInt(string3);
-
+        
         // assert equalities and check for errors
         assertEquals(startDate, instanceStartDate);
         assertEquals(nrWeeks, instanceNrWeeks);
@@ -137,13 +125,6 @@ private BikeTourPlus BTP;
      */
     @Then("the system shall raise the error {string} \\(p8)")
     public void the_system_shall_raise_the_error_p8(String string) {
-        // Write code here that turns the phrase above into concrete actions
-
-        /* Current Situation:
-         * Done?
-         * If error matches, we are good. If not, bad
-         */
-
         assertEquals(error, string);
     }
 }
