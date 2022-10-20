@@ -15,22 +15,23 @@ public class BikeTourPlusFeatureSet2Controller {
       
       if (nrWeeks < 0) {
          error = "The number of riding weeks must be greater than or equal to zero";
+         System.out.println(error);
          return error;
       }
       
       if (priceOfGuidePerWeek < 0) {
          error = "The price of guide per week must be greater than or equal to zero";
+         System.out.println(error);
          return error;
       }
       
       // get current date
       long millis=System.currentTimeMillis();  
-      java.sql.Date curDate = new java.sql.Date(millis); 
+      java.sql.Date curDate = new java.sql.Date(millis);
 
-      int currentYear = curDate.getYear();
-      int startYear = startDate.getDate();
-      if (startYear < currentYear) {
+      if (curDate.after(startDate)) {
          error = "The start date cannot be from previous year or earlier";
+         System.out.println(error);
          return error;
       }
       
