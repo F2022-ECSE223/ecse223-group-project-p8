@@ -4,6 +4,7 @@ public class BikeTourPlusFeatureSet4Controller {
 
    public static String registerGuide(String email, String password, String name, String emergencyContact) {
       // TODO Implement the method, return error message (if any) 
+	  // call constructor in guide.java
       return "Not implemented!";
    }
 
