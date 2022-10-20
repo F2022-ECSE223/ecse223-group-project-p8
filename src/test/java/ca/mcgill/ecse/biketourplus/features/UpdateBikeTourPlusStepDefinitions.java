@@ -7,6 +7,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.sql.Date;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,7 @@ import java.util.Map;
 public class UpdateBikeTourPlusStepDefinitions {
 
 private String error;
+private String desiredError;
 private BikeTourPlus BTP;
 
 
@@ -25,20 +28,16 @@ private BikeTourPlus BTP;
      */
     @Given("the following BikeTourPlus system exists: \\(p8)")
     public void the_following_bike_tour_plus_system_exists_p8(io.cucumber.datatable.DataTable dataTable) {
-
         /* Current situation:
-         * Done?
-         * Potentially change from get to constructor (see lines 34 and 51 but I don't think it should be) and maybe delete previously existing btp
+         * Done
          */
 
-        // clear errors and clear btp?
-        error = "";
+        // clear errors 
         
+        error = "";
 
-        // create instance of BikeTourPlus
+        // create instance of BikeTourPlus (default values of 0 and null so this clears from previous tests)
         BTP = BikeTourPlusApplication.getBikeTourPlus(); 
-        // or should it be the following after we get the attribute values from data table: (see line 51 $$)
-        //btp = BikeTourPlus(atartDate, nrWeeks, priceOfGuidePerWeek);
 
         // initialize variables that will be used for attributes (null s.t. an error is thrown if the feature file is not giving values)
         String startDateString = null;
@@ -54,7 +53,7 @@ private BikeTourPlus BTP;
             priceOfGuidePerWeekString = row.get("priceOfGuidePerWeek");
         }
         
-        // set attributes (can do with constructor, see line 33 $$))
+        // set attributes
             // startDate
         Date startDate=Date.valueOf(startDateString);
         BTP.setStartDate(startDate);
@@ -90,7 +89,8 @@ private BikeTourPlus BTP;
 
         // call controller 
         // (this is called on controller, not instance, but I am not sure how it knows that there is only one instance of BikeTourPlus, maybe ask TA)
-        BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(startDate, nrWeeks, price); 
+        // save error
+        error = BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(startDate, nrWeeks, price); 
     }
 
     /**
@@ -100,17 +100,15 @@ private BikeTourPlus BTP;
      * @param string2 string from data table in feature file (Number of weeks)
      * @param string3 string from data table in feature file (Price of guide per week)
      * @author LukeBebee
-     * @author 
+     * @author RalphChoucha
+     * @author Morava83
      */
     @Then("the BikeTourPlus information shall be start date {string}, number of weeks {string}, and price of guide per week {string} \\(p8)")
     public void the_bike_tour_plus_information_shall_be_start_date_number_of_weeks_and_price_of_guide_per_week_p8(
         String string, String string2, String string3) {
 
         /* Current situation:
-         * Simple?
-         * ensure we should use getters
-         * assertEqual() stuff
-         * append error messages with messages from feature files??
+         * Done?
          */ 
         
         // get attributes of instance
@@ -124,30 +122,28 @@ private BikeTourPlus BTP;
         int price = Integer.parseInt(string3);
 
         // assert equalities and check for errors
-
-        // assertEqual()
-        // error += (insert error here)
-
+        assertEquals(startDate, instanceStartDate);
+        assertEquals(nrWeeks, instanceNrWeeks);
+        assertEquals(price, instancePrice);
     }
 
     /**
-     * I DON'T KNOW WHAT THIS DOES TBH, maybe raises an error?
+     * Check if error risen by controller is the desired error
      * 
-     * @param string I ALSO DON'T KNOW THE INPUT
-     * @author 
+     * @param string Desired error message to be raised (from feature file)
+     * @author LukeBebee
+     * @author RalphChoucha
+     * @author Morava83
      */
     @Then("the system shall raise the error {string} \\(p8)")
     public void the_system_shall_raise_the_error_p8(String string) {
         // Write code here that turns the phrase above into concrete actions
 
         /* Current Situation:
-         * 
-         * If error string is not "" we raise an exception
-         * 
-         * Check how we raise exception and if we need to return a specific error message
+         * Done?
+         * If error matches, we are good. If not, bad
          */
 
-
-    
+        assertEquals(error, string);
     }
 }
