@@ -21,7 +21,7 @@ public class UpdateBikeTourPlusStepDefinitions {
 
         /* Current situation:
          * I believe this should work
-         * clear error each time
+         * clear error String each time
          */
 
 
