@@ -14,23 +14,29 @@ import java.util.Map;
 public class UpdateBikeTourPlusStepDefinitions {
 
 private String error;
-private BikeTourPlus btp;
+private BikeTourPlus BTP;
 
 
+    /**
+     * This function sets up an instance of BikeTourPlus with values specified in the feature file
+     * 
+     * @param dataTable the data table from the feature file
+     * @author LukeBebee
+     */
     @Given("the following BikeTourPlus system exists: \\(p8)")
     public void the_following_bike_tour_plus_system_exists_p8(io.cucumber.datatable.DataTable dataTable) {
 
         /* Current situation:
          * Done?
-         * Potentially change from get to constructor (see lines 34 and 51 but I don't think it should be)
+         * Potentially change from get to constructor (see lines 34 and 51 but I don't think it should be) and maybe delete previously existing btp
          */
 
-        // clear errors
+        // clear errors and clear btp?
         error = "";
         
 
         // create instance of BikeTourPlus
-        btp = BikeTourPlusApplication.getBikeTourPlus(); 
+        BTP = BikeTourPlusApplication.getBikeTourPlus(); 
         // or should it be the following after we get the attribute values from data table: (see line 51 $$)
         //btp = BikeTourPlus(atartDate, nrWeeks, priceOfGuidePerWeek);
 
@@ -51,17 +57,25 @@ private BikeTourPlus btp;
         // set attributes (can do with constructor, see line 33 $$))
             // startDate
         Date startDate=Date.valueOf(startDateString);
-        btp.setStartDate(startDate);
+        BTP.setStartDate(startDate);
 
             // nrWeeks
         int nrWeeks = Integer.parseInt(nrWeeksString);
-        btp.setNrWeeks(nrWeeks);
+        BTP.setNrWeeks(nrWeeks);
 
             // priceOfGuidePerWeek
         int priceOfGuidePerWeek = Integer.parseInt(priceOfGuidePerWeekString);
-        btp.setPriceOfGuidePerWeek(priceOfGuidePerWeek);
+        BTP.setPriceOfGuidePerWeek(priceOfGuidePerWeek);
     }
 
+    /**
+     * This function updates the instance of BikeTourPlus with variables from the feature file
+     * 
+     * @param string string from data table in feature file (Start date)
+     * @param string2 string from data table in feature file (Number of weeks)
+     * @param string3 string from data table in feature file (Price of guide per week)
+     * @author LukeBebee
+     */
     @When("the manager attempts to update the BikeTourPlus information to start date {string}, number of weeks {string}, and price of guide per week {string} \\(p8)")
     public void the_manager_attempts_to_update_the_bike_tour_plus_information_to_start_date_number_of_weeks_and_price_of_guide_per_week_p8(
         String string, String string2, String string3) {
@@ -79,6 +93,15 @@ private BikeTourPlus btp;
         BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(startDate, nrWeeks, price); 
     }
 
+    /**
+     * This funciton checks whether the updated variables of the BikeTourPlus instance are correct
+     * 
+     * @param string string from data table in feature file (Start date)
+     * @param string2 string from data table in feature file (Number of weeks)
+     * @param string3 string from data table in feature file (Price of guide per week)
+     * @author LukeBebee
+     * @author 
+     */
     @Then("the BikeTourPlus information shall be start date {string}, number of weeks {string}, and price of guide per week {string} \\(p8)")
     public void the_bike_tour_plus_information_shall_be_start_date_number_of_weeks_and_price_of_guide_per_week_p8(
         String string, String string2, String string3) {
@@ -91,9 +114,9 @@ private BikeTourPlus btp;
          */ 
         
         // get attributes of instance
-        Date instanceStartDate = btp.getStartDate();
-        int instanceNrWeeks = btp.getNrWeeks();
-        int instancePrice = btp.getPriceOfGuidePerWeek();
+        Date instanceStartDate = BTP.getStartDate();
+        int instanceNrWeeks = BTP.getNrWeeks();
+        int instancePrice = BTP.getPriceOfGuidePerWeek();
         
         // get desired attributes
         Date startDate = Date.valueOf(string);
@@ -107,6 +130,12 @@ private BikeTourPlus btp;
 
     }
 
+    /**
+     * I DON'T KNOW WHAT THIS DOES TBH, maybe raises an error?
+     * 
+     * @param string I ALSO DON'T KNOW THE INPUT
+     * @author 
+     */
     @Then("the system shall raise the error {string} \\(p8)")
     public void the_system_shall_raise_the_error_p8(String string) {
         // Write code here that turns the phrase above into concrete actions
