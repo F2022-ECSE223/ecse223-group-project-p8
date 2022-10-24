@@ -16,39 +16,6 @@ import java.util.Map;
 
 public class UpdateBikeTourPlusStepDefinitions {
 
-  private String error;
-  private BikeTourPlus btp;
-
-
-  /**
-   * This function sets up an instance of BikeTourPlus with values specified in the feature file
-   * 
-   * @param dataTable the data table from the feature file
-   * @author LukeBebee
-   */
-  @Given("the following BikeTourPlus system exists: \\(p8)")
-  public void the_following_bike_tour_plus_system_exists_p8(
-      io.cucumber.datatable.DataTable dataTable) {
-    // clear errors
-    error = "";
-
-    // create instance of BikeTourPlus
-    btp = BikeTourPlusApplication.getBikeTourPlus();
-
-    // initialize variables that will be used for attributes (null s.t. an error is thrown if the
-    // feature file is not giving values)
-    String startDateString = null;
-    String nrWeeksString = null;
-    String priceOfGuidePerWeekString = null;
-
-    // making a list of maps from the data table from the feature file
-    List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
-
-    for (Map<String, String> row : rows) { // this will only have one iteration as the feature file
-                                           // only gives one row
-      startDateString = row.get("startDate");
-      nrWeeksString = row.get("nrWeeks");
-      priceOfGuidePerWeekString = row.get("priceOfGuidePerWeek");
     }
 
     // set attributes
