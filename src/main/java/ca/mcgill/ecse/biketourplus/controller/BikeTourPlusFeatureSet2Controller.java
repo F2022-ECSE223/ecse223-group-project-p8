@@ -8,6 +8,8 @@ import ca.mcgill.ecse.biketourplus.model.BookableItem;
 import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
 
 import java.sql.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 // completed by Lukas Bebee (LukeBebee on github)
 public class BikeTourPlusFeatureSet2Controller { 
@@ -16,7 +18,7 @@ public class BikeTourPlusFeatureSet2Controller {
     * @param startDate start date of the biking season
     * @param nrWeeks number of weeks the biking season will last
     * @param priceOfGuidePerWeek the weekly cost of a guide
-    * @return error message (empty string if no error)
+    * @return String of error message (empty string if no error)
     * @author LukeBebee
     */
    public static String updateBikeTourPlus(Date startDate, int nrWeeks, int priceOfGuidePerWeek) {
@@ -53,9 +55,12 @@ public class BikeTourPlusFeatureSet2Controller {
    }
 
    /**
+    *  *******Currently still failing tests, not sure why)
+    * 
+    * 
     * This method removes a participant from BikeTourPlus
     * When doing so, it removes all associations that the participant has
-    * @param email
+    * @param email String containing email of participant to be removed
     * @author LukeBebee
     */
    public static void deleteParticipant(String email) {
@@ -64,22 +69,26 @@ public class BikeTourPlusFeatureSet2Controller {
       if (u instanceof Participant) { // Ensure user is a participant
          Participant p = (Participant) u;
 
-         // Manage booked gear         ***Currently, only not successful with this part
-         for (BookedItem gear : p.getBookedItems()) {
-            //p.removeBookedItem(gear);  // Remove BookedItem from association with participant    // not needed because both instances deleted
-            gear.getItem().removeBookedItem(gear); // From perspective of instance of BookableItem, remove association with BookedItem
+         // Manage booked gear 
+         List<BookedItem> listOfBookedItems = new LinkedList<BookedItem>(p.getBookedItems()); //use List, not ArrayList
+         for (BookedItem gear : listOfBookedItems) {
+            BookableItem aBookableItem = gear.getItem();
+            aBookableItem.removeBookedItem(gear); // From perspective of instance of BookableItem, remove association with BookedItem
+
+            //p.removeBookedItem(gear); // remove instance of BookedItem from association with the participant (allows us to delete in the next line)
             gear.delete(); // Delete the instance of the association class BookedItem
          }
 
          btp.removeParticipant(p); // Remove association with instance of BikeTourPlus
          p.delete(); // Delete instance of participant
-         return;
       }
    }
 
    // This method is incomplete as we are a team of only five members
+   /**
+    * @param name
+    */
    public static void deleteCombo(String name) {
       // This method is incomplete as we are a team of only five members
    }
-
 }
