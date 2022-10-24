@@ -17,7 +17,7 @@ import java.util.Map;
 public class UpdateBikeTourPlusStepDefinitions {
 
 private String error;
-private BikeTourPlus BTP;
+private BikeTourPlus btp;
 
 
     /**
@@ -31,8 +31,8 @@ private BikeTourPlus BTP;
         // clear errors 
         error = "";
 
-        // create instance of BikeTourPlus (default values of 0 and null so this clears from previous tests)
-        BTP = BikeTourPlusApplication.getBikeTourPlus(); 
+        // create instance of BikeTourPlus
+        btp = BikeTourPlusApplication.getBikeTourPlus(); 
 
         // initialize variables that will be used for attributes (null s.t. an error is thrown if the feature file is not giving values)
         String startDateString = null;
@@ -51,15 +51,15 @@ private BikeTourPlus BTP;
         // set attributes
             // startDate
         Date startDate=Date.valueOf(startDateString);
-        BTP.setStartDate(startDate);
+        btp.setStartDate(startDate);
 
             // nrWeeks
         int nrWeeks = Integer.parseInt(nrWeeksString);
-        BTP.setNrWeeks(nrWeeks);
+        btp.setNrWeeks(nrWeeks);
 
             // priceOfGuidePerWeek
         int priceOfGuidePerWeek = Integer.parseInt(priceOfGuidePerWeekString);
-        BTP.setPriceOfGuidePerWeek(priceOfGuidePerWeek);
+        btp.setPriceOfGuidePerWeek(priceOfGuidePerWeek);
     }
 
     /**
@@ -100,9 +100,9 @@ private BikeTourPlus BTP;
         String string, String string2, String string3) {
         
         // get attributes of instance
-        Date instanceStartDate = BTP.getStartDate();
-        int instanceNrWeeks = BTP.getNrWeeks();
-        int instancePrice = BTP.getPriceOfGuidePerWeek();
+        Date instanceStartDate = btp.getStartDate();
+        int instanceNrWeeks = btp.getNrWeeks();
+        int instancePrice = btp.getPriceOfGuidePerWeek();
         
         // get desired attributes
         Date startDate = Date.valueOf(string);
