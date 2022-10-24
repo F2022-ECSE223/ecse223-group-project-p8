@@ -22,6 +22,7 @@ Feature: Delete Participant (p6)
       | email           | password | name  | emergencyContact | nrWeeks | weeksAvailableFrom | weeksAvailableUntil | lodgeRequired |
       | peter@email.com | pass1    | Peter | (666)555-5555    |       1 |                  1 |                   2 | true          |
       | tyler@email.com | pass2    | Tyler | (777)444-4444    |       2 |                  2 |                   5 | false         |
+      | mary@email.com  | pass3    | Mary  | (555)666-6666    |       1 |                  1 |                   2 | false         |
 
   Scenario Outline: Delete a participant successfully
     When the manager attempts to delete the participant with email "<email>" (p6)
@@ -30,15 +31,15 @@ Feature: Delete Participant (p6)
 
     Examples: 
       | email                | numberOfParticipants |
-      | peter@email.com      |                    1 |
-      | tyler@email.com      |                    1 |
-      | usernotfound@mail.ca |                    2 |
+      | peter@email.com      |                    2 |
+      | tyler@email.com      |                    2 |
+      | usernotfound@mail.ca |                    3 |
 
   Scenario Outline: Successfully delete a participant that does not exist but guide exists
     When the manager attempts to delete the participant with email "<email>" (p6)
     Then a guide account shall exist with email "<email>" (p6)
     Then the number of guides shall be "2" (p6)
-    Then the number of participants shall be "2" (p6)
+    Then the number of participants shall be "3" (p6)
 
     Examples: 
       | email          |
@@ -63,7 +64,7 @@ Feature: Delete Participant (p6)
       | mary@email.com  | large combo |        1 |
     When the manager attempts to delete the participant with email "<email>" (p6)
     Then a participant account shall not exist with email "<email>" (p6)
-    Then the number of participants shall be "1" (p6)
+    Then the number of participants shall be "2" (p6)
     Then the piece of gear with name "<gearName>" shall be requested by "<numberOfParticipantsForGear>" (p6)
     Then the combo with name "<comboName>" shall be requested by "<numberOfParticipantsForCombo>" (p6)
 
