@@ -143,7 +143,7 @@ public class AddAndUpdateComboStepDefinitions {
    */
   @Then("the number of combos shall be {string} \\(p7)")
   public void the_number_of_combos_shall_be_p7(String string) {
-    assertEquals(btp.getCombos().size(), Integer.parseInt(string));
+    assertEquals(Integer.parseInt(string), btp.getCombos().size());
   }
 
   /**
@@ -165,7 +165,7 @@ public class AddAndUpdateComboStepDefinitions {
     }
     assertNotNull(c1);
     int q = c1.getComboItems().size();
-    assertEquals(q, Integer.parseInt(string2));
+    assertEquals(Integer.parseInt(string2), q);
 
   }
 

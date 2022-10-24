@@ -152,7 +152,7 @@ public class AddAndRemoveGearForComboStepDefinitions {
    */
   @Then("the system shall raise the error {string} \\(p2)")
   public void the_system_shall_raise_the_error_p2(String string) {
-    assertEquals(error, string);
+    assertEquals(string, error);
   }
 
   /**
@@ -174,7 +174,7 @@ public class AddAndRemoveGearForComboStepDefinitions {
 
     // compare number of pieces of gear
     Combo combo = (Combo) foundItem;
-    assertEquals(combo.numberOfComboItems(), Integer.valueOf(string2));
+    assertEquals(Integer.valueOf(string2), combo.numberOfComboItems());
   }
 
   /**
@@ -196,7 +196,7 @@ public class AddAndRemoveGearForComboStepDefinitions {
         quantity = comboItem.getQuantity();
       }
     }
-    assertEquals(quantity, Integer.parseInt(string2));
+    assertEquals(Integer.parseInt(string2), quantity);
   }
 
   /**
