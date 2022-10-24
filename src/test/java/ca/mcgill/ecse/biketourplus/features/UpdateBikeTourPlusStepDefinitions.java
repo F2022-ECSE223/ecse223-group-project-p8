@@ -129,6 +129,6 @@ public class UpdateBikeTourPlusStepDefinitions {
    */
   @Then("the system shall raise the error {string} \\(p8)")
   public void the_system_shall_raise_the_error_p8(String string) {
-    assertEquals(error, string);
+    assertEquals(string, error);
   }
 }
