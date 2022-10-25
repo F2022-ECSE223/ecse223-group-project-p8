@@ -115,15 +115,18 @@ public class DeleteGuideStepDefinitions {
   }
 
   /**
-   * @author Omar Marwan and Lynn Haddad
-   *
-   *         Checking that a manager exists with the given email
-   *
-   * @param string
-   */
-  @Then("a manager account shall exist with email {string} \\(p6)")
-  public void a_manager_account_shall_exist_with_email_p6(String string) {
-    assertNotNull(bikeTourPlus.getManager()); // making sure that the manager exists
+     * @author Omar Marwan and Lynn Haddad
+     *
+     *         Checking that a manager exists with the given email
+     *
+     * @param string
+     */
+    @Then("a manager account shall exist with email {string} \\(p6)")
+    public void a_manager_account_shall_exist_with_email_p6(String string) {
+        Manager manager = bikeTourPlus.getManager();
+        assertNotNull(manager); // making sure that the manager exists
+        User managerUser = (User) manager;
+        assertEquals(string, managerUser.getEmail()); // making sure the manager has the email {string}
 
   }
 
@@ -159,6 +162,7 @@ public class DeleteGuideStepDefinitions {
     if (bikeTourPlus.hasManager()) { // if hasManager is true, there is 1 manager in the system
       nrManagers++; // the number of manager become 1
     }
+
     assertEquals(Integer.valueOf(string), nrManagers); // Check if the number of manager in the
                                                        // system is correct
 
@@ -201,6 +205,7 @@ public class DeleteGuideStepDefinitions {
       bikeTourPlus.setStartDate(stDate); // set the system's start date to stDate
       bikeTourPlus.setNrWeeks(nrWeeks); // set the system's number of weeks to nrWeeks
       bikeTourPlus.setPriceOfGuidePerWeek(prg); // set the system's priceOfGuidePerWeek to prg
+
     }
 
     Manager manager = new Manager("manager@btp.com", "manager", bikeTourPlus); // create a new
