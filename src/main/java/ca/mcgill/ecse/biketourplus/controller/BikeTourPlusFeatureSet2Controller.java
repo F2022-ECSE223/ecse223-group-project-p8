@@ -27,9 +27,7 @@ public class BikeTourPlusFeatureSet2Controller {
       long millis=System.currentTimeMillis();  
       java.sql.Date curDate = new java.sql.Date(millis); 
 
-      int currentYear = curDate.getYear();
-      int startYear = startDate.getDate();
-      if (startYear < currentYear) {
+      if (curDate.after(startDate)) {
          error = "The start date cannot be from previous year or earlier";
          return error;
       }
