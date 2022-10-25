@@ -13,5 +13,5 @@ For more information about the BikeTourPlus application, please consult the [wik
 | Lukas Bebee   | LukeBebee       |
 | Brian Morava  | Morava83        |
 |Jacques Zaarour| jacqueszaarour  |
-| Yuyu Liu      | liu-yuyu        |
-| Raplph Choucha| RalphChoucha    |
+| YuMeng Liu    | liu-yuyu        |
+| Ralph Choucha | RalphChoucha    |

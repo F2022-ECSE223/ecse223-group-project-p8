@@ -22,6 +22,7 @@ Feature: Add and Remove Gear And Combo for Participant (p10)
       | email           | password | name  | emergencyContact | nrWeeks | weeksAvailableFrom | weeksAvailableUntil | lodgeRequired |
       | peter@email.com | pass1    | Peter | (666)555-5555    |       1 |                  1 |                   2 | true          |
       | tyler@email.com | pass2    | Tyler | (777)444-4444    |       2 |                  2 |                   5 | false         |
+      | mary@email.com  | pass3    | Mary  | (555)666-6666    |       1 |                  1 |                   2 | false         |
     Given the following participants request the following pieces of gear: (p10)
       | email           | gear     | quantity |
       | peter@email.com | helmet   |        1 |
@@ -36,7 +37,7 @@ Feature: Add and Remove Gear And Combo for Participant (p10)
     When the manager attempts to add a piece of gear or combo with name "<name>" to the participant with email "<email>" (p10)
     Then a piece of gear or combo shall exist with name "<name>" and quantity "<quantity>" for the participant with email "<email>" (p10)
     Then the number of pieces of gear or combos for the participant with email "<email>" shall be "<numberOfItemsForParticipant>" (p10)
-    Then the number of participants shall be "2" (p10)
+    Then the number of participants shall be "3" (p10)
 
     Examples: 
       | name        | quantity | email           | numberOfItemsForParticipant |
@@ -55,7 +56,7 @@ Feature: Add and Remove Gear And Combo for Participant (p10)
     When the manager attempts to add a piece of gear or combo with name "<nonExistingName>" to the participant with email "<email>" (p10)
     Then a piece of gear or combo shall exist with name "<name>" and quantity "<quantity>" for the participant with email "<email>" (p10)
     Then the number of pieces of gear or combos for the participant with email "<email>" shall be "<numberOfItemsForParticipant>" (p10)
-    Then the number of participants shall be "2" (p10)
+    Then the number of participants shall be "3" (p10)
     Then the system shall raise the error "<error>" (p10)
 
     Examples: 
@@ -68,7 +69,7 @@ Feature: Add and Remove Gear And Combo for Participant (p10)
 
   Scenario Outline: Unsuccessfully add a piece of gear or combo to a participant that does not exist
     When the manager attempts to add a piece of gear or combo with name "<name>" to the participant with email "<email>" (p10)
-    Then the number of participants shall be "2" (p10)
+    Then the number of participants shall be "3" (p10)
     Then the system shall raise the error "<error>" (p10)
 
     Examples: 
@@ -83,7 +84,7 @@ Feature: Add and Remove Gear And Combo for Participant (p10)
     When the manager attempts to remove a piece of gear or combo with name "<name>" from the participant with email "<email>" (p10)
     Then a piece of gear or combo shall exist with name "<name>" and quantity "<quantity>" for the participant with email "<email>" (p10)
     Then the number of pieces of gear or combos for the participant with email "<email>" shall be "<numberOfItemsForParticipant>" (p10)
-    Then the number of participants shall be "2" (p10)
+    Then the number of participants shall be "3" (p10)
 
     Examples: 
       | name        | quantity | email           | numberOfItemsForParticipant |
@@ -94,7 +95,7 @@ Feature: Add and Remove Gear And Combo for Participant (p10)
     When the manager attempts to remove a piece of gear or combo with name "<name>" from the participant with email "<email>" (p10)
     Then a piece of gear or combo shall not exist with name "<name>" for the participant with email "<email>" (p10)
     Then the number of pieces of gear or combos for the participant with email "<email>" shall be "<numberOfItemsForParticipant>" (p10)
-    Then the number of participants shall be "2" (p10)
+    Then the number of participants shall be "3" (p10)
 
     Examples: 
       | name        | email           | numberOfItemsForParticipant |
@@ -109,7 +110,7 @@ Feature: Add and Remove Gear And Combo for Participant (p10)
 
   Scenario Outline: Unsuccessfully remove a piece of gear or combo from a participant that does not exist
     When the manager attempts to remove a piece of gear or combo with name "<name>" from the participant with email "<email>" (p10)
-    Then the number of participants shall be "2" (p10)
+    Then the number of participants shall be "3" (p10)
     Then the system shall raise the error "<error>" (p10)
 
     Examples: 
