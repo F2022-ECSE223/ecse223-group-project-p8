@@ -14,7 +14,7 @@ import java.util.List;
 // completed by Lukas Bebee (LukeBebee on github)
 public class BikeTourPlusFeatureSet2Controller { 
 
-   //TODO Check JavaDoc and Code Style and see if we need to use try-catch blocks
+   //TODO Check JavaDoc and Code Style and check what to do with error message for void method
 
    /**
     * @param startDate start date of the biking season
@@ -45,12 +45,18 @@ public class BikeTourPlusFeatureSet2Controller {
       }
       
       // If valid (no error returned), apply changes
-      BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
-      btp.setStartDate(startDate);
-      btp.setNrWeeks(nrWeeks);
-      btp.setPriceOfGuidePerWeek(priceOfGuidePerWeek);
-
+      try {
+         BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
+         btp.setStartDate(startDate);
+         btp.setNrWeeks(nrWeeks);
+         btp.setPriceOfGuidePerWeek(priceOfGuidePerWeek);
+      } catch (RuntimeException e) {
+         error =  e.getMessage();
+      }
       return error; // return value will be an empty string if any errors detected
+
+
+
    }
 
    /**
@@ -60,22 +66,26 @@ public class BikeTourPlusFeatureSet2Controller {
     * @author LukeBebee
     */
    public static void deleteParticipant(String email) {
-      BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
-      User u = User.getWithEmail(email);
-      if (u instanceof Participant) { // Ensure user is a participant
-         Participant p = (Participant) u;
+      try {
+         BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
+         User u = User.getWithEmail(email);
+         if (u instanceof Participant) { // Ensure user is a participant
+            Participant p = (Participant) u;
 
-         // Manage gear associations and association class
-         List<BookedItem> listOfBookedItems = new LinkedList<BookedItem>(p.getBookedItems()); //use List, not ArrayList to iterate through
-         for (BookedItem gear : listOfBookedItems) {
-            BookableItem aBookableItem = gear.getItem();
-            aBookableItem.removeBookedItem(gear); // From perspective of instance of BookableItem, remove association with BookedItem
+            // Manage gear associations and association class
+            List<BookedItem> listOfBookedItems = new LinkedList<BookedItem>(p.getBookedItems()); //use List, not ArrayList to iterate through
+            for (BookedItem gear : listOfBookedItems) {
+               BookableItem aBookableItem = gear.getItem();
+               aBookableItem.removeBookedItem(gear); // From perspective of instance of BookableItem, remove association with BookedItem
 
-            gear.delete(); // Delete the instance of the association class BookedItem
+               gear.delete(); // Delete the instance of the association class BookedItem
+            }
+
+            btp.removeParticipant(p); // Remove association with instance of BikeTourPlus
+            p.delete(); // Delete instance of participant
          }
-
-         btp.removeParticipant(p); // Remove association with instance of BikeTourPlus
-         p.delete(); // Delete instance of participant
+      } catch (RuntimeException e) {
+         System.out.println(e.getMessage());    // Display error that arrises
       }
    }
 
