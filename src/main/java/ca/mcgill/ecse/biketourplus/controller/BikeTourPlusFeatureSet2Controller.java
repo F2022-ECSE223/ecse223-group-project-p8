@@ -14,6 +14,8 @@ import java.util.List;
 // completed by Lukas Bebee (LukeBebee on github)
 public class BikeTourPlusFeatureSet2Controller { 
 
+   //TODO Check JavaDoc and Code Style and see if we need to use try-catch blocks
+
    /**
     * @param startDate start date of the biking season
     * @param nrWeeks number of weeks the biking season will last
@@ -27,12 +29,10 @@ public class BikeTourPlusFeatureSet2Controller {
       // check to ensure the three inputs are possible with given constraints
       if (nrWeeks < 0) { // check number of weeks
          error = "The number of riding weeks must be greater than or equal to zero";
-         System.out.println(error);
          return error;
       }
       if (priceOfGuidePerWeek < 0) { // check guide price
          error = "The price of guide per week must be greater than or equal to zero";
-         System.out.println(error);
          return error;
       }
       // get current date
@@ -41,7 +41,6 @@ public class BikeTourPlusFeatureSet2Controller {
 
       if (curDate.after(startDate)) { // check start date against current date
          error = "The start date cannot be from previous year or earlier";
-         System.out.println(error);
          return error;
       }
       
@@ -55,11 +54,8 @@ public class BikeTourPlusFeatureSet2Controller {
    }
 
    /**
-    *  *******Currently still failing tests, not sure why)
-    * 
-    * 
     * This method removes a participant from BikeTourPlus
-    * When doing so, it removes all associations that the participant has
+    * When doing so, it removes all necessary associations
     * @param email String containing email of participant to be removed
     * @author LukeBebee
     */
@@ -69,13 +65,12 @@ public class BikeTourPlusFeatureSet2Controller {
       if (u instanceof Participant) { // Ensure user is a participant
          Participant p = (Participant) u;
 
-         // Manage booked gear 
-         List<BookedItem> listOfBookedItems = new LinkedList<BookedItem>(p.getBookedItems()); //use List, not ArrayList
+         // Manage gear associations and association class
+         List<BookedItem> listOfBookedItems = new LinkedList<BookedItem>(p.getBookedItems()); //use List, not ArrayList to iterate through
          for (BookedItem gear : listOfBookedItems) {
             BookableItem aBookableItem = gear.getItem();
             aBookableItem.removeBookedItem(gear); // From perspective of instance of BookableItem, remove association with BookedItem
 
-            //p.removeBookedItem(gear); // remove instance of BookedItem from association with the participant (allows us to delete in the next line)
             gear.delete(); // Delete the instance of the association class BookedItem
          }
 
@@ -84,8 +79,9 @@ public class BikeTourPlusFeatureSet2Controller {
       }
    }
 
-   // This method is incomplete as we are a team of only five members
    /**
+    * This method is currently incomplete as we are only a team of five members
+    * 
     * @param name
     */
    public static void deleteCombo(String name) {
