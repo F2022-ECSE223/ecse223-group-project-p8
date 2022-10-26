@@ -238,11 +238,15 @@ public class ViewBikeTourStepDefinitions {
       assertEquals(givenParticipantEmails.length, tour.numberOfParticipantCosts());
 
       List<TOParticipantCost> participantCosts = tour.getParticipantCosts();
+      List<Integer> checkedIndices = new ArrayList<Integer>();
       for (int i = 0; i < participantCosts.size(); i++) {
         TOParticipantCost pc = participantCosts.get(i);
         // Need to use participant info corresponding to participantCost in list
         int index = Arrays.asList(givenParticipantEmails).indexOf(pc.getParticipantEmail());
-        assertNotEquals(index, -1); // check user email exists in list
+        assertNotEquals(-1, index); // check user email exists in list
+        assertFalse(checkedIndices.contains(index)); // check that this index hasn't been checked
+        checkedIndices.add(index);
+
         assertEquals(row.get("participantsEmail").split(",")[index], pc.getParticipantEmail());
         assertEquals(row.get("participantsName").split(",")[index], pc.getParticipantName());
         assertEquals(Integer.parseInt(row.get("totalCostsForBookableItems").split(",")[index]),
