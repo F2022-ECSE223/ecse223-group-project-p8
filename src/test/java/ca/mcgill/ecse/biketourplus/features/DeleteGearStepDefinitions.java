@@ -53,10 +53,9 @@ public class DeleteGearStepDefinitions {
   @Then("a piece of gear shall exist with name {string} and price per week {string} \\(p3)")
   public void a_piece_of_gear_shall_exist_with_name_and_price_per_week_p3(String string,
       String string2) { // S
-    // Write code here that turns the phrase above into concrete actions
-    // assertEquals("", error);
-    // assertEquals(0, errorCntr);
-    Gear gear = ((Gear) BookableItem.getWithName(string));
+    BookableItem bookableItem = BookableItem.getWithName(string)
+    assertNotNull(bookableItem);
+    Gear gear = ((Gear) bookableItem);
     assertEquals(string, gear.getName());
     assertEquals(Integer.parseInt(string2), gear.getPricePerWeek());
     // no need to check if gear exists as that will be sufficient

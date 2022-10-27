@@ -22,6 +22,7 @@ public class AddAndUpdateGearStepDefinitions {
   private String error;
   private int errorCntr;
 
+
   /**
    * @author William Zhang
    * 
@@ -43,6 +44,7 @@ public class AddAndUpdateGearStepDefinitions {
 
       error = ""; // error counter
       errorCntr = 0;
+
     }
   }
 
@@ -90,13 +92,14 @@ public class AddAndUpdateGearStepDefinitions {
                                                 // ComboItem(int aQuantity, BikeTourPlus
                                                 // aBikeTourPlus, Combo aCombo, this))
           }
+
         }
       }
     }
   }
 
   /**
-   * Faiza
+   * @author Faiza Chowdhury
    *
    * @param string - the old name of the gear
    * @param string2 - the new name of the gear
@@ -135,10 +138,11 @@ public class AddAndUpdateGearStepDefinitions {
     boolean found = false; // keep track of if a Gear with given name and pricePerWeek was found
     // Check all Gear to find a match for given name and pricePerWeek
     for (Gear oneGear : btp.getGear()) {
-      if (oneGear.getName() == string && Integer.toString(oneGear.getPricePerWeek()) == string2) {
+      if (oneGear.getName().equals(string) && Integer.toString(oneGear.getPricePerWeek()).equals(string2)) {
         // Found a Gear with given name and pricePerWeek
         found = true;
         break;
+
       }
     }
     // Assert that a Gear was not found to have the given name and pricePerWeek
