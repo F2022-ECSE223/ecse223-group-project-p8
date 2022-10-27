@@ -3,18 +3,12 @@ package ca.mcgill.ecse.biketourplus.controller;
 import ca.mcgill.ecse.biketourplus.model.BikeTourPlus;
 import ca.mcgill.ecse.biketourplus.model.Participant;
 import ca.mcgill.ecse.biketourplus.model.User;
-import ca.mcgill.ecse.biketourplus.model.BookedItem;
-import ca.mcgill.ecse.biketourplus.model.BookableItem;
 import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
 
 import java.sql.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 // completed by Lukas Bebee (LukeBebee on github)
-public class BikeTourPlusFeatureSet2Controller { 
-
-   //TODO Check JavaDoc and Code Style and check what to do with error message for void method
+public class BikeTourPlusFeatureSet2Controller {
 
    /**
     * @param startDate start date of the biking season
@@ -36,14 +30,14 @@ public class BikeTourPlusFeatureSet2Controller {
          return error;
       }
       // get current date
-      long millis=System.currentTimeMillis();  
+      long millis = System.currentTimeMillis();
       java.sql.Date curDate = new java.sql.Date(millis);
 
       if (curDate.after(startDate)) { // check start date against current date
          error = "The start date cannot be from previous year or earlier";
          return error;
       }
-      
+
       // If valid (no error returned), apply changes
       try {
          BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
@@ -51,41 +45,27 @@ public class BikeTourPlusFeatureSet2Controller {
          btp.setNrWeeks(nrWeeks);
          btp.setPriceOfGuidePerWeek(priceOfGuidePerWeek);
       } catch (RuntimeException e) {
-         error =  e.getMessage();
+         error = e.getMessage();
       }
       return error; // return value will be an empty string if any errors detected
-
-
-
    }
 
    /**
-    * This method removes a participant from BikeTourPlus
-    * When doing so, it removes all necessary associations
+    * This method removes a participant from BikeTourPlus When doing so, it removes all necessary
+    * associations
+    * 
     * @param email String containing email of participant to be removed
     * @author LukeBebee
     */
    public static void deleteParticipant(String email) {
       try {
-         BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
+         //BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
          User u = User.getWithEmail(email);
          if (u instanceof Participant) { // Ensure user is a participant
-            Participant p = (Participant) u;
-
-            // Manage gear associations and association class
-            List<BookedItem> listOfBookedItems = new LinkedList<BookedItem>(p.getBookedItems()); //use List, not ArrayList to iterate through
-            for (BookedItem gear : listOfBookedItems) {
-               BookableItem aBookableItem = gear.getItem();
-               aBookableItem.removeBookedItem(gear); // From perspective of instance of BookableItem, remove association with BookedItem
-
-               gear.delete(); // Delete the instance of the association class BookedItem
-            }
-
-            btp.removeParticipant(p); // Remove association with instance of BikeTourPlus
-            p.delete(); // Delete instance of participant
+            u.delete(); // Delete instance of participant
          }
       } catch (RuntimeException e) {
-         System.out.println(e.getMessage());    // Display error that arrises
+         System.out.println(e.getMessage()); // Display error that arrises
       }
    }
 
