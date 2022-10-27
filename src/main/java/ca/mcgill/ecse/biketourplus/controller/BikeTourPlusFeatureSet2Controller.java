@@ -59,7 +59,7 @@ public class BikeTourPlusFeatureSet2Controller {
     */
    public static void deleteParticipant(String email) {
       try {
-         //BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
+         // BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
          User u = User.getWithEmail(email);
          if (u instanceof Participant) { // Ensure user is a participant
             u.delete(); // Delete instance of participant
