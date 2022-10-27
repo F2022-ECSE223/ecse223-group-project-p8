@@ -53,7 +53,7 @@ public class DeleteGearStepDefinitions {
   @Then("a piece of gear shall exist with name {string} and price per week {string} \\(p3)")
   public void a_piece_of_gear_shall_exist_with_name_and_price_per_week_p3(String string,
       String string2) { // S
-    BookableItem bookableItem = BookableItem.getWithName(string)
+    BookableItem bookableItem = BookableItem.getWithName(string);
     assertNotNull(bookableItem);
     Gear gear = ((Gear) bookableItem);
     assertEquals(string, gear.getName());
