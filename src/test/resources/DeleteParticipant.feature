@@ -46,13 +46,13 @@ Feature: Delete Participant (p6)
       | jeff@email.com |
       | john@email.com |
 
-  Scenario Outline: Successfully delete a participant that does not exist but manager exists
+  Scenario: Successfully delete a participant that does not exist but manager exists
     When the manager attempts to delete the participant with email "manager@btp.com" (p6)
     Then a manager account shall exist with email "manager@btp.com" (p6)
     Then the number of guides shall be "2" (p6)
     Then the number of managers shall be "1" (p6)
 
-  Scenario: Successfully delete a participant that has requested a piece of gear or combo
+  Scenario Outline: Successfully delete a participant that has requested a piece of gear or combo
     Given the following participants request the following pieces of gear: (p6)
       | email           | gear     | quantity |
       | peter@email.com | helmet   |        1 |
