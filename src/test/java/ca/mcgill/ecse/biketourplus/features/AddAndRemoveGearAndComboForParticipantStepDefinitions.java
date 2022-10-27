@@ -292,7 +292,8 @@ public class AddAndRemoveGearAndComboForParticipantStepDefinitions {
   
     /**
      * @Author - Landon
-     * Assertion that a certain quantity of a bookableItem are booked under a given participant. Very similar to last method
+     * Assertion that a certain quantity of a bookableItem are booked under a given participant and that that bookableItem
+     * exists under that participant. Very similar to last method
      * ( a_piece_of_gear_or_combo_shall_not_exist_with_name_for_the_participant_with_email_p10). Additional complexity of 
      * if statement as assertion only works if participant has booked that bookable item.
      * @param bookableItemName
@@ -305,11 +306,18 @@ public class AddAndRemoveGearAndComboForParticipantStepDefinitions {
     if (emailPart == null) {
       throw new AssertionError("The participant isn't registered in the system");
     }
+    boolean itemFound = false;
     for (BookedItem bI : emailPart.getBookedItems()) {
-      if (bI.getItem().getName().equals(bookableItemName))
+      if (bI.getItem().getName().equals(bookableItemName)) {
+        itemFound = true;
+        assertEquals(bookableItemName, bI.getItem().getName());
         assertEquals(Integer.parseInt(bItemQuantity), bI.getQuantity());
-      }   
+      }
     }
+    if (!itemFound) {
+      throw new AssertionError("The item " + bookableItemName + " does not exist.");    
+    }
+  }
 
     
     /**
