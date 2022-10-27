@@ -11,6 +11,8 @@ import java.sql.Date;
 public class BikeTourPlusFeatureSet2Controller {
 
   /**
+   * Updates the existing BikeTourPlus instance with new attributes
+   * 
    * @param startDate start date of the biking season
    * @param nrWeeks number of weeks the biking season will last
    * @param priceOfGuidePerWeek the weekly cost of a guide
@@ -51,8 +53,7 @@ public class BikeTourPlusFeatureSet2Controller {
   }
 
   /**
-   * This method removes a participant from BikeTourPlus. When doing so, it removes all necessary
-   * associations
+   * This method removes a participant from BikeTourPlus
    * 
    * @param email String of email of participant to be removed
    * @author LukeBebee
