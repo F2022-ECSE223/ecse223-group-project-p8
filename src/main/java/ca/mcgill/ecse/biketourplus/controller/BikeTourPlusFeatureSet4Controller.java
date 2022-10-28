@@ -3,9 +3,6 @@ package ca.mcgill.ecse.biketourplus.controller;
 import ca.mcgill.ecse.biketourplus.application.*;
 import ca.mcgill.ecse.biketourplus.model.*;
 
-/**
- * @author Ralph Choucha (RalphChoucha on GitHub)
- */
 
 public class BikeTourPlusFeatureSet4Controller {
 
@@ -14,13 +11,14 @@ public class BikeTourPlusFeatureSet4Controller {
 
   /**
    * Method that registers a Guide into the BikeTourPlus system. Checks if input is valid before
-   * calling the constructor in BikeTourPlus.
+   * calling the constructor in Guide.
    * 
-   * @param email = A string that represents the guide's e-mail address
-   * @param password = A string that represents the guide's password
-   * @param name = A string that represents the guide's name
-   * @param emergencyContact = A string that represents the guide's emergency contact
+   * @param email A string that represents the guide's e-mail address
+   * @param password A string that represents the guide's password
+   * @param name A string that represents the guide's name
+   * @param emergencyContact A string that represents the guide's emergency contact
    * @return A string error that describes the input error. Blank if no error has been detected
+   * @author Ralph Choucha (RalphChoucha on GitHub)
    */
 
   public static String registerGuide(String email, String password, String name,
@@ -107,11 +105,12 @@ public class BikeTourPlusFeatureSet4Controller {
    * Method that updates a specific Guide using their email in the BikeTourPlus system. The Guide is
    * only updated if inputs are valid.
    * 
-   * @param email = A string that represents the specific guide's email
-   * @param newPassword = A string that represents the new password to be updated
-   * @param newName = A string that represents the new name to be updated
-   * @param newEmergencyContact = A string that represents the new emergency contact to be updated
+   * @param email A string that represents the specific guide's email
+   * @param newPassword A string that represents the new password to be updated
+   * @param newName A string that represents the new name to be updated
+   * @param newEmergencyContact A string that represents the new emergency contact to be updated
    * @return A string error that describes the input error. Blank if no error has been detected
+   * @author Ralph Choucha (RalphChoucha on GitHub)
    */
   public static String updateGuide(String email, String newPassword, String newName,
       String newEmergencyContact) {
@@ -156,7 +155,8 @@ public class BikeTourPlusFeatureSet4Controller {
    * A method that is used to delete a specific Guide object using an email. Deletes the instance as
    * well as all associations with it.
    * 
-   * @param email = A string that represents the Guide to be deleted's email
+   * @param email A string that represents the Guide to be deleted's email
+   * @author Ralph Choucha (RalphChoucha on GitHub)
    */
   public static void deleteGuide(String email) {
 
@@ -177,6 +177,7 @@ public class BikeTourPlusFeatureSet4Controller {
    * @param email = A string that represents the specific guide's email
    * @return The specific Guide object. If the method doesn't find a match in the Guide list returns
    *         a null Guide object
+   * @author Ralph Choucha (RalphChoucha on GitHub)
    */
 
   private static Guide getSpecificGuide(String email) {
