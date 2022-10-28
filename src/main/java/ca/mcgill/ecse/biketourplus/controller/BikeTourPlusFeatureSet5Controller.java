@@ -9,6 +9,7 @@ public class BikeTourPlusFeatureSet5Controller {
   static BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
 
   /**
+   * Add gear (name and price) to instance of BikeTourPlus
    * 
    * @param name the name of the gear to be added
    * @param pricePerWeek the price of the new gear
@@ -49,6 +50,7 @@ public class BikeTourPlusFeatureSet5Controller {
   }
 
   /**
+   * Update the attributes of an existing gear
    * 
    * @param oldName the name of the gear item to be changed
    * @param newName the new name of the gear item
@@ -105,6 +107,7 @@ public class BikeTourPlusFeatureSet5Controller {
   }
 
   /**
+   * Delete an instance of gear
    * 
    * @param name the name of the gear to be deleted
    * @return string of error message (empty string if no error)
