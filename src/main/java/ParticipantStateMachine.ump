@@ -1,0 +1,32 @@
+class Participant {
+  TourStatus { 
+    NotAssigned { 
+      assignParticipant() -> AssignedUnpaid; 
+    }
+    AssignedUnpaid {
+      payForTour() -> Paid;
+      startTrip() -> Banned;
+      cancelTrip() -> TripComplete;
+      
+    }
+    Paid {
+      cancelTrip() / {setRefund(50);} -> TripComplete;
+      startTrip() -> OnTrip;
+      
+    }
+    OnTrip {
+      completeTrip() / {setRefund(0);} -> TripComplete; 
+      cancelTrip() / {setRefund(10);} -> TripComplete;
+    }
+    final TripComplete {
+       
+    }
+    final Banned {
+       
+    }
+  }
+  
+  private void setRefund(int percent) {
+    self.setRefundedPercentageAmount(percent);
+  }
+}
