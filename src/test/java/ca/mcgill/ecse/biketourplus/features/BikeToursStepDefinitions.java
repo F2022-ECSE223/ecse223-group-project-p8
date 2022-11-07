@@ -466,6 +466,7 @@ public class BikeToursStepDefinitions {
   /**
    * @param string
    * @param string2
+   * @author LukeBebee
    */
   @Then("the participant account with email {string} shall be marked as {string}")
   public void the_participant_account_with_email_shall_be_marked_as(String string, String string2) {
