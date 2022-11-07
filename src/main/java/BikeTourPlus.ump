@@ -1,5 +1,8 @@
 namespace ca.mcgill.ecse.biketourplus.model;
 
+use ParticipantStateMachine.ump
+
+
 class BikeTourPlus {
   Date startDate;
   Integer nrWeeks;
