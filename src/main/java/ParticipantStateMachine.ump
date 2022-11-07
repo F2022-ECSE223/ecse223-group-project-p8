@@ -1,10 +1,10 @@
 class Participant {
   TourStatus { 
     NotAssigned { 
-      assignParticipant() -> AssignedUnpaid; 
+      setBikeTour() -> AssignedUnpaid; 
     }
     AssignedUnpaid {
-      payForTour() -> Paid;
+      doPayForTrip() -> Paid;
       startTrip() -> Banned;
       cancelTrip() -> TripComplete;
       
@@ -19,14 +19,18 @@ class Participant {
       cancelTrip() / {setRefund(10);} -> TripComplete;
     }
     final TripComplete {
-       
     }
     final Banned {
-       
     }
   }
   
   private void setRefund(int percent) {
-    self.setRefundedPercentageAmount(percent);
+    setRefundedPercentageAmount(percent);
   }
+  
+  
+  private void doPayForTrip() {
+    BikeToursFeatureSetController.payForTrip();
+  }
+  
 }
