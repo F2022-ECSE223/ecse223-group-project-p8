@@ -13,27 +13,27 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class BikeTourFeatureSet {
+public class BikeToursFeatureSetController {
     static BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
 
 
-    void initiateBikeTourCreationProcess() {
+    public static void initiateBikeTourCreationProcess() {
 
     }
 
-    void payForParticipantTrip() {
+    public static void payForParticipantTrip(Participant p) {
         
     }
 
-    void startCurrentWeekTrips() {
+    public static void startCurrentWeekTrips() {
         
     }
 
-    void finishParticipantTrip() {
+    public static void finishParticipantTrip(Participant p) {
         
     }
 
-    void cancelParticipantTrip() {
+    public static void cancelParticipantTrip(Participant p) {
         
     }
 

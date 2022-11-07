@@ -4,7 +4,7 @@
 package ca.mcgill.ecse.biketourplus.model;
 import java.util.*;
 
-// line 76 "../../../../../BikeTourPlus.ump"
+// line 79 "../../../../../BikeTourPlus.ump"
 public class Lodge
 {
 
