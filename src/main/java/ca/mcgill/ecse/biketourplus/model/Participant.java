@@ -23,7 +23,7 @@ public class Participant extends NamedUser
   private int refundedPercentageAmount;
 
   //Participant State Machines
-  public enum TourStatus { NotAssigned, AssignedUnpaid, Paid, OnTrip, TripComplete, Banned }
+  public enum TourStatus { NotAssigned, AssignedUnpaid, Paid, OnTrip, Banned, TripComplete }
   private TourStatus tourStatus;
 
   //Participant Associations
