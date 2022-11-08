@@ -14,27 +14,25 @@ import java.util.List;
 import java.util.Map;
 
 public class BikeToursFeatureSetController {
-    static BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
 
-
-    public static void initiateBikeTourCreationProcess() {
-
+    public static String initiateBikeTourCreationProcess() {
+        return "";
     }
 
-    public static void payForParticipantTrip(Participant p) {
-        
+    public static String payForParticipantTrip(Participant p) {
+        return "";
     }
 
-    public static void startCurrentWeekTrips() {
-        
+    public static String startCurrentWeekTrips() {
+        return "";
     }
 
-    public static void finishParticipantTrip(Participant p) {
-        
+    public static String finishParticipantTrip(Participant p) {
+        return "";
     }
 
-    public static void cancelParticipantTrip(Participant p) {
-        
+    public static String cancelParticipantTrip(Participant p) {
+        return "";
     }
 
 
