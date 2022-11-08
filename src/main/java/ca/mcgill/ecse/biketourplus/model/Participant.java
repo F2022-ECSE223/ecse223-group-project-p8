@@ -151,7 +151,7 @@ public class Participant extends NamedUser
     return tourStatus;
   }
 
-  public boolean setBikeTour()
+  public boolean setParticipantTour(BikeTour aBikeTour)
   {
     boolean wasEventProcessed = false;
     
@@ -159,6 +159,8 @@ public class Participant extends NamedUser
     switch (aTourStatus)
     {
       case NotAssigned:
+        // line 6 "../../../../../ParticipantStateMachine.ump"
+        setBikeTour(aBikeTour);
         setTourStatus(TourStatus.AssignedUnpaid);
         wasEventProcessed = true;
         break;
@@ -271,6 +273,9 @@ public class Participant extends NamedUser
     switch(tourStatus)
     {
       case TripComplete:
+        delete();
+        break;
+      case Banned:
         delete();
         break;
     }
