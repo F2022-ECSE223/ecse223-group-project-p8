@@ -4,7 +4,7 @@
 package ca.mcgill.ecse.biketourplus.model;
 import java.util.*;
 
-// line 83 "../../../../../BikeTourPlus.ump"
+// line 86 "../../../../../BikeTourPlus.ump"
 public class BikeTour
 {
 

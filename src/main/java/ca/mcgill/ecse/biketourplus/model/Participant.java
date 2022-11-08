@@ -2,9 +2,11 @@
 /*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 
 package ca.mcgill.ecse.biketourplus.model;
+import ca.mcgill.ecse.biketourplus.controller.BikeToursFeatureSetController;
 import java.util.*;
 
-// line 39 "../../../../../BikeTourPlus.ump"
+// line 1 "../../../../../ParticipantStateMachine.ump"
+// line 42 "../../../../../BikeTourPlus.ump"
 public class Participant extends NamedUser
 {
 
@@ -19,6 +21,10 @@ public class Participant extends NamedUser
   private boolean lodgeRequired;
   private String authorizationCode;
   private int refundedPercentageAmount;
+
+  //Participant State Machines
+  public enum TourStatus { NotAssigned, AssignedUnpaid, Paid, OnTrip, TripComplete, Banned }
+  private TourStatus tourStatus;
 
   //Participant Associations
   private BikeTourPlus bikeTourPlus;
@@ -44,6 +50,7 @@ public class Participant extends NamedUser
       throw new RuntimeException("Unable to create participant due to bikeTourPlus. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
     bookedItems = new ArrayList<BookedItem>();
+    setTourStatus(TourStatus.NotAssigned);
   }
 
   //------------------------
@@ -131,6 +138,142 @@ public class Participant extends NamedUser
   public boolean isLodgeRequired()
   {
     return lodgeRequired;
+  }
+
+  public String getTourStatusFullName()
+  {
+    String answer = tourStatus.toString();
+    return answer;
+  }
+
+  public TourStatus getTourStatus()
+  {
+    return tourStatus;
+  }
+
+  public boolean setBikeTour()
+  {
+    boolean wasEventProcessed = false;
+    
+    TourStatus aTourStatus = tourStatus;
+    switch (aTourStatus)
+    {
+      case NotAssigned:
+        setTourStatus(TourStatus.AssignedUnpaid);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean payForTrip()
+  {
+    boolean wasEventProcessed = false;
+    
+    TourStatus aTourStatus = tourStatus;
+    switch (aTourStatus)
+    {
+      case AssignedUnpaid:
+        // line 9 "../../../../../ParticipantStateMachine.ump"
+        doPayForTrip();
+        setTourStatus(TourStatus.Paid);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean startTripForParticipant()
+  {
+    boolean wasEventProcessed = false;
+    
+    TourStatus aTourStatus = tourStatus;
+    switch (aTourStatus)
+    {
+      case AssignedUnpaid:
+        setTourStatus(TourStatus.Banned);
+        wasEventProcessed = true;
+        break;
+      case Paid:
+        setTourStatus(TourStatus.OnTrip);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean cancelTripForParticipant()
+  {
+    boolean wasEventProcessed = false;
+    
+    TourStatus aTourStatus = tourStatus;
+    switch (aTourStatus)
+    {
+      case AssignedUnpaid:
+        // line 11 "../../../../../ParticipantStateMachine.ump"
+        setRefund(0);
+        setTourStatus(TourStatus.TripComplete);
+        wasEventProcessed = true;
+        break;
+      case Paid:
+        // line 15 "../../../../../ParticipantStateMachine.ump"
+        setRefund(50);
+        setTourStatus(TourStatus.TripComplete);
+        wasEventProcessed = true;
+        break;
+      case OnTrip:
+        // line 21 "../../../../../ParticipantStateMachine.ump"
+        setRefund(10);
+        setTourStatus(TourStatus.TripComplete);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean finishTripForParticipant()
+  {
+    boolean wasEventProcessed = false;
+    
+    TourStatus aTourStatus = tourStatus;
+    switch (aTourStatus)
+    {
+      case OnTrip:
+        // line 20 "../../../../../ParticipantStateMachine.ump"
+        setRefund(0);
+        setTourStatus(TourStatus.TripComplete);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  private void setTourStatus(TourStatus aTourStatus)
+  {
+    tourStatus = aTourStatus;
+
+    // entry actions and do activities
+    switch(tourStatus)
+    {
+      case TripComplete:
+        delete();
+        break;
+    }
   }
   /* Code from template association_GetOne */
   public BikeTourPlus getBikeTourPlus()
@@ -307,6 +450,16 @@ public class Participant extends NamedUser
       aBookedItem.delete();
     }
     super.delete();
+  }
+
+  // line 30 "../../../../../ParticipantStateMachine.ump"
+   private void doPayForTrip(){
+    BikeToursFeatureSetController.payForParticipantTrip(this);
+  }
+
+  // line 33 "../../../../../ParticipantStateMachine.ump"
+   private void setRefund(int percent){
+    setRefundedPercentageAmount(percent);
   }
 
 

@@ -5,7 +5,7 @@ package ca.mcgill.ecse.biketourplus.model;
 import java.sql.Date;
 import java.util.*;
 
-// line 3 "../../../../../BikeTourPlus.ump"
+// line 6 "../../../../../BikeTourPlus.ump"
 public class BikeTourPlus
 {
 

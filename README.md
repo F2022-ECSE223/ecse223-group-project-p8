@@ -1,10 +1,8 @@
-# :bike::heavy_plus_sign: ECSE223 BikeTourPlus Project: Team N
-
-_(Edit this file as needed, then remove this sentence)._
+# :bike::heavy_plus_sign: ECSE223 BikeTourPlus Project: Team 8
 
 ## Project Overview
 
-_Provide a one-sentence overview of your project here._
+The goal of our project is to develop a tool to create and manage local bike tours.
 
 For more information about the BikeTourPlus application, please consult the [wiki](../../wiki).
 
@@ -12,9 +10,8 @@ For more information about the BikeTourPlus application, please consult the [wik
 
 | Name          | GitHub username |
 | ------------- | --------------- |
-| Team Member A | ...             |
-| Team Member B | ...             |
-| Team Member C | ...             |
-| Team Member D | ...             |
-| Team Member E | ...             |
-| Team Member F | ...             |
+| Lukas Bebee   | LukeBebee       |
+| Brian Morava  | Morava83        |
+|Jacques Zaarour| jacqueszaarour  |
+| YuMeng Liu    | liu-yuyu        |
+| Ralph Choucha | RalphChoucha    |

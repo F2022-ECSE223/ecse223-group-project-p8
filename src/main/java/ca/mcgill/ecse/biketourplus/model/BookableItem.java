@@ -4,7 +4,7 @@
 package ca.mcgill.ecse.biketourplus.model;
 import java.util.*;
 
-// line 55 "../../../../../BikeTourPlus.ump"
+// line 58 "../../../../../BikeTourPlus.ump"
 public abstract class BookableItem
 {
 
