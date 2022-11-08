@@ -22,7 +22,7 @@ class Participant {
     }
     final TripComplete {
     }
-    final Banned {
+    Banned {
     }
   }
   
