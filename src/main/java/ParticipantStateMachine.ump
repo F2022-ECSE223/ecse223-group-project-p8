@@ -3,7 +3,7 @@ class Participant {
   TourStatus { 
     
     NotAssigned { 
-      setBikeTour() -> AssignedUnpaid; 
+      setParticipantTour(BikeTour aBikeTour) / {setBikeTour(aBikeTour);} -> AssignedUnpaid; 
     }
     AssignedUnpaid {
       payForTrip() / {doPayForTrip();} -> Paid;
@@ -22,7 +22,7 @@ class Participant {
     }
     final TripComplete {
     }
-    Banned {
+    final Banned {
     }
   }
   
