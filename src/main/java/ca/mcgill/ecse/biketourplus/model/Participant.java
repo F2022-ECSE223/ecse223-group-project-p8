@@ -273,9 +273,6 @@ public class Participant extends NamedUser
       case TripComplete:
         delete();
         break;
-      case Banned:
-        delete();
-        break;
     }
   }
   /* Code from template association_GetOne */
