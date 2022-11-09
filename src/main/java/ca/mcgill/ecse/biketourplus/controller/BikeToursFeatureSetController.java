@@ -65,40 +65,105 @@ public class BikeToursFeatureSetController {
         error = "Invalid authorization code";
       }
       
+      //if all conditions met call payForTrip method in the model
       p.payForTrip();
       
       return error;
     }
-
+      
+    /**
+     * Method that starts the BikeTour trips for Participants on a specified week 
+     * @param weekNumber The specific week that needs to be started
+     * @return A String error. Blank if no error has occurred.
+     * @author Ralph Choucha (RalphChoucha on Github)
+     */
+      
     public static String startWeekTrips(int weekNumber) {
-        return "";
+      
+      ArrayList <Participant> participantForWeek = new ArrayList <Participant>();
+      var error = "";
+      
+      //loop through all BikeTours for the specified week and add the involved participants into a list
+      for(BikeTour b: btp.getBikeTours()) {
+        if(b.getStartWeek() == weekNumber) {
+          participantForWeek.addAll(b.getParticipants());
+        }
+      }
+      
+      //loop through the participants in the list and check for errors
+      for(Participant p: participantForWeek) {
+        
+        //check if tour already started for the participant
+        if(p.getTourStatus() == TourStatus.Started) {
+          error = "Cannot start tour because the participant has already started their tour";
+          return error;
+        }
+        
+        //check if participant is banned
+        if(p.getTourStatus() == TourStatus.Banned) {
+          error = "Cannot start tour because the participant is banned";
+          return error;
+        }
+        
+        //check if participant has cancelled trip
+        if(p.getTourStatus() == TourStatus.Cancelled) {
+          error = "Cannot start tour because the participant has cancelled their tour";
+          return error;
+        }
+        
+        //check if participant finished their trip
+        if(p.getTourStatus() == TourStatus.Finished) {
+          error = "Cannot start tour because the participant has finished their tour";
+          return error;
+        }
+        
+        //if participant is clear, call startTripForParticipant method in the model
+        p.startTripForParticipant();
+      }
+      return error;
     }
 
     public static String finishParticipantTrip(String email) {
-      String error = "";
-      
-    //get specific participant
-      Participant p = getSpecificParticipant(email);
-      
-      
-      if(email.equals("nonexisting@mail.ca")) {
-        error = "Participant with email address nonexisting@mail.ca does not exist";
-        p = null;
-        return error;
-      }
-      
-      if(email.equals("new@hotmail.ca")) {
-        error = "Participant with email address nonexisting@mail.ca does not exist";
-        p = null;
-        return error;
-      }
-      
-      return "";
-    }
-
-    public static String cancelParticipantTrip(String email) {
-        // error message : "Participant with email address {email} does not exist"
         return "";
+    }
+    
+    /**
+     * Method that cancels trip for the specified participant using their email
+     * @param email The specific email of the participant
+     * @return A String error. Blank if no error has occurred.
+     * @author Ralph Choucha (RalphChoucha on Github)
+     */
+    
+    public static String cancelParticipantTrip(String email) {
+        
+        var error = "";
+        //get participant
+        Participant p = getSpecificParticipant(email);
+        
+        //if participant does not exist
+        if(p == null) {
+          error = "Participant with email address "+ email +" does not exist";
+        }
+        
+        //if participant has already canceled
+        if(p.getTourStatus() == TourStatus.Cancelled) {
+          error = "Cannot cancel tour because the participant has already cancelled their tour";
+        }
+        
+        //if participant is banned
+        if(p.getTourStatus() == TourStatus.Banned) {
+          error = "Cannot cancel tour because the participant is banned";
+        }
+        
+        //if participant finished their tour
+        if(p.getTourStatus() == TourStatus.Finished) {
+          error = "Cannot cancel tour because the participant has finished their tour";
+        }
+        
+        //if participant is good to go call cancelTripForParticipant method in the model
+        p.cancelTripForParticipant();
+        
+        return error;
     }
     
     /**
