@@ -11,9 +11,10 @@ import java.util.List;
 
 public class BikeToursFeatureSetController {
 
+    static BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
 
     public static String initiateBikeTourCreationProcess() {
-        BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
+        
         return "";
     }
     
@@ -30,6 +31,12 @@ public class BikeToursFeatureSetController {
       public static String payForParticipantTrip(String email, String authCode)  {
       var error = "";
       
+      //get specific participant
+      Participant p = getSpecificParticipant(email);
+      
+      if(p == null) {
+        error = "Participant with email address " + email + " does not exist";
+      }
       //check if participant is banned
       if (p.getTourStatus() == TourStatus.Banned) {
         error = "Cannot pay for tour because the participant is banned";
@@ -42,25 +49,23 @@ public class BikeToursFeatureSetController {
         return error;
       }
       
-      if(p.getTourStatus() == TourStatus.Paid || p.getTourStatus() == TourStatus.OnTrip || p.getTourStatus() == TourStatus.TripComplete) {
+      //check if participant already paid, started tour or finished tour
+      if(p.getTourStatus() == TourStatus.Paid || p.getTourStatus() == TourStatus.Started || p.getTourStatus() == TourStatus.Finished) {
         error = "The participant has already paid for their tour";
       }
       
       //check if participant cancelled their trip
-      //TODO implement check
-      
-      //check if participant is in the btp system
-      if(p.getBikeTourPlus() == null) {
-        error = "<error>";
+      if(p.getTourStatus() == TourStatus.Cancelled) {
+        error = "Cannot pay for tour because the participant has cancelled their tour";
       }
+      
       
       //check for blank authorization code
-      if(authorizationCode.isBlank()) {
-        error = "<error>";
+      if(authCode.isBlank()) {
+        error = "Invalid authorization code";
       }
       
-      //need to fix state machine i think
-      //TODO call relevant methods in the model
+      p.payForTrip();
       
       return error;
     }
@@ -76,5 +81,24 @@ public class BikeToursFeatureSetController {
     public static String cancelParticipantTrip(String email) {
         // error message : "Participant with email address {email} does not exist"
         return "";
+    }
+    
+    /**
+     * Helper method to find a specific Participant object by email
+     * 
+     * @param email = A string that represents the specific participant's email
+     * @return The specific Participant object. If the method doesn't find a match in the Guide list returns
+     *         a null Participant object
+     * @author Ralph Choucha (RalphChoucha on GitHub)
+     */
+
+    private static Participant getSpecificParticipant(String email) {
+      Participant participant = null;
+      for (Participant p : btp.getParticipants()) {
+        if (p.getEmail().equals(email)) {
+          participant = p;
+        }
+      }
+      return participant;
     }
 }
