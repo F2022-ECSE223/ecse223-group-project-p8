@@ -24,7 +24,15 @@ import java.util.Map;
 import java.sql.Date;
 
 
-public class BikeToursStepDefinitions { //TODO make sure that new states are matched
+// TODO Here is a list of things to check
+/*
+ * Check logic and documentation for all methods
+ * Make sure state names match the updatted state names
+ * Some methods that are marked with TODOs may not work, please check to verify
+ * When working on controllers, check the respective tests to make sure they are logically sound before assuming controller methods work
+ */
+
+public class BikeToursStepDefinitions { 
 
   private String error;
   private BikeTourPlus btp;
@@ -367,7 +375,7 @@ public class BikeToursStepDefinitions { //TODO make sure that new states are mat
       if (p.getTourStatusFullName().equals("NotAssigned")) {
         p.setParticipantTour(null);
       }
-      if (p.getTourStatusFullName().equals("AssignedUnpaid")) {
+      if (p.getTourStatusFullName().equals("Assigned")) {
         p.startTripForParticipant();
       }
     }
@@ -387,7 +395,7 @@ public class BikeToursStepDefinitions { //TODO make sure that new states are mat
       if (p.getTourStatusFullName().equals("NotAssigned")) {
         p.setParticipantTour(null);
       }
-      if (p.getTourStatusFullName().equals("AssignedUnpaid")) {
+      if (p.getTourStatusFullName().equals("Assigned")) {
         p.payForTrip();
       }
       if (p.getTourStatusFullName().equals("Paid")) {
@@ -410,7 +418,7 @@ public class BikeToursStepDefinitions { //TODO make sure that new states are mat
       if (p.getTourStatusFullName().equals("NotAssigned")) {
         p.setParticipantTour(null);
       }
-      if (p.getTourStatusFullName().equals("AssignedUnpaid")) {
+      if (p.getTourStatusFullName().equals("Assigned")) {
         p.payForTrip();
       }
     }
@@ -461,13 +469,13 @@ public class BikeToursStepDefinitions { //TODO make sure that new states are mat
       if (p.getTourStatusFullName().equals("NotAssigned")) {
         p.setParticipantTour(null);
       }
-      if (p.getTourStatusFullName().equals("AssignedUnpaid")) {
+      if (p.getTourStatusFullName().equals("Assigned")) {
         p.payForTrip();
       }
       if (p.getTourStatusFullName().equals("Paid")) {
         p.startTripForParticipant();
       }
-      if (p.getTourStatusFullName().equals("OnTrip")) {
+      if (p.getTourStatusFullName().equals("Started")) {
         p.finishTripForParticipant();
       }
     }
@@ -538,7 +546,6 @@ public class BikeToursStepDefinitions { //TODO make sure that new states are mat
     assertEquals(Integer.parseInt(string), btp.getParticipants().size());
   }
 
-  //TODO check participant existance
   /**
    * This checks a participant's existance and refund percent
    * @param string
@@ -550,7 +557,6 @@ public class BikeToursStepDefinitions { //TODO make sure that new states are mat
       String string2) {
         User u = Participant.getWithEmail(string);
         Participant p = (Participant) u;
-
         // verify existance
         boolean exists = false;
         for (Participant participant : btp.getParticipants()) {
@@ -562,7 +568,6 @@ public class BikeToursStepDefinitions { //TODO make sure that new states are mat
         assertEquals(Integer.parseInt(string2), p.getRefundedPercentageAmount());
   }
 
-  // TODO still must check for participant existance
   /**
    * Check if such a participant exists
    * @param string
@@ -575,7 +580,13 @@ public class BikeToursStepDefinitions { //TODO make sure that new states are mat
     User u = Participant.getWithEmail(string);
     Participant p = (Participant) u;
     // verify existance
+    boolean exists = false;
+    for (Participant participant : btp.getParticipants()) {
+      exists = string.equals(participant.getEmail());
+      if (exists) {break;}
+    }
+    assertTrue(exists);
+    // verify percentage amount
     assertEquals(string2, p.getAuthorizationCode());
   }
-
 }
