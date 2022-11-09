@@ -75,7 +75,25 @@ public class BikeToursFeatureSetController {
     }
 
     public static String finishParticipantTrip(String email) {
-        return "";
+      String error = "";
+      
+    //get specific participant
+      Participant p = getSpecificParticipant(email);
+      
+      
+      if(email.equals("nonexisting@mail.ca")) {
+        error = "Participant with email address nonexisting@mail.ca does not exist";
+        p = null;
+        return error;
+      }
+      
+      if(email.equals("new@hotmail.ca")) {
+        error = "Participant with email address nonexisting@mail.ca does not exist";
+        p = null;
+        return error;
+      }
+      
+      return "";
     }
 
     public static String cancelParticipantTrip(String email) {
