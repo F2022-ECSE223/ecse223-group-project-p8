@@ -16,6 +16,7 @@ import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
 import ca.mcgill.ecse.biketourplus.controller.BikeToursFeatureSetController;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -522,7 +523,7 @@ public class BikeToursStepDefinitions { //TODO make sure that new states are mat
    */
   @Then("a participant account shall not exist with email {string}")
   public void a_participant_account_shall_not_exist_with_email(String string) {
-    for (Participant p : btp.getParticipants()) {
+    for (Participant p : btp.getParticipants()) { // check each participant
       assertNotEquals(string, p.getEmail());
     }
   }
@@ -549,7 +550,15 @@ public class BikeToursStepDefinitions { //TODO make sure that new states are mat
       String string2) {
         User u = Participant.getWithEmail(string);
         Participant p = (Participant) u;
+
         // verify existance
+        boolean exists = false;
+        for (Participant participant : btp.getParticipants()) {
+          exists = string.equals(participant.getEmail());
+          if (exists) {break;}
+        }
+        assertTrue(exists);
+        // verify percentage amount
         assertEquals(Integer.parseInt(string2), p.getRefundedPercentageAmount());
   }
 
