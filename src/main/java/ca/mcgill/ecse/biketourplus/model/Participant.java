@@ -23,7 +23,7 @@ public class Participant extends NamedUser
   private int refundedPercentageAmount;
 
   //Participant State Machines
-  public enum TourStatus { NotAssigned, AssignedUnpaid, Paid, OnTrip, Banned, TripComplete }
+  public enum TourStatus { NotAssigned, Assigned, Paid, Started, Cancelled, Finished, Banned }
   private TourStatus tourStatus;
 
   //Participant Associations
@@ -160,8 +160,8 @@ public class Participant extends NamedUser
     {
       case NotAssigned:
         // line 6 "../../../../../ParticipantStateMachine.ump"
-        setBikeTour(aBikeTour);
-        setTourStatus(TourStatus.AssignedUnpaid);
+        doSetBikeTour(aBikeTour);
+        setTourStatus(TourStatus.Assigned);
         wasEventProcessed = true;
         break;
       default:
@@ -178,9 +178,7 @@ public class Participant extends NamedUser
     TourStatus aTourStatus = tourStatus;
     switch (aTourStatus)
     {
-      case AssignedUnpaid:
-        // line 9 "../../../../../ParticipantStateMachine.ump"
-        doPayForTrip();
+      case Assigned:
         setTourStatus(TourStatus.Paid);
         wasEventProcessed = true;
         break;
@@ -198,12 +196,12 @@ public class Participant extends NamedUser
     TourStatus aTourStatus = tourStatus;
     switch (aTourStatus)
     {
-      case AssignedUnpaid:
+      case Assigned:
         setTourStatus(TourStatus.Banned);
         wasEventProcessed = true;
         break;
       case Paid:
-        setTourStatus(TourStatus.OnTrip);
+        setTourStatus(TourStatus.Started);
         wasEventProcessed = true;
         break;
       default:
@@ -220,22 +218,22 @@ public class Participant extends NamedUser
     TourStatus aTourStatus = tourStatus;
     switch (aTourStatus)
     {
-      case AssignedUnpaid:
+      case Assigned:
         // line 11 "../../../../../ParticipantStateMachine.ump"
-        setRefund(0);
-        setTourStatus(TourStatus.TripComplete);
+        doSetRefund(0);
+        setTourStatus(TourStatus.Cancelled);
         wasEventProcessed = true;
         break;
       case Paid:
         // line 15 "../../../../../ParticipantStateMachine.ump"
-        setRefund(50);
-        setTourStatus(TourStatus.TripComplete);
+        doSetRefund(50);
+        setTourStatus(TourStatus.Cancelled);
         wasEventProcessed = true;
         break;
-      case OnTrip:
+      case Started:
         // line 21 "../../../../../ParticipantStateMachine.ump"
-        setRefund(10);
-        setTourStatus(TourStatus.TripComplete);
+        doSetRefund(10);
+        setTourStatus(TourStatus.Cancelled);
         wasEventProcessed = true;
         break;
       default:
@@ -252,10 +250,10 @@ public class Participant extends NamedUser
     TourStatus aTourStatus = tourStatus;
     switch (aTourStatus)
     {
-      case OnTrip:
+      case Started:
         // line 20 "../../../../../ParticipantStateMachine.ump"
-        setRefund(0);
-        setTourStatus(TourStatus.TripComplete);
+        doSetRefund(0);
+        setTourStatus(TourStatus.Finished);
         wasEventProcessed = true;
         break;
       default:
@@ -268,14 +266,6 @@ public class Participant extends NamedUser
   private void setTourStatus(TourStatus aTourStatus)
   {
     tourStatus = aTourStatus;
-
-    // entry actions and do activities
-    switch(tourStatus)
-    {
-      case TripComplete:
-        delete();
-        break;
-    }
   }
   /* Code from template association_GetOne */
   public BikeTourPlus getBikeTourPlus()
@@ -454,14 +444,14 @@ public class Participant extends NamedUser
     super.delete();
   }
 
-  // line 30 "../../../../../ParticipantStateMachine.ump"
-   private void doPayForTrip(){
-    BikeToursFeatureSetController.payForParticipantTrip(this);
+  // line 31 "../../../../../ParticipantStateMachine.ump"
+   private void doSetRefund(int percent){
+    setRefundedPercentageAmount(percent);
   }
 
-  // line 33 "../../../../../ParticipantStateMachine.ump"
-   private void setRefund(int percent){
-    setRefundedPercentageAmount(percent);
+  // line 34 "../../../../../ParticipantStateMachine.ump"
+   private void doSetBikeTour(BikeTour aBikeTour){
+    setBikeTour(aBikeTour);
   }
 
 

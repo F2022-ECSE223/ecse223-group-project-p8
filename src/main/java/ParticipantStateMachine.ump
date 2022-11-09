@@ -3,33 +3,35 @@ class Participant {
   TourStatus { 
     
     NotAssigned { 
-      setParticipantTour(BikeTour aBikeTour) / {setBikeTour(aBikeTour);} -> AssignedUnpaid; 
+      setParticipantTour(BikeTour aBikeTour) / {doSetBikeTour(aBikeTour);} -> Assigned; 
     }
-    AssignedUnpaid {
-      payForTrip() / {doPayForTrip();} -> Paid;
+    Assigned {
+      payForTrip() -> Paid;
       startTripForParticipant() -> Banned;
-      cancelTripForParticipant() / {setRefund(0);} -> TripComplete;
+      cancelTripForParticipant() / {doSetRefund(0);} -> Cancelled;
       
     }
     Paid {
-      cancelTripForParticipant() / {setRefund(50);} -> TripComplete;
-      startTripForParticipant() -> OnTrip;
+      cancelTripForParticipant() / {doSetRefund(50);} -> Cancelled;
+      startTripForParticipant() -> Started;
       
     }
-    OnTrip {
-      finishTripForParticipant() / {setRefund(0);} -> TripComplete; 
-      cancelTripForParticipant() / {setRefund(10);} -> TripComplete;
+    Started {
+      finishTripForParticipant() / {doSetRefund(0);} -> Finished; 
+      cancelTripForParticipant() / {doSetRefund(10);} -> Cancelled;
+    }
+    Cancelled {
+    }
+    Finished {
     }
     Banned {
     }
-    final TripComplete {
-    }
   }
-  
-  private void doPayForTrip() {
-    BikeToursFeatureSetController.payForParticipantTrip(this);
-  }
-  private void setRefund(int percent) {
+  private void doSetRefund(int percent) {
     setRefundedPercentageAmount(percent);
   }
+  private void doSetBikeTour(BikeTour aBikeTour) {
+    setBikeTour(aBikeTour);
+  }
+  
 }

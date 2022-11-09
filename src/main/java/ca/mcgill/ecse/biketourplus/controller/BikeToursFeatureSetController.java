@@ -1,22 +1,19 @@
 package ca.mcgill.ecse.biketourplus.controller;
 
-import ca.mcgill.ecse.biketourplus.application.*;
 import ca.mcgill.ecse.biketourplus.model.*;
 import ca.mcgill.ecse.biketourplus.model.Participant.TourStatus;
 import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
-import ca.mcgill.ecse.biketourplus.controller.BikeTourPlusFeatureSet1Controller;
-import ca.mcgill.ecse.biketourplus.controller.TOBikeTour;
-import ca.mcgill.ecse.biketourplus.controller.TOParticipantCost;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class BikeToursFeatureSetController {
 
+
     public static String initiateBikeTourCreationProcess() {
+        BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
         return "";
     }
     
@@ -30,7 +27,7 @@ public class BikeToursFeatureSetController {
     
      //TODO Fix the state machine so that this method can function and be completed
      
-    public static String payForParticipantTrip(Participant p, String authorizationCode) {
+      public static String payForParticipantTrip(String email, String authCode)  {
       var error = "";
       
       //check if participant is banned
@@ -72,17 +69,12 @@ public class BikeToursFeatureSetController {
         return "";
     }
 
-    public static String finishParticipantTrip(Participant p) {
+    public static String finishParticipantTrip(String email) {
         return "";
     }
 
-    public static String cancelParticipantTrip(Participant p) {
+    public static String cancelParticipantTrip(String email) {
+        // error message : "Participant with email address {email} does not exist"
         return "";
     }
-
-
-
-
-
-
 }
