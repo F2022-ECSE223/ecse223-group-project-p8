@@ -1,37 +1,59 @@
-class BTMS {
+external interface Serializable {}
+
+
+class BikeTourPlus {
   public void reinitialize() {
-    Driver.reinitializeAutouniqueID(getDrivers());
-    BusVehicle.reinitializeUniqueLicencePlate(getVehicles());
-    Route.reinitializeUniqueNumber(getRoutes());
+    User.reinitializeUniqueEmail(this.getManager(), this.getGuides(), this.getParticipants());
+    BookableItem.reinitializeUniqueName(this.getGear(), this.getCombos());
+    Lodge.reinitializeUniqueLodge(this.getLodges());
+    BikeTour.reinitializeUniqueID(this.getBikeTours());
   }
 }
 
-class BusVehicle {
-  public static void reinitializeUniqueLicencePlate(List<BusVehicle> buses) {
-    busvehiclesByLicencePlate.clear();
-    for (var bus : buses) {
-      busvehiclesByLicencePlate.put(bus.getLicencePlate(), bus);
+
+class User {
+  public static void reinitializeUniqueEmail(Manager manager, List<Guide> guides, List<Participant> participants) {
+    usersByEmail = new HashMap<String, User>();
+    if(manager != null) usersByEmail.put(manager.getEmail(), manager);
+    for (Guide guide : guides) {
+      usersByEmail.put(guide.getEmail(), guide);
+    }
+    for (Member member : members) {
+      usersByEmail.put(member.getEmail(), member);
     }
   }
 }
 
-class Route {
-  public static void reinitializeUniqueNumber(List<Route> routes) {
-    routesByNumber.clear();
-    for (var route : routes) {
-      routesByNumber.put(route.getNumber(), route);
+
+class BookableItem {
+  public static void reinitializeUniqueName(List<Gear> gears, List<Combo> combos) {
+    bookableitemsByName = new HashMap<String, BookableItem>();
+    for (Gear e : gears) {
+      bookableitemsByName.put(e.getName(), e);
+    }
+    for (Combo bundle : combos) {
+      bookableitemsByName.put(bundle.getName(), bundle);
     }
   }
 }
 
-class Driver {
-  public static void reinitializeAutouniqueID(List<Driver> drivers) {
-    nextId = 0; 
-    for (var driver : drivers) {
-      if (driver.getId() > nextId) {
-        nextId = driver.getId();
-      }
+
+class Lodge {
+  public static void reinitializeUniqueLodge(List<Lodge> lodges) {
+    lodgesByName = new HashMap<String, Lodge>();
+    for (Lodge lodge : lodges) {
+      lodgesByName.put(lodge.getName(), lodge);
     }
-    nextId++;
   }
 }
+
+
+class BikeTour{
+  public static void reinitializeUniqueID(List<BikeTour> biketours) {
+    bikeToursByName = new HashMap<String, BikeTour>();
+    for (BikeTour bt : biketours) {
+      bikeToursByName.put(bt.getName(), bt);
+    }
+  }
+}
+
