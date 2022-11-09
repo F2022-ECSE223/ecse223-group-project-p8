@@ -15,6 +15,7 @@ import ca.mcgill.ecse.biketourplus.model.BikeTour;
 import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
 import ca.mcgill.ecse.biketourplus.controller.BikeToursFeatureSetController;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -514,14 +515,16 @@ public class BikeToursStepDefinitions { //TODO make sure that new states are mat
         error = BikeToursFeatureSetController.payForParticipantTrip(string, string2);
   }
 
-  // TODO
   /**
+   * Checks to ensure the participant does not exist
    * @param string
+   * @author LukeBebee
    */
   @Then("a participant account shall not exist with email {string}")
   public void a_participant_account_shall_not_exist_with_email(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    for (Participant p : btp.getParticipants()) {
+      assertNotEquals(string, p.getEmail());
+    }
   }
 
   /**
@@ -550,16 +553,20 @@ public class BikeToursStepDefinitions { //TODO make sure that new states are mat
         assertEquals(Integer.parseInt(string2), p.getRefundedPercentageAmount());
   }
 
-  // TODO
+  // TODO still must check for participant existance
   /**
+   * Check if such a participant exists
    * @param string
    * @param string2
+   * @author LukeBebee
    */
   @Then("a participant account shall exist with email {string} and authorization code {string}")
   public void a_participant_account_shall_exist_with_email_and_authorization_code(String string,
       String string2) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    User u = Participant.getWithEmail(string);
+    Participant p = (Participant) u;
+    // verify existance
+    assertEquals(string2, p.getAuthorizationCode());
   }
 
 }
