@@ -1,6 +1,7 @@
 namespace ca.mcgill.ecse.biketourplus.model;
 
 use ParticipantStateMachine.ump
+use BikeTourPlusPersistence.ump
 
 
 class BikeTourPlus {
