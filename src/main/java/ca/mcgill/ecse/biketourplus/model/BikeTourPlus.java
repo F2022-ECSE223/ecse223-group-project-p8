@@ -5,7 +5,8 @@ package ca.mcgill.ecse.biketourplus.model;
 import java.sql.Date;
 import java.util.*;
 
-// line 6 "../../../../../BikeTourPlus.ump"
+// line 4 "../../../../../BikeTourPlusPersistence.ump"
+// line 7 "../../../../../BikeTourPlus.ump"
 public class BikeTourPlus
 {
 
@@ -1010,6 +1011,14 @@ public class BikeTourPlus
       bikeTours.remove(aBikeTour);
     }
     
+  }
+
+  // line 6 "../../../../../BikeTourPlusPersistence.ump"
+   public void reinitialize(){
+    User.reinitializeUniqueEmail(this.getManager(), this.getGuides(), this.getParticipants());
+    BookableItem.reinitializeUniqueName(this.getGear(), this.getCombos());
+    Lodge.reinitializeUniqueLodge(this.getLodges());
+    BikeTour.reinitializeUniqueID(this.getBikeTours());
   }
 
 

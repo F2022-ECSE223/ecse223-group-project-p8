@@ -3,7 +3,7 @@
 
 package ca.mcgill.ecse.biketourplus.model;
 
-// line 73 "../../../../../BikeTourPlus.ump"
+// line 74 "../../../../../BikeTourPlus.ump"
 public class ComboItem
 {
 

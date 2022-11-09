@@ -4,7 +4,7 @@
 package ca.mcgill.ecse.biketourplus.model;
 import java.util.*;
 
-// line 38 "../../../../../BikeTourPlus.ump"
+// line 39 "../../../../../BikeTourPlus.ump"
 public class Guide extends NamedUser
 {
 
