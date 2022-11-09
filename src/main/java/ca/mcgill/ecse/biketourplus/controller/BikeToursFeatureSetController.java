@@ -23,7 +23,7 @@ public class BikeToursFeatureSetController {
         return "";
     }
 
-    public static String startCurrentWeekTrips() {
+    public static String startWeekTrips(int weekNumber) {
         return "";
     }
 
