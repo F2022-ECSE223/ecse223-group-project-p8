@@ -44,7 +44,7 @@ Feature: Process bike tours
   # Pay Scenarios -----------
   Scenario Outline: Successfully pay for participant
     When the manager attempts to confirm payment for email "<email>" using authorization code "<code>"
-    Then the participant with email "<email>" shall be marked as "Paid"
+    Then the participant account with email "<email>" shall be marked as "Paid"
     Then a participant account shall exist with email "<email>" and authorization code "<code>"
 
     Examples: 
@@ -165,8 +165,8 @@ Feature: Process bike tours
     Then the system shall raise the error "Participant with email address nonexisting@mail.ca does not exist"
 
   Scenario: Unsuccessfully finish a tour for participant who has not been assigned to their tour
-    When the manager attempts to finish the tour for the participant with email "new@hotmail.ca"
-    Then the participant with email "new@hotmail.ca" shall be marked as "NotAssigned"
+    When the manager attempts to finish the tour for the participant with email "new@hotmail.com"
+    Then the participant with "new@hotmail.com" shall be marked as "NotAssigned"
     Then the system shall raise the error "Cannot finish a tour for a participant who has not started their tour"
 
   Scenario: Unsuccessfully finish a tour for participant who has been assigned to their tour
@@ -200,13 +200,13 @@ Feature: Process bike tours
 
   # Cancel Scenarios --------
   Scenario: Successfully cancel tour for participant who has not been assigned to their tour
-    When the manager attempts to cancel the tour for email "new@hotmail.ca"
-    Then the participant with email "new@hotmail.ca" shall be marked as "Cancelled"
-    Then a participant account shall exist with email "new@hotmail.ca" and a refund of "0" percent
+    When the manager attempts to cancel the tour for email "new@hotmail.com"
+    Then the participant with "new@hotmail.com" shall be marked as "Cancelled"
+    Then a participant account shall exist with email "new@hotmail.com" and a refund of "0" percent
 
   Scenario Outline: Successfully cancel tour for participant who has been assigned to their tour
     When the manager attempts to cancel the tour for email "<email>"
-    Then the participant with email "<email>" shall be marked as "Cancelled"
+    Then the participant with "<email>" shall be marked as "Cancelled"
     Then a participant account shall exist with email "<email>" and a refund of "0" percent
 
     Examples: 
@@ -228,7 +228,7 @@ Feature: Process bike tours
   Scenario Outline: Successfully cancel tour for participant who has started their tour
     Given the participant with email "<email>" has started their tour
     When the manager attempts to cancel the tour for email "<email>"
-    Then the participant with email "<email>" shall be marked as "Cancelled"
+    Then the participant with "<email>" shall be marked as "Cancelled"
     Then a participant account shall exist with email "<email>" and a refund of "10" percent
 
     Examples: 
@@ -256,7 +256,7 @@ Feature: Process bike tours
   Scenario: Unsuccessfully cancel a tour for participant who has cancelled their tour
     Given the participant with email "charlie@hotmail.ca" has cancelled their tour
     When the manager attempts to cancel the tour for email "charlie@hotmail.ca"
-    Then the participant with email "charlie@hotmail.ca" shall be marked as "Cancelled"
+    Then the participant with "charlie@hotmail.ca" shall be marked as "Cancelled"
     Then the system shall raise the error "Cannot cancel tour because the participant has already cancelled their tour"
 
   Scenario: Unsuccessfully cancel a tour for participant who has finished their tour
@@ -264,3 +264,4 @@ Feature: Process bike tours
     When the manager attempts to cancel the tour for email "charlie@hotmail.ca"
     Then the participant with email "charlie@hotmail.ca" shall be marked as "Finished"
     Then the system shall raise the error "Cannot cancel tour because the participant has finished their tour"
+
