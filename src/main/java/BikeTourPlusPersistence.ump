@@ -50,10 +50,13 @@ class Lodge {
 
 class BikeTour{
   public static void reinitializeUniqueID(List<BikeTour> biketours) {
-    bikeToursById = new HashMap<String , BikeTour>();
-    for (BikeTour bt : biketours) {
-      bikeToursById.put(bt.getId(), bt);
+    int nextId = 0; 
+    for (var biketour : biketours) {
+      if (biketour.getId() > nextId) {
+        nextId = biketour.getId();
+      }
     }
+    nextId++;
   }
 }
 
