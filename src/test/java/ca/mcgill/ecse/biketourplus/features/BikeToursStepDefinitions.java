@@ -27,7 +27,7 @@ import java.sql.Date;
 // TODO Here is a list of things to check
 /*
  * Check logic and documentation for all methods
- * Make sure state names match the updatted state names
+ * Make sure state names match the updated state names
  * Some methods that are marked with TODOs may not work, please check to verify
  * When working on controllers, check the respective tests to make sure they are logically sound before assuming controller methods work
  */
