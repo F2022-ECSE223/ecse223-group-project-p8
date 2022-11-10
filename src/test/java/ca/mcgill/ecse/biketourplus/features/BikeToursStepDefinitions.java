@@ -255,8 +255,7 @@ public class BikeToursStepDefinitions {
     User u = Participant.getWithEmail(string);
     if (u instanceof Participant) {
       Participant p = (Participant) u;
-      BikeTour tour = p.getBikeTour();
-      tour.removeParticipant(p); // remove participant from bike tour
+      p.cancelTripForParticipant();
     }
   }
 
@@ -373,7 +372,7 @@ public class BikeToursStepDefinitions {
     if (u instanceof Participant) {
       Participant p = (Participant) u;
       if (p.getTourStatusFullName().equals("NotAssigned")) {
-        p.setParticipantTour(null);
+        p.setParticipantTour(null); 
       }
       if (p.getTourStatusFullName().equals("Assigned")) {
         p.startTripForParticipant();
@@ -450,7 +449,7 @@ public class BikeToursStepDefinitions {
       BikeTour tour =  btp.addBikeTour(id, startWeek, endWeek, guide);
       for (String pString : participantList) {
         Participant p = (Participant) Participant.getWithEmail(pString);
-        tour.addParticipant(p);
+        p.setParticipantTour(tour);
       }
     }
   }
