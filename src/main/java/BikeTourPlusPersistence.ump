@@ -19,7 +19,7 @@ class User {
       usersByEmail.put(guide.getEmail(), guide);
     }
     for (Participant participant : participants) {
-      usersByEmail.put(member.getEmail(), member);
+      usersByEmail.put(participant.getEmail(), participant);
     }
   }
 }
@@ -50,9 +50,9 @@ class Lodge {
 
 class BikeTour{
   public static void reinitializeUniqueID(List<BikeTour> biketours) {
-    bikeToursByID = new HashMap<int , BikeTour>();
+    bikeToursByID = new HashMap<String , BikeTour>();
     for (BikeTour bt : biketours) {
-      bikeToursByName.put(bt.getID(), bt);
+      bikeToursByID.put(bt.getID(), bt);
     }
   }
 }

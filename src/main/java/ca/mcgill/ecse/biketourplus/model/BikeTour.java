@@ -325,9 +325,9 @@ public class BikeTour
 
   // line 53 "../../../../../BikeTourPlusPersistence.ump"
    public static  void reinitializeUniqueID(List<BikeTour> biketours){
-    bikeToursByID = new HashMap<int , BikeTour>();
+    bikeToursByID = new HashMap<String , BikeTour>();
     for (BikeTour bt : biketours) {
-      bikeToursByName.put(bt.getID(), bt);
+      bikeToursByID.put(bt.getID(), bt);
     }
   }
 
