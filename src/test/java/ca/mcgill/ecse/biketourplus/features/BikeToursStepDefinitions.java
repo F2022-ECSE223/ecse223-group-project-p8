@@ -412,6 +412,15 @@ public class BikeToursStepDefinitions {
     throw new io.cucumber.java.PendingException();
   }
 
+<<<<<<< HEAD
+=======
+  @Then("the participant with {string} shall be marked as {string}")
+  public void the_participant_with_shall_be_marked_as(String string, String string2) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+  }
+
+>>>>>>> parent of 875789b (fix issues in feature files and step definitions)
   @Then("a participant account shall not exist with email {string}")
   public void a_participant_account_shall_not_exist_with_email(String string) {
     // Write code here that turns the phrase above into concrete actions
@@ -446,6 +455,12 @@ public class BikeToursStepDefinitions {
   @Then("a participant account shall exist with email {string} and authorization code {string}")
   public void a_participant_account_shall_exist_with_email_and_authorization_code(String string,
       String string2) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+  }
+
+  @Then("the participant account with email {string} shall be marked as {string}")
+  public void the_participant_account_with_email_shall_be_marked_as(String string, String string2) {
     // Write code here that turns the phrase above into concrete actions
     throw new io.cucumber.java.PendingException();
   }
