@@ -262,5 +262,6 @@ Feature: Process bike tours
   Scenario: Unsuccessfully cancel a tour for participant who has finished their tour
     Given the participant with email "charlie@hotmail.ca" has finished their tour
     When the manager attempts to cancel the tour for email "charlie@hotmail.ca"
-    Then the participant with "charlie@hotmail.ca" shall be marked as "Finished"
+    Then the participant with email "charlie@hotmail.ca" shall be marked as "Finished"
     Then the system shall raise the error "Cannot cancel tour because the participant has finished their tour"
+

@@ -20,8 +20,10 @@ public class BikeToursFeatureSetController {
    * @author Ralph Choucha (RalphChoucha on GitHub)
    */
   public static String initiateBikeTourCreationProcess() {
-
     var error = "";
+    try {
+
+    
 
     List<Participant> participants = btp.getParticipants();
     List<Guide> guides = btp.getGuides();
@@ -73,6 +75,10 @@ public class BikeToursFeatureSetController {
     } catch (RuntimeException e) {
       error += e.getMessage();
     }
+  }
+  catch(Exception e) {
+
+  }
     return error;
   }
 
@@ -83,6 +89,7 @@ public class BikeToursFeatureSetController {
    * @param authorizationCode The authorization code for the transaction
    * @return A String error. Blank if no error has occurred.
    * @author Ralph Choucha (RalphChoucha on Github)
+   * @author LukeBebee
    */
 
   // TODO Fix the state machine so that this method can function and be completed
@@ -95,7 +102,12 @@ public class BikeToursFeatureSetController {
 
     // call payForTrip and check for errors
     try {
-      p.payForTrip();
+      if (p.getAuthorizationCode().equals(authCode)) {
+        p.payForTrip();
+      }
+      else {
+        error = "Invalid authorization code";
+      }
     } catch (RuntimeException e) {
       error += e.getMessage();
     }

@@ -117,5 +117,5 @@ Feature: Initiate creation of bike tours
     Then the participant with email "charlie@hotmail.ca" shall be marked as "Assigned"
     Then the participant with email "john@hotmail.ca" shall be marked as "Assigned"
     Then the participant with email "emily@hotmail.ca" shall be marked as "NotAssigned"
-    Then the number of bike tours shall be "4"
+    Then the number of bike tours shall be "5"
     Then the system shall raise the error "At least one participant could not be assigned to their bike tour"
