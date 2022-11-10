@@ -325,10 +325,13 @@ public class BikeTour
 
   // line 53 "../../../../../BikeTourPlusPersistence.ump"
    public static  void reinitializeUniqueID(List<BikeTour> biketours){
-    Map<String, BikeTour> bikeToursById = new HashMap<String, BikeTour>();
-    for (BikeTour bt : biketours) {
-      bikeToursById.put(bt.getId(), bt);
+    int nextId = 0; 
+    for (var biketour : biketours) {
+      if (biketour.getId() > nextId) {
+        nextId = biketour.getId();
+      }
     }
+    nextId++;
   }
 
 
