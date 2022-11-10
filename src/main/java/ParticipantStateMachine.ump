@@ -123,16 +123,16 @@ class Participant {
   }
   // Cancelled
   private void rejectPayForTripFromCancelled() {
-    throw new RuntimeException(""); // no message provided by feature file
+    throw new RuntimeException("Cannot pay for tour because the participant has cancelled their tour"); 
   }
   private void rejectStartTripForParticipantFromCancelled() {
     throw new RuntimeException("Cannot start tour because the participant has cancelled their tour");
   }
   private void rejectFinishTripForParticipantFromCancelled() {
-    throw new RuntimeException(""); // no message provided by feature file
+    throw new RuntimeException("Cannot finish tour because the participant has cancelled their tour"); 
   }
   private void rejectCancelTripForParticipantFromCancelled() {
-    throw new RuntimeException(""); // no message provided by feature file
+    throw new RuntimeException("Cannot cancel tour because the participant has already cancelled their tour"); 
   }
   // Finished
   private void rejectStartTripForParticipantFromFinished() {

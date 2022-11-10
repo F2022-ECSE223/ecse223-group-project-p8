@@ -1,106 +1,76 @@
 package ca.mcgill.ecse.biketourplus.controller;
 
 import ca.mcgill.ecse.biketourplus.model.*;
-import ca.mcgill.ecse.biketourplus.model.Participant.TourStatus;
 import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
 import ca.mcgill.ecse.biketourplus.Persistence.BikeTourPlusPersistence;
-
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class BikeToursFeatureSetController {
 
   static BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
 
   /*
-   * TODO Rewrite Method in accordance to the iteration document
+   * This method creates bike tours as described in the iteration 3 document
    * 
    * @author Ralph Choucha (RalphChoucha on GitHub)
+   * @author LukeBebee
+   * @author (add yuyu)
+   * @author (add jack)
+   * @author (add brian)
    */
   public static String initiateBikeTourCreationProcess() {
-    var error = "";
-
-    List<Participant> participants = btp.getParticipants();
-    List<Guide> guides = btp.getGuides();
+    var error = "";    
     try {
-      // looping through participants using int j
-      for (int j = 0; j < participants.size(); j++) {
-        // if there are no biketours create a new one using the first participant
-        if (btp.getBikeTours().size() == 0) {
-          participants.get(j)
-              .setBikeTour(new BikeTour(0, participants.get(j).getWeekAvailableFrom(),
-                  participants.get(j).getWeekAvailableUntil(), null, btp));
-        }
-        // Otherwise if there are biketours already created
-        // looping through existing biketours using int k
-        for (int k = 0; k < btp.getBikeTours().size(); k++) {
-          // if an existing biketour has same startWeek and endWeek as a participant's
-          // availability
-          // add the participant to that specific biketour
-          if (btp.getBikeTours().get(k).getStartWeek() == participants.get(j).getWeekAvailableFrom()
-              && btp.getBikeTours().get(k).getEndWeek() == participants.get(j)
-                  .getWeekAvailableUntil()) {
-            participants.get(j).setBikeTour(btp.getBikeTours().get(k));
-          }
-          // otherwise if there are no matches create new biketour with id equal to the next
-          // available index
-          else {
-            participants.get(j)
-                .setBikeTour(new BikeTour(btp.getBikeTours().size(),
-                    participants.get(j).getWeekAvailableFrom(),
-                    participants.get(j).getWeekAvailableUntil(), null, btp));
-          }
-        }
-      }
-
-      // looping through guides to assign them to the Biketours created
-      for (Guide g : guides) {
-        // looping through the BikeTours that exist
-        for (BikeTour b : btp.getBikeTours()) {
-          // if the guide does not have any BikeTours and vice-versa
-          // assign them to the earliest created BikeTour
-          if (g.getBikeTours().size() == 0 && b.getGuide() == null) {
-            b.setGuide(g);
-          }
-          // initialize boolean overlap that gets set to true if we detect any overlap with any of
-          // the biketours the guide is already assigned to
-          boolean overlap = false;
-          // loop through the list of biketours that the guide has
-          for (BikeTour bT : g.getBikeTours()) {
-            // if the start week matches the end week (either way around) there is overlap
-            if (bT.getStartWeek() == b.getEndWeek() || bT.getEndWeek() == b.getStartWeek()) {
-              overlap = true;
-            }
-            // check case where b's startweek is in between bT's start and end week
-            if (bT.getStartWeek() < b.getStartWeek() && b.getStartWeek() < bT.getEndWeek()
-                && b.getEndWeek() <= bT.getEndWeek()) {
-              overlap = true;
-            }
-            // check case where bT's startweek is in between b's start and end week
-            if (bT.getStartWeek() >= b.getStartWeek() && bT.getStartWeek() < b.getEndWeek()
-                && b.getEndWeek() < bT.getEndWeek()) {
-              overlap = true;
-            }
-            // if no overlap, set guide
-            if (overlap == false) {
-              b.setGuide(g);
+      for (Guide guide : btp.getGuides()) {
+        for (Participant participant : btp.getParticipants()) {
+          if (participant.getTourStatusFullName().equals("NotAssigned")) {
+            // create proposed tours
+            for (int i = 0; i <= participant.getWeekAvailableUntil() - participant.getNrWeeks() - participant.getWeekAvailableFrom() + 1; i++) {
+              int proposedStartWeek = participant.getWeekAvailableFrom() + i;
+              int proposedEndWeek = proposedStartWeek + participant.getNrWeeks() - 1;
+              // at this point we have our proposed tours, now check for earliest match and if there is one then we need to assign
+              boolean conflictWithProposedTour = false;
+              for (BikeTour guideTour : guide.getBikeTours()) {
+                // loop through all of the guides tours to try and check for bad overlap
+                if ((guideTour.getStartWeek()== proposedStartWeek) && (guideTour.getEndWeek() == proposedEndWeek)) { // already existing tour that works at earliest available spot
+                  participant.setParticipantTour(guideTour);
+                  if (participant.getTourStatusFullName().equals("Assigned")) {break;}
+                }
+                // check for conflict
+                else if (((guideTour.getStartWeek() == proposedEndWeek)&&(proposedStartWeek<guideTour.getStartWeek())) || ((guideTour.getEndWeek()==proposedStartWeek)&&(proposedEndWeek>guideTour.getEndWeek()))) { // if there is conflict
+                  conflictWithProposedTour = true;
+                }
+                else if (((proposedStartWeek > guideTour.getStartWeek())&&(proposedStartWeek < guideTour.getEndWeek())) || ((proposedEndWeek>guideTour.getStartWeek())&&(proposedEndWeek < guideTour.getEndWeek()))) { // if there is a different conflict
+                  conflictWithProposedTour = true;
+                }
+              }
+              // if we found that the current proposed tour has no conflicts, then create new tour and assign
+              if (!conflictWithProposedTour) {
+                BikeTour tourToAssign = btp.addBikeTour(btp.getBikeTours().size(), proposedStartWeek, proposedEndWeek, guide);
+                tourToAssign.setGuide(guide);
+                participant.setParticipantTour(tourToAssign);
+              }
+              if (participant.getTourStatusFullName().equals("Assigned")) {break;}
             }
           }
         }
       }
-    } catch (RuntimeException e) {
+      // for loop to see if any participants not assigned
+      for (Participant p : btp.getParticipants()) {
+        if (p.getTourStatusFullName().equals("NotAssigned")) {
+          error += "At least one participant could not be assigned to their bike tour"; 
+          break;
+        }
+      }
+    } catch(Exception e) {
       error += e.getMessage();
     }
-
     // Persistence
     try {
       BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
     } catch (Exception e) {
       error += (e.getMessage());
     }
-
     return error;
   }
 
@@ -114,7 +84,6 @@ public class BikeToursFeatureSetController {
    * @author LukeBebee
    */
 
-  // TODO Fix the state machine so that this method can function and be completed
 
   public static String payForParticipantTrip(String email, String authCode) {
     var error = "";

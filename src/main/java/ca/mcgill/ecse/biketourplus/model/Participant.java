@@ -711,7 +711,7 @@ public class Participant extends NamedUser
    */
   // line 126 "../../../../../ParticipantStateMachine.ump"
    private void rejectPayForTripFromCancelled(){
-    throw new RuntimeException(""); // no message provided by feature file
+    throw new RuntimeException("Cannot pay for tour because the participant has cancelled their tour");
   }
 
   // line 129 "../../../../../ParticipantStateMachine.ump"
@@ -721,12 +721,12 @@ public class Participant extends NamedUser
 
   // line 132 "../../../../../ParticipantStateMachine.ump"
    private void rejectFinishTripForParticipantFromCancelled(){
-    throw new RuntimeException(""); // no message provided by feature file
+    throw new RuntimeException("Cannot finish tour because the participant has cancelled their tour");
   }
 
   // line 135 "../../../../../ParticipantStateMachine.ump"
    private void rejectCancelTripForParticipantFromCancelled(){
-    throw new RuntimeException(""); // no message provided by feature file
+    throw new RuntimeException("Cannot cancel tour because the participant has already cancelled their tour");
   }
 
 

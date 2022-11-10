@@ -24,13 +24,7 @@ import java.util.Map;
 import java.sql.Date;
 
 
-// TODO Here is a list of things to check
-/*
- * Check logic and documentation for all methods
- * Make sure state names match the updatted state names
- * Some methods that are marked with TODOs may not work, please check to verify
- * When working on controllers, check the respective tests to make sure they are logically sound before assuming controller methods work
- */
+
 
 public class BikeToursStepDefinitions { 
 
@@ -176,7 +170,7 @@ public class BikeToursStepDefinitions {
       List<String> participantList = new ArrayList<String>(Arrays.asList(participantListString.split(",")));
 
       // get actual tour for the right id (assuming in order of ids)
-      BikeTour actualTour = btp.getBikeTour(id - 1);
+      BikeTour actualTour = btp.getBikeTour(id);
 
       // check if they match
       assertEquals(id, actualTour.getId());
@@ -255,8 +249,7 @@ public class BikeToursStepDefinitions {
     User u = Participant.getWithEmail(string);
     if (u instanceof Participant) {
       Participant p = (Participant) u;
-      BikeTour tour = p.getBikeTour();
-      tour.removeParticipant(p); // remove participant from bike tour
+      p.cancelTripForParticipant();
     }
   }
 
@@ -360,7 +353,6 @@ public class BikeToursStepDefinitions {
           }
   }
 
-  // TODO Check if this method works, it seems sketchy
   /**
    * Sets up the participant as banned
    * @param string
@@ -373,7 +365,7 @@ public class BikeToursStepDefinitions {
     if (u instanceof Participant) {
       Participant p = (Participant) u;
       if (p.getTourStatusFullName().equals("NotAssigned")) {
-        p.setParticipantTour(null);
+        p.setParticipantTour(null); 
       }
       if (p.getTourStatusFullName().equals("Assigned")) {
         p.startTripForParticipant();
@@ -381,7 +373,6 @@ public class BikeToursStepDefinitions {
     }
   }
 
-  // TODO any changes to the above method may apply to this method as well
   /**
    * Sets up a participant as having started their tour
    * @param string
@@ -404,7 +395,6 @@ public class BikeToursStepDefinitions {
     }
   }
 
-  // TODO any changes to the above method may apply to this method as well
   /**
    * Sets up a participant as having paid for their tour
    * @param string
@@ -450,12 +440,11 @@ public class BikeToursStepDefinitions {
       BikeTour tour =  btp.addBikeTour(id, startWeek, endWeek, guide);
       for (String pString : participantList) {
         Participant p = (Participant) Participant.getWithEmail(pString);
-        tour.addParticipant(p);
+        p.setParticipantTour(tour);
       }
     }
   }
 
-  // TODO similar methods above may change, in which case this should as well
   /**
    * This method sets up the participant as having finished their tour
    * @param string
