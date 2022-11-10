@@ -11,177 +11,186 @@ import java.util.List;
 
 public class BikeToursFeatureSetController {
 
-    static BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
+  static BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
 
-    public static String initiateBikeTourCreationProcess() {
-        
-        return "";
+  /*
+   * TODO finish the method Unsure whether we need a try catch block or if we can throw the error
+   * normally Unsure whether we assign a unique id to each new biketour created
+   * 
+   * @author Ralph Choucha (RalphChoucha on GitHub)
+   */
+  public static String initiateBikeTourCreationProcess() {
+
+    var error = "";
+
+    List<Participant> participants = btp.getParticipants();
+    List<Guide> guides = btp.getGuides();
+    try {
+      // looping through participants using int j
+      for (int j = 0; j < participants.size(); j++) {
+        // if there are no biketours create a new one using the first participant
+        if (btp.getBikeTours().size() == 0) {
+          participants.get(j)
+              .setBikeTour(new BikeTour(0, participants.get(j).getWeekAvailableFrom(),
+                  participants.get(j).getWeekAvailableUntil(), null, btp));
+        }
+        // Otherwise if there are biketours already created
+        // looping through existing biketours using int k
+        for (int k = 0; k < btp.getBikeTours().size(); k++) {
+          // if an existing biketour has same startWeek and endWeek as a participant's availability
+          // add the participant to that specific biketour
+          if (btp.getBikeTours().get(k).getStartWeek() == participants.get(j).getWeekAvailableFrom()
+              && btp.getBikeTours().get(k).getEndWeek() == participants.get(j)
+                  .getWeekAvailableUntil()) {
+            participants.get(j).setBikeTour(btp.getBikeTours().get(k));
+          }
+          // otherwise if there are no matches create new biketour with id equal to the next
+          // available index
+          else {
+            participants.get(j)
+                .setBikeTour(new BikeTour(btp.getBikeTours().size(),
+                    participants.get(j).getWeekAvailableFrom(),
+                    participants.get(j).getWeekAvailableUntil(), null, btp));
+          }
+        }
+      }
+
+      // looping through guides to assign them to the Biketours created
+      for (Guide g : guides) {
+        // looping through the BikeTours that exist
+        for (BikeTour b : btp.getBikeTours()) {
+          // if the guide does not have any BikeTours and vice-versa
+          // assign them to the earliest created BikeTour
+          if (g.getBikeTours().size() == 0 && b.getGuide() == null) {
+            b.setGuide(g);
+          }
+          // if guide already has BikeTours
+          // check if b has any overlap with the existing biketours
+          // if no overlap, assign g to b
+
+        }
+      }
+    } catch (RuntimeException e) {
+      error += e.getMessage();
     }
-    
-    /**
-     * Method that handles payment for a participant
-     * @param p The participant that needs payment handling
-     * @param authorizationCode The authorization code for the transaction
-     * @return A String error. Blank if no error has occurred.
-     * @author Ralph Choucha (RalphChoucha on Github)
-     */
-    
-     //TODO Fix the state machine so that this method can function and be completed
-     
-      public static String payForParticipantTrip(String email, String authCode)  {
-      var error = "";
-      
-      //get specific participant
-      Participant p = getSpecificParticipant(email);
-      
-      if(p == null) {
-        error = "Participant with email address " + email + " does not exist";
-      }
-      //check if participant is banned
-      if (p.getTourStatus() == TourStatus.Banned) {
-        error = "Cannot pay for tour because the participant is banned";
-        return error;
-      }
-      
-      //check if participant is not assigned to a biketour
-      if(p.getTourStatus() == TourStatus.NotAssigned) {
-        error = "The participant has not been assigned to their tour";
-        return error;
-      }
-      
-      //check if participant already paid, started tour or finished tour
-      if(p.getTourStatus() == TourStatus.Paid || p.getTourStatus() == TourStatus.Started || p.getTourStatus() == TourStatus.Finished) {
-        error = "The participant has already paid for their tour";
-      }
-      
-      //check if participant cancelled their trip
-      if(p.getTourStatus() == TourStatus.Cancelled) {
-        error = "Cannot pay for tour because the participant has cancelled their tour";
-      }
-      
-      
-      //check for blank authorization code
-      if(authCode.isBlank()) {
-        error = "Invalid authorization code";
-      }
-      
-      //if all conditions met call payForTrip method in the model
+    return error;
+  }
+
+  /**
+   * Method that handles payment for a participant
+   * 
+   * @param p The participant that needs payment handling
+   * @param authorizationCode The authorization code for the transaction
+   * @return A String error. Blank if no error has occurred.
+   * @author Ralph Choucha (RalphChoucha on Github)
+   */
+
+  // TODO Fix the state machine so that this method can function and be completed
+
+  public static String payForParticipantTrip(String email, String authCode) {
+    var error = "";
+
+    // get specific participant
+    Participant p = getSpecificParticipant(email);
+
+    // call payForTrip and check for errors
+    try {
       p.payForTrip();
-      
-      return error;
+    } catch (RuntimeException e) {
+      error += e.getMessage();
     }
-      
-    /**
-     * Method that starts the BikeTour trips for Participants on a specified week 
-     * @param weekNumber The specific week that needs to be started
-     * @return A String error. Blank if no error has occurred.
-     * @author Ralph Choucha (RalphChoucha on Github)
-     */
-      
-    public static String startWeekTrips(int weekNumber) {
-      
-      ArrayList <Participant> participantForWeek = new ArrayList <Participant>();
-      var error = "";
-      
-      //loop through all BikeTours for the specified week and add the involved participants into a list
-      for(BikeTour b: btp.getBikeTours()) {
-        if(b.getStartWeek() == weekNumber) {
-          participantForWeek.addAll(b.getParticipants());
-        }
+    return error;
+  }
+
+  /**
+   * Method that starts the BikeTour trips for Participants on a specified week
+   * 
+   * @param weekNumber The specific week that needs to be started
+   * @return A String error. Blank if no error has occurred.
+   * @author Ralph Choucha (RalphChoucha on Github)
+   */
+
+  public static String startWeekTrips(int weekNumber) {
+
+    ArrayList<Participant> participantForWeek = new ArrayList<Participant>();
+    var error = "";
+
+    // loop through all BikeTours for the specified week and add the involved participants into a
+    // list
+    for (BikeTour b : btp.getBikeTours()) {
+      if (b.getStartWeek() == weekNumber) {
+        participantForWeek.addAll(b.getParticipants());
       }
-      
-      //loop through the participants in the list and check for errors
-      for(Participant p: participantForWeek) {
-        
-        //check if tour already started for the participant
-        if(p.getTourStatus() == TourStatus.Started) {
-          error = "Cannot start tour because the participant has already started their tour";
-          return error;
-        }
-        
-        //check if participant is banned
-        if(p.getTourStatus() == TourStatus.Banned) {
-          error = "Cannot start tour because the participant is banned";
-          return error;
-        }
-        
-        //check if participant has cancelled trip
-        if(p.getTourStatus() == TourStatus.Cancelled) {
-          error = "Cannot start tour because the participant has cancelled their tour";
-          return error;
-        }
-        
-        //check if participant finished their trip
-        if(p.getTourStatus() == TourStatus.Finished) {
-          error = "Cannot start tour because the participant has finished their tour";
-          return error;
-        }
-        
-        //if participant is clear, call startTripForParticipant method in the model
+    }
+
+    // loop through the participants in the list and check for errors
+    for (Participant p : participantForWeek) {
+      try {
         p.startTripForParticipant();
+      } catch (RuntimeException e) {
+        error += e.getMessage();
       }
-      return error;
     }
+    return error;
+  }
 
-    public static String finishParticipantTrip(String email) {
-        return "";
+  /**
+   * Method used to mark the end of a participant's trip
+   * 
+   * @param email The specific email of the participant
+   * @return A String error. Blank if no error has occurred.
+   * @author Ralph Choucha (RalphChoucha on Github)
+   */
+  public static String finishParticipantTrip(String email) {
+    var error = "";
+    // get participant
+    Participant p = getSpecificParticipant(email);
+    try {
+      p.finishTripForParticipant();
+    } catch (RuntimeException e) {
+      error += e.getMessage();
     }
-    
-    /**
-     * Method that cancels trip for the specified participant using their email
-     * @param email The specific email of the participant
-     * @return A String error. Blank if no error has occurred.
-     * @author Ralph Choucha (RalphChoucha on Github)
-     */
-    
-    public static String cancelParticipantTrip(String email) {
-        
-        var error = "";
-        //get participant
-        Participant p = getSpecificParticipant(email);
-        
-        //if participant does not exist
-        if(p == null) {
-          error = "Participant with email address "+ email +" does not exist";
-        }
-        
-        //if participant has already canceled
-        if(p.getTourStatus() == TourStatus.Cancelled) {
-          error = "Cannot cancel tour because the participant has already cancelled their tour";
-        }
-        
-        //if participant is banned
-        if(p.getTourStatus() == TourStatus.Banned) {
-          error = "Cannot cancel tour because the participant is banned";
-        }
-        
-        //if participant finished their tour
-        if(p.getTourStatus() == TourStatus.Finished) {
-          error = "Cannot cancel tour because the participant has finished their tour";
-        }
-        
-        //if participant is good to go call cancelTripForParticipant method in the model
-        p.cancelTripForParticipant();
-        
-        return error;
-    }
-    
-    /**
-     * Helper method to find a specific Participant object by email
-     * 
-     * @param email = A string that represents the specific participant's email
-     * @return The specific Participant object. If the method doesn't find a match in the Guide list returns
-     *         a null Participant object
-     * @author Ralph Choucha (RalphChoucha on GitHub)
-     */
+    return error;
+  }
 
-    private static Participant getSpecificParticipant(String email) {
-      Participant participant = null;
-      for (Participant p : btp.getParticipants()) {
-        if (p.getEmail().equals(email)) {
-          participant = p;
-        }
+  /**
+   * Method that cancels trip for the specified participant using their email
+   * 
+   * @param email The specific email of the participant
+   * @return A String error. Blank if no error has occurred.
+   * @author Ralph Choucha (RalphChoucha on Github)
+   */
+
+  public static String cancelParticipantTrip(String email) {
+
+    var error = "";
+    // get participant
+    Participant p = getSpecificParticipant(email);
+
+    try {
+      p.cancelTripForParticipant();
+    } catch (RuntimeException e) {
+      error += e.getMessage();
+    }
+    return error;
+  }
+
+  /**
+   * Helper method to find a specific Participant object by email
+   * 
+   * @param email = A string that represents the specific participant's email
+   * @return The specific Participant object. If the method doesn't find a match in the Guide list
+   *         returns a null Participant object
+   * @author Ralph Choucha (RalphChoucha on GitHub)
+   */
+
+  private static Participant getSpecificParticipant(String email) {
+    Participant participant = null;
+    for (Participant p : btp.getParticipants()) {
+      if (p.getEmail().equals(email)) {
+        participant = p;
       }
-      return participant;
     }
+    return participant;
+  }
 }
