@@ -100,7 +100,7 @@ public abstract class User
       usersByEmail.put(guide.getEmail(), guide);
     }
     for (Participant participant : participants) {
-      usersByEmail.put(participant.getEmail(), participant);
+      usersByEmail.put(member.getEmail(), member);
     }
   }
 
