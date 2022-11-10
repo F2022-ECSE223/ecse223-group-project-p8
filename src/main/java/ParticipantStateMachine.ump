@@ -1,37 +1,150 @@
 class Participant {
-  depend ca.mcgill.ecse.biketourplus.controller.BikeToursFeatureSetController;
   TourStatus { 
     
-    NotAssigned { 
-      setParticipantTour(BikeTour aBikeTour) / {doSetBikeTour(aBikeTour);} -> Assigned; 
+    NotAssigned { // Done
+      // valid transition
+      setParticipantTour(BikeTour aBikeTour) / {doSetBikeTour(aBikeTour);} -> Assigned;
+      cancelTripForParticipant() / {doSetRefund(0);} -> Cancelled;
+      // invalid transitions
+      payForTrip() / {rejectPayForTripFromNotAssigned();} -> NotAssigned;
+      startTripForParticipant() / {rejectStartTripForParticipantFromNotAssigned();} -> NotAssigned;
+      finishTripForParticipant() / {rejectFinishTripForParticipantFromNotAssigned();} -> NotAssigned;
     }
-    Assigned {
+    Assigned { // Done
+      // valid transitions
       payForTrip() -> Paid;
       startTripForParticipant() -> Banned;
       cancelTripForParticipant() / {doSetRefund(0);} -> Cancelled;
-      
+      // invalid transitions
+      setParticipantTour(BikeTour aBikeTour) / {rejectSetBikeTour();} -> Assigned;
+      finishTripForParticipant() / {rejectFinishTripFromAssigned();} -> Assigned; 
     }
     Paid {
+      // valid transitions
       cancelTripForParticipant() / {doSetRefund(50);} -> Cancelled;
       startTripForParticipant() -> Started;
+      // invalid transitions
+      payForTrip() / {rejectPayForTripIfPaid();} -> Paid;
+      finishTripForParticipant() / {rejectFinishTripFromPaid();} -> Paid;
+      setParticipantTour(BikeTour aBikeTour) / {rejectSetBikeTour();} -> Paid;
       
     }
     Started {
+      // valid transitions
       finishTripForParticipant() / {doSetRefund(0);} -> Finished; 
       cancelTripForParticipant() / {doSetRefund(10);} -> Cancelled;
+      // invalid transitions
+      payForTrip() / {rejectPayForTripIfPaid();} -> Started;
+      setParticipantTour(BikeTour aBikeTour) / {rejectSetBikeTour();} -> Started;
+      startTripForParticipant() / {rejectStartTripForParticipantFromStarted();} -> Started;
+      
     }
     Cancelled {
+      // all transitions invalid
+      setParticipantTour(BikeTour aBikeTour) / {rejectSetBikeTour();} -> Cancelled;
+      payForTrip() / {rejectPayForTripFromCancelled();} -> Cancelled;
+      startTripForParticipant() / {rejectStartTripForParticipantFromCancelled();} -> Cancelled;
+      finishTripForParticipant() / {rejectFinishTripForParticipantFromCancelled();} -> Cancelled;
+      cancelTripForParticipant() / {rejectCancelTripForParticipantFromCancelled();} -> Cancelled;
     }
     Finished {
+      // all transitions invalid
+      setParticipantTour(BikeTour aBikeTour) / {rejectSetBikeTour();} -> Finished;
+      payForTrip() / {rejectPayForTripIfPaid();} -> Finished;
+      startTripForParticipant() / {rejectStartTripForParticipantFromFinished();} -> Finished;
+      finishTripForParticipant() / {rejectFinishTripForParticipantFromFinished();} -> Finished;
+      cancelTripForParticipant() / {rejectCancelTripForParticipantFromFinished();} -> Finished;
     }
     Banned {
+      // all transitions invalid
+      setParticipantTour(BikeTour aBikeTour) / {rejectSetBikeTour();} -> Banned;
+      payForTrip() / {rejectPayForTripFromBanned();} -> Banned;
+      startTripForParticipant() / {rejectStartTripForParticipantFromBanned();} -> Banned;
+      finishTripForParticipant() / {rejectFinishTripForParticipantFromBanned();} -> Banned;
+      cancelTripForParticipant() / {rejectCancelTripForParticipantFromBanned();} -> Banned;
     }
-  }
+
+                                   }
+  // actual methods
   private void doSetRefund(int percent) {
     setRefundedPercentageAmount(percent);
   }
   private void doSetBikeTour(BikeTour aBikeTour) {
     setBikeTour(aBikeTour);
   }
+  
+  // General reject method
+  private void rejectSetBikeTour() {
+    throw new RuntimeException("Cannot set a tour for a participant who already is assigned to a tour"); 
+    // No message specified by feature file
+  }
+  private void rejectPayForTripIfPaid() {
+    throw new RuntimeException("The participant has already paid for their tour");
+  }
+  
+  
+  // DONE reject throws for NotAssigned
+  private void rejectPayForTripFromNotAssigned() {
+    throw new RuntimeException("The participant has not been assigned to their tour");
+  }
+  private void rejectStartTripForParticipantFromNotAssigned() {
+    throw new RuntimeException(""); // no error message for this according to feature file
+  }
+  private void rejectFinishTripForParticipantFromNotAssigned() {
+    throw new RuntimeException("Cannot finish a tour for a participant who has not started their tour");
+  }
+  // DONE reject throws for Assigned 
+  private void rejectFinishTripFromAssigned() {
+    throw new RuntimeException("Cannot finish a tour for a participant who has not started their tour");
+  }
+  // DONE reject throws for Paid
+  private void rejectFinishTripFromPaid() {
+    throw new RuntimeException("Cannot finish a tour for a participant who has not started their tour");
+  }
+  // DONE reject throws for Started
+  private void rejectStartTripForParticipantFromStarted() {
+    throw new RuntimeException("Cannot start tour because the participant has already started their tour");
+  }
+  
+  
+  // reject throws for "final" states
+  // DONE Banned
+  private void rejectPayForTripFromBanned() {
+    throw new RuntimeException("Cannot pay for tour because the participant is banned");
+  }
+  private void rejectStartTripForParticipantFromBanned() {
+    throw new RuntimeException("Cannot start tour because the participant is banned");
+  }
+  private void rejectFinishTripForParticipantFromBanned() {
+    throw new RuntimeException("Cannot finish tour because the participant is banned");
+  }
+  private void rejectCancelTripForParticipantFromBanned() {
+    throw new RuntimeException("Cannot cancel tour because the participant is banned");
+  }
+  // Cancelled
+  private void rejectPayForTripFromCancelled() {
+    throw new RuntimeException(""); // no message provided by feature file
+  }
+  private void rejectStartTripForParticipantFromCancelled() {
+    throw new RuntimeException("Cannot start tour because the participant has cancelled their tour");
+  }
+  private void rejectFinishTripForParticipantFromCancelled() {
+    throw new RuntimeException(""); // no message provided by feature file
+  }
+  private void rejectCancelTripForParticipantFromCancelled() {
+    throw new RuntimeException(""); // no message provided by feature file
+  }
+  // Finished
+  private void rejectStartTripForParticipantFromFinished() {
+    throw new RuntimeException("Cannot start tour because the participant has finished their tour");
+  }
+  private void rejectFinishTripForParticipantFromFinished() {
+    throw new RuntimeException("Cannot finish tour because the participant has already finished their tour");
+  }
+  private void rejectCancelTripForParticipantFromFinished() {
+    throw new RuntimeException("Cannot cancel tour because the participant has finished their tour");
+  } 
+      
+      
   
 }

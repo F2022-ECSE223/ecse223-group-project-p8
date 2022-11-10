@@ -4,7 +4,8 @@
 package ca.mcgill.ecse.biketourplus.model;
 import java.util.*;
 
-// line 21 "../../../../../BikeTourPlus.ump"
+// line 14 "../../../../../BikeTourPlusPersistence.ump"
+// line 22 "../../../../../BikeTourPlus.ump"
 public abstract class User
 {
 
@@ -89,6 +90,18 @@ public abstract class User
   public void delete()
   {
     usersByEmail.remove(getEmail());
+  }
+
+  // line 16 "../../../../../BikeTourPlusPersistence.ump"
+   public static  void reinitializeUniqueEmail(Manager manager, List<Guide> guides, List<Participant> participants){
+    usersByEmail = new HashMap<String, User>();
+    if(manager != null) usersByEmail.put(manager.getEmail(), manager);
+    for (Guide guide : guides) {
+      usersByEmail.put(guide.getEmail(), guide);
+    }
+    for (Participant participant : participants) {
+      usersByEmail.put(participant.getEmail(), participant);
+    }
   }
 
 

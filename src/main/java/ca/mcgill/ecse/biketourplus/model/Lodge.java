@@ -4,7 +4,8 @@
 package ca.mcgill.ecse.biketourplus.model;
 import java.util.*;
 
-// line 79 "../../../../../BikeTourPlus.ump"
+// line 41 "../../../../../BikeTourPlusPersistence.ump"
+// line 80 "../../../../../BikeTourPlus.ump"
 public class Lodge
 {
 
@@ -254,6 +255,14 @@ public class Lodge
     while( !bikeTours.isEmpty() )
     {
       bikeTours.get(0).setLodge(null);
+    }
+  }
+
+  // line 43 "../../../../../BikeTourPlusPersistence.ump"
+   public static  void reinitializeUniqueLodge(List<Lodge> lodges){
+    lodgesByName = new HashMap<String, Lodge>();
+    for (Lodge lodge : lodges) {
+      lodgesByName.put(lodge.getName(), lodge);
     }
   }
 
