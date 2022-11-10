@@ -64,10 +64,27 @@ public class BikeToursFeatureSetController {
           if (g.getBikeTours().size() == 0 && b.getGuide() == null) {
             b.setGuide(g);
           }
-          // if guide already has BikeTours
-          // check if b has any overlap with the existing biketours
-          // if no overlap, assign g to b
-
+          //initialize boolean overlap that gets set to true if we detect any overlap with any of the biketours the guide is already assigned to
+          boolean overlap = false;
+          //loop through the list of biketours that the guide has
+          for(BikeTour bT: g.getBikeTours()) {
+            //if the start week matches the end week (either way around) there is overlap
+            if(bT.getStartWeek() == b.getEndWeek() || bT.getEndWeek()== b.getStartWeek()) {
+              overlap = true;
+            }
+            //check case where b's startweek is in between bT's start and end week
+            if(bT.getStartWeek() < b.getStartWeek() && b.getStartWeek() < bT.getEndWeek() && b.getEndWeek() <= bT.getEndWeek()) {
+              overlap = true;
+            }
+            //check case where bT's startweek is in between b's start and end week
+            if(bT.getStartWeek() >= b.getStartWeek() && bT.getStartWeek() < b.getEndWeek() && b.getEndWeek() < bT.getEndWeek()) {
+              overlap = true;
+            }
+            //if no overlap, set guide
+            if(overlap == false) {
+              b.setGuide(g);
+            }
+          }
         }
       }
     } catch (RuntimeException e) {
