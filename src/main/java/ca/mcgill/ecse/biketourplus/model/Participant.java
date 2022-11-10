@@ -2,7 +2,6 @@
 /*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 
 package ca.mcgill.ecse.biketourplus.model;
-import ca.mcgill.ecse.biketourplus.controller.BikeToursFeatureSetController;
 import java.util.*;
 
 // line 1 "../../../../../ParticipantStateMachine.ump"
@@ -23,7 +22,7 @@ public class Participant extends NamedUser
   private int refundedPercentageAmount;
 
   //Participant State Machines
-  public enum TourStatus { NotAssigned, AssignedUnpaid, Paid, OnTrip, TripComplete, Banned }
+  public enum TourStatus { NotAssigned, Assigned, Paid, Started, Cancelled, Finished, Banned }
   private TourStatus tourStatus;
 
   //Participant Associations
@@ -151,7 +150,7 @@ public class Participant extends NamedUser
     return tourStatus;
   }
 
-  public boolean setBikeTour()
+  public boolean setParticipantTour(BikeTour aBikeTour)
   {
     boolean wasEventProcessed = false;
     
@@ -159,49 +158,45 @@ public class Participant extends NamedUser
     switch (aTourStatus)
     {
       case NotAssigned:
-        setTourStatus(TourStatus.AssignedUnpaid);
+        // line 6 "../../../../../ParticipantStateMachine.ump"
+        doSetBikeTour(aBikeTour);
+        setTourStatus(TourStatus.Assigned);
         wasEventProcessed = true;
         break;
-      default:
-        // Other states do respond to this event
-    }
-
-    return wasEventProcessed;
-  }
-
-  public boolean payForTrip()
-  {
-    boolean wasEventProcessed = false;
-    
-    TourStatus aTourStatus = tourStatus;
-    switch (aTourStatus)
-    {
-      case AssignedUnpaid:
-        // line 9 "../../../../../ParticipantStateMachine.ump"
-        doPayForTrip();
-        setTourStatus(TourStatus.Paid);
-        wasEventProcessed = true;
-        break;
-      default:
-        // Other states do respond to this event
-    }
-
-    return wasEventProcessed;
-  }
-
-  public boolean startTripForParticipant()
-  {
-    boolean wasEventProcessed = false;
-    
-    TourStatus aTourStatus = tourStatus;
-    switch (aTourStatus)
-    {
-      case AssignedUnpaid:
-        setTourStatus(TourStatus.Banned);
+      case Assigned:
+        // line 19 "../../../../../ParticipantStateMachine.ump"
+        rejectSetBikeTour();
+        setTourStatus(TourStatus.Assigned);
         wasEventProcessed = true;
         break;
       case Paid:
-        setTourStatus(TourStatus.OnTrip);
+        // line 29 "../../../../../ParticipantStateMachine.ump"
+        rejectSetBikeTour();
+        setTourStatus(TourStatus.Paid);
+        wasEventProcessed = true;
+        break;
+      case Started:
+        // line 38 "../../../../../ParticipantStateMachine.ump"
+        rejectSetBikeTour();
+        setTourStatus(TourStatus.Started);
+        wasEventProcessed = true;
+        break;
+      case Cancelled:
+        // line 44 "../../../../../ParticipantStateMachine.ump"
+        rejectSetBikeTour();
+        setTourStatus(TourStatus.Cancelled);
+        wasEventProcessed = true;
+        break;
+      case Finished:
+        // line 52 "../../../../../ParticipantStateMachine.ump"
+        rejectSetBikeTour();
+        setTourStatus(TourStatus.Finished);
+        wasEventProcessed = true;
+        break;
+      case Banned:
+        // line 60 "../../../../../ParticipantStateMachine.ump"
+        rejectSetBikeTour();
+        setTourStatus(TourStatus.Banned);
         wasEventProcessed = true;
         break;
       default:
@@ -218,22 +213,152 @@ public class Participant extends NamedUser
     TourStatus aTourStatus = tourStatus;
     switch (aTourStatus)
     {
-      case AssignedUnpaid:
-        // line 11 "../../../../../ParticipantStateMachine.ump"
-        setRefund(0);
-        setTourStatus(TourStatus.TripComplete);
+      case NotAssigned:
+        // line 7 "../../../../../ParticipantStateMachine.ump"
+        doSetRefund(0);
+        setTourStatus(TourStatus.Cancelled);
+        wasEventProcessed = true;
+        break;
+      case Assigned:
+        // line 17 "../../../../../ParticipantStateMachine.ump"
+        doSetRefund(0);
+        setTourStatus(TourStatus.Cancelled);
         wasEventProcessed = true;
         break;
       case Paid:
-        // line 15 "../../../../../ParticipantStateMachine.ump"
-        setRefund(50);
-        setTourStatus(TourStatus.TripComplete);
+        // line 24 "../../../../../ParticipantStateMachine.ump"
+        doSetRefund(50);
+        setTourStatus(TourStatus.Cancelled);
         wasEventProcessed = true;
         break;
-      case OnTrip:
-        // line 21 "../../../../../ParticipantStateMachine.ump"
-        setRefund(10);
-        setTourStatus(TourStatus.TripComplete);
+      case Started:
+        // line 35 "../../../../../ParticipantStateMachine.ump"
+        doSetRefund(10);
+        setTourStatus(TourStatus.Cancelled);
+        wasEventProcessed = true;
+        break;
+      case Cancelled:
+        // line 48 "../../../../../ParticipantStateMachine.ump"
+        rejectCancelTripForParticipantFromCancelled();
+        setTourStatus(TourStatus.Cancelled);
+        wasEventProcessed = true;
+        break;
+      case Finished:
+        // line 56 "../../../../../ParticipantStateMachine.ump"
+        rejectCancelTripForParticipantFromFinished();
+        setTourStatus(TourStatus.Finished);
+        wasEventProcessed = true;
+        break;
+      case Banned:
+        // line 64 "../../../../../ParticipantStateMachine.ump"
+        rejectCancelTripForParticipantFromBanned();
+        setTourStatus(TourStatus.Banned);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean payForTrip()
+  {
+    boolean wasEventProcessed = false;
+    
+    TourStatus aTourStatus = tourStatus;
+    switch (aTourStatus)
+    {
+      case NotAssigned:
+        // line 9 "../../../../../ParticipantStateMachine.ump"
+        rejectPayForTripFromNotAssigned();
+        setTourStatus(TourStatus.NotAssigned);
+        wasEventProcessed = true;
+        break;
+      case Assigned:
+        setTourStatus(TourStatus.Paid);
+        wasEventProcessed = true;
+        break;
+      case Paid:
+        // line 27 "../../../../../ParticipantStateMachine.ump"
+        rejectPayForTripIfPaid();
+        setTourStatus(TourStatus.Paid);
+        wasEventProcessed = true;
+        break;
+      case Started:
+        // line 37 "../../../../../ParticipantStateMachine.ump"
+        rejectPayForTripIfPaid();
+        setTourStatus(TourStatus.Started);
+        wasEventProcessed = true;
+        break;
+      case Cancelled:
+        // line 45 "../../../../../ParticipantStateMachine.ump"
+        rejectPayForTripFromCancelled();
+        setTourStatus(TourStatus.Cancelled);
+        wasEventProcessed = true;
+        break;
+      case Finished:
+        // line 53 "../../../../../ParticipantStateMachine.ump"
+        rejectPayForTripIfPaid();
+        setTourStatus(TourStatus.Finished);
+        wasEventProcessed = true;
+        break;
+      case Banned:
+        // line 61 "../../../../../ParticipantStateMachine.ump"
+        rejectPayForTripFromBanned();
+        setTourStatus(TourStatus.Banned);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean startTripForParticipant()
+  {
+    boolean wasEventProcessed = false;
+    
+    TourStatus aTourStatus = tourStatus;
+    switch (aTourStatus)
+    {
+      case NotAssigned:
+        // line 10 "../../../../../ParticipantStateMachine.ump"
+        rejectStartTripForParticipantFromNotAssigned();
+        setTourStatus(TourStatus.NotAssigned);
+        wasEventProcessed = true;
+        break;
+      case Assigned:
+        setTourStatus(TourStatus.Banned);
+        wasEventProcessed = true;
+        break;
+      case Paid:
+        setTourStatus(TourStatus.Started);
+        wasEventProcessed = true;
+        break;
+      case Started:
+        // line 39 "../../../../../ParticipantStateMachine.ump"
+        rejectStartTripForParticipantFromStarted();
+        setTourStatus(TourStatus.Started);
+        wasEventProcessed = true;
+        break;
+      case Cancelled:
+        // line 46 "../../../../../ParticipantStateMachine.ump"
+        rejectStartTripForParticipantFromCancelled();
+        setTourStatus(TourStatus.Cancelled);
+        wasEventProcessed = true;
+        break;
+      case Finished:
+        // line 54 "../../../../../ParticipantStateMachine.ump"
+        rejectStartTripForParticipantFromFinished();
+        setTourStatus(TourStatus.Finished);
+        wasEventProcessed = true;
+        break;
+      case Banned:
+        // line 62 "../../../../../ParticipantStateMachine.ump"
+        rejectStartTripForParticipantFromBanned();
+        setTourStatus(TourStatus.Banned);
         wasEventProcessed = true;
         break;
       default:
@@ -250,10 +375,46 @@ public class Participant extends NamedUser
     TourStatus aTourStatus = tourStatus;
     switch (aTourStatus)
     {
-      case OnTrip:
+      case NotAssigned:
+        // line 11 "../../../../../ParticipantStateMachine.ump"
+        rejectFinishTripForParticipantFromNotAssigned();
+        setTourStatus(TourStatus.NotAssigned);
+        wasEventProcessed = true;
+        break;
+      case Assigned:
         // line 20 "../../../../../ParticipantStateMachine.ump"
-        setRefund(0);
-        setTourStatus(TourStatus.TripComplete);
+        rejectFinishTripFromAssigned();
+        setTourStatus(TourStatus.Assigned);
+        wasEventProcessed = true;
+        break;
+      case Paid:
+        // line 28 "../../../../../ParticipantStateMachine.ump"
+        rejectFinishTripFromPaid();
+        setTourStatus(TourStatus.Paid);
+        wasEventProcessed = true;
+        break;
+      case Started:
+        // line 34 "../../../../../ParticipantStateMachine.ump"
+        doSetRefund(0);
+        setTourStatus(TourStatus.Finished);
+        wasEventProcessed = true;
+        break;
+      case Cancelled:
+        // line 47 "../../../../../ParticipantStateMachine.ump"
+        rejectFinishTripForParticipantFromCancelled();
+        setTourStatus(TourStatus.Cancelled);
+        wasEventProcessed = true;
+        break;
+      case Finished:
+        // line 55 "../../../../../ParticipantStateMachine.ump"
+        rejectFinishTripForParticipantFromFinished();
+        setTourStatus(TourStatus.Finished);
+        wasEventProcessed = true;
+        break;
+      case Banned:
+        // line 63 "../../../../../ParticipantStateMachine.ump"
+        rejectFinishTripForParticipantFromBanned();
+        setTourStatus(TourStatus.Banned);
         wasEventProcessed = true;
         break;
       default:
@@ -266,14 +427,6 @@ public class Participant extends NamedUser
   private void setTourStatus(TourStatus aTourStatus)
   {
     tourStatus = aTourStatus;
-
-    // entry actions and do activities
-    switch(tourStatus)
-    {
-      case TripComplete:
-        delete();
-        break;
-    }
   }
   /* Code from template association_GetOne */
   public BikeTourPlus getBikeTourPlus()
@@ -452,14 +605,147 @@ public class Participant extends NamedUser
     super.delete();
   }
 
-  // line 30 "../../../../../ParticipantStateMachine.ump"
-   private void doPayForTrip(){
-    BikeToursFeatureSetController.payForParticipantTrip(this);
+
+  /**
+   * actual methods
+   */
+  // line 70 "../../../../../ParticipantStateMachine.ump"
+   private void doSetRefund(int percent){
+    setRefundedPercentageAmount(percent);
   }
 
-  // line 33 "../../../../../ParticipantStateMachine.ump"
-   private void setRefund(int percent){
-    setRefundedPercentageAmount(percent);
+  // line 73 "../../../../../ParticipantStateMachine.ump"
+   private void doSetBikeTour(BikeTour aBikeTour){
+    setBikeTour(aBikeTour);
+  }
+
+
+  /**
+   * General reject method
+   */
+  // line 78 "../../../../../ParticipantStateMachine.ump"
+   private void rejectSetBikeTour(){
+    throw new RuntimeException("Cannot set a tour for a participant who already is assigned to a tour"); 
+    // No message specified by feature file
+  }
+
+  // line 82 "../../../../../ParticipantStateMachine.ump"
+   private void rejectPayForTripIfPaid(){
+    throw new RuntimeException("The participant has already paid for their tour");
+  }
+
+
+  /**
+   * DONE reject throws for NotAssigned
+   */
+  // line 88 "../../../../../ParticipantStateMachine.ump"
+   private void rejectPayForTripFromNotAssigned(){
+    throw new RuntimeException("The participant has not been assigned to their tour");
+  }
+
+  // line 91 "../../../../../ParticipantStateMachine.ump"
+   private void rejectStartTripForParticipantFromNotAssigned(){
+    throw new RuntimeException(""); // no error message for this according to feature file
+  }
+
+  // line 94 "../../../../../ParticipantStateMachine.ump"
+   private void rejectFinishTripForParticipantFromNotAssigned(){
+    throw new RuntimeException("Cannot finish a tour for a participant who has not started their tour");
+  }
+
+
+  /**
+   * DONE reject throws for Assigned
+   */
+  // line 98 "../../../../../ParticipantStateMachine.ump"
+   private void rejectFinishTripFromAssigned(){
+    throw new RuntimeException("Cannot finish a tour for a participant who has not started their tour");
+  }
+
+
+  /**
+   * DONE reject throws for Paid
+   */
+  // line 102 "../../../../../ParticipantStateMachine.ump"
+   private void rejectFinishTripFromPaid(){
+    throw new RuntimeException("Cannot finish a tour for a participant who has not started their tour");
+  }
+
+
+  /**
+   * DONE reject throws for Started
+   */
+  // line 106 "../../../../../ParticipantStateMachine.ump"
+   private void rejectStartTripForParticipantFromStarted(){
+    throw new RuntimeException("Cannot start tour because the participant has already started their tour");
+  }
+
+
+  /**
+   * reject throws for "final" states
+   * DONE Banned
+   */
+  // line 113 "../../../../../ParticipantStateMachine.ump"
+   private void rejectPayForTripFromBanned(){
+    throw new RuntimeException("Cannot pay for tour because the participant is banned");
+  }
+
+  // line 116 "../../../../../ParticipantStateMachine.ump"
+   private void rejectStartTripForParticipantFromBanned(){
+    throw new RuntimeException("Cannot start tour because the participant is banned");
+  }
+
+  // line 119 "../../../../../ParticipantStateMachine.ump"
+   private void rejectFinishTripForParticipantFromBanned(){
+    throw new RuntimeException("Cannot finish tour because the participant is banned");
+  }
+
+  // line 122 "../../../../../ParticipantStateMachine.ump"
+   private void rejectCancelTripForParticipantFromBanned(){
+    throw new RuntimeException("Cannot cancel tour because the participant is banned");
+  }
+
+
+  /**
+   * Cancelled
+   */
+  // line 126 "../../../../../ParticipantStateMachine.ump"
+   private void rejectPayForTripFromCancelled(){
+    throw new RuntimeException(""); // no message provided by feature file
+  }
+
+  // line 129 "../../../../../ParticipantStateMachine.ump"
+   private void rejectStartTripForParticipantFromCancelled(){
+    throw new RuntimeException("Cannot start tour because the participant has cancelled their tour");
+  }
+
+  // line 132 "../../../../../ParticipantStateMachine.ump"
+   private void rejectFinishTripForParticipantFromCancelled(){
+    throw new RuntimeException(""); // no message provided by feature file
+  }
+
+  // line 135 "../../../../../ParticipantStateMachine.ump"
+   private void rejectCancelTripForParticipantFromCancelled(){
+    throw new RuntimeException(""); // no message provided by feature file
+  }
+
+
+  /**
+   * Finished
+   */
+  // line 139 "../../../../../ParticipantStateMachine.ump"
+   private void rejectStartTripForParticipantFromFinished(){
+    throw new RuntimeException("Cannot start tour because the participant has finished their tour");
+  }
+
+  // line 142 "../../../../../ParticipantStateMachine.ump"
+   private void rejectFinishTripForParticipantFromFinished(){
+    throw new RuntimeException("Cannot finish tour because the participant has already finished their tour");
+  }
+
+  // line 145 "../../../../../ParticipantStateMachine.ump"
+   private void rejectCancelTripForParticipantFromFinished(){
+    throw new RuntimeException("Cannot cancel tour because the participant has finished their tour");
   }
 
 
