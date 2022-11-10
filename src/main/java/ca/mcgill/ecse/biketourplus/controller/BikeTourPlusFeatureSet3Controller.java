@@ -9,6 +9,7 @@ import ca.mcgill.ecse.biketourplus.model.Guide;
 import ca.mcgill.ecse.biketourplus.model.Participant;
 import ca.mcgill.ecse.biketourplus.model.User;
 import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
+import ca.mcgill.ecse.biketourplus.Persistence.BikeTourPlusPersistence;
 
 // Import other utilities
 import java.util.List;
@@ -82,6 +83,12 @@ public class BikeTourPlusFeatureSet3Controller {
     btp.addParticipant(email, password, name, emergencyContact, nrWeeks, weekAvailableFrom,
         weekAvailableUntil, lodgeRequired, emergencyContact, weekAvailableUntil);
 
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      error += (e.getMessage());
+    }
+
     // If there is no error, error will be ""
     return error;
   }
@@ -149,7 +156,14 @@ public class BikeTourPlusFeatureSet3Controller {
     p.setWeekAvailableUntil(newWeekAvailableUntil);
     p.setLodgeRequired(newLodgeRequired);
 
-    // If there is no error, error will be ""
+    // If there is no error, error will be "" 
+
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      error += (e.getMessage());
+    }
+
     return error;
   }
 
@@ -196,6 +210,13 @@ public class BikeTourPlusFeatureSet3Controller {
     // Second is if the bookable item is not in participant's items
     BookedItem b = new BookedItem(1, btp, p, BookableItem.getWithName(bookableItemName));
     p.addBookedItem(b);
+
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      error += (e.getMessage());
+    }
+
     return error;
   }
 
@@ -244,7 +265,14 @@ public class BikeTourPlusFeatureSet3Controller {
         return error;
       }
     }
-    // Second is if the bookable item is not in participant's items, then do nothing
+    // Second is if the bookable item is not in participant's items, then do nothing\
+
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      error += (e.getMessage());
+    }
+    
     return error;
 
   }

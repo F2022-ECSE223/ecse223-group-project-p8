@@ -1,6 +1,8 @@
 package ca.mcgill.ecse.biketourplus.features;
 
 import ca.mcgill.ecse.biketourplus.controller.BikeTourPlusFeatureSet2Controller;
+import ca.mcgill.ecse.biketourplus.controller.InvalidInputException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import java.util.Map;
@@ -141,9 +143,10 @@ public class DeleteParticipantStepDefinitions {
    *         Manager attempts to delete a participant with their email
    *
    * @param string the participant's email
+   * @throws InvalidInputException
    */
   @When("the manager attempts to delete the participant with email {string} \\(p6)")
-  public void the_manager_attempts_to_delete_the_participant_with_email_p6(String string) {
+  public void the_manager_attempts_to_delete_the_participant_with_email_p6(String string) throws InvalidInputException {
     BikeTourPlusFeatureSet2Controller.deleteParticipant(string); // delete participant connected to
                                                                  // the input email
   }

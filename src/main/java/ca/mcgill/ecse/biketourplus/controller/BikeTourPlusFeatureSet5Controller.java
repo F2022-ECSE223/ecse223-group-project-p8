@@ -2,6 +2,7 @@ package ca.mcgill.ecse.biketourplus.controller;
 
 import ca.mcgill.ecse.biketourplus.application.*;
 import ca.mcgill.ecse.biketourplus.model.*;
+import ca.mcgill.ecse.biketourplus.Persistence.BikeTourPlusPersistence;
 
 // completed by Brian Morava
 public class BikeTourPlusFeatureSet5Controller {
@@ -46,6 +47,13 @@ public class BikeTourPlusFeatureSet5Controller {
 
 
     new Gear(name, pricePerWeek, btp);
+
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      error += (e.getMessage());
+    }
+
     return error; // return value will be an empty string if line is executed
   }
 
@@ -103,6 +111,12 @@ public class BikeTourPlusFeatureSet5Controller {
       return error;
     }
 
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      error += (e.getMessage());
+    }
+
     return error; // return value will be an empty string if line is executed
   }
 
@@ -127,6 +141,12 @@ public class BikeTourPlusFeatureSet5Controller {
         gear.delete();
         return error;
       }
+    }
+
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      error += (e.getMessage());
     }
 
     return error; // return value will be an empty string if line is executed
