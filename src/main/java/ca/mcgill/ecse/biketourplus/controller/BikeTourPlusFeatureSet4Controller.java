@@ -2,6 +2,7 @@ package ca.mcgill.ecse.biketourplus.controller;
 
 import ca.mcgill.ecse.biketourplus.application.*;
 import ca.mcgill.ecse.biketourplus.model.*;
+import ca.mcgill.ecse.biketourplus.Persistence.BikeTourPlusPersistence;
 
 
 public class BikeTourPlusFeatureSet4Controller {
@@ -98,6 +99,12 @@ public class BikeTourPlusFeatureSet4Controller {
       new Guide(email, password, name, emergencyContact, btp);
     }
 
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      error += (e.getMessage());
+    }
+
     return error;
   }
 
@@ -148,6 +155,13 @@ public class BikeTourPlusFeatureSet4Controller {
       guideToUpdate.setName(newName);
       guideToUpdate.setEmergencyContact(newEmergencyContact);
     }
+
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      error += (e.getMessage());
+    }
+
     return error;
   }
 
@@ -157,8 +171,9 @@ public class BikeTourPlusFeatureSet4Controller {
    * 
    * @param email A string that represents the Guide to be deleted's email
    * @author Ralph Choucha (RalphChoucha on GitHub)
+   * @throws InvalidInputException
    */
-  public static void deleteGuide(String email) {
+  public static void deleteGuide(String email) throws InvalidInputException {
 
     // get specific guide instance
     Guide guideToDelete = getSpecificGuide(email);
@@ -169,6 +184,13 @@ public class BikeTourPlusFeatureSet4Controller {
       btp.removeGuide(guideToDelete);
       guideToDelete.delete();
     }
+
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      throw new InvalidInputException(e.getMessage());
+    }
+
   }
 
   /**

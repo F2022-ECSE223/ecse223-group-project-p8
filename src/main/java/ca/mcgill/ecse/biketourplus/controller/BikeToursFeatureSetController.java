@@ -3,6 +3,7 @@ package ca.mcgill.ecse.biketourplus.controller;
 import ca.mcgill.ecse.biketourplus.model.*;
 import ca.mcgill.ecse.biketourplus.model.Participant.TourStatus;
 import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
+import ca.mcgill.ecse.biketourplus.Persistence.BikeTourPlusPersistence;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -89,6 +90,13 @@ public class BikeToursFeatureSetController {
           }
         }
       }
+
+      try {
+        BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+      }catch (Exception e){
+        error += (e.getMessage());
+      }
+
     } catch (RuntimeException e) {
       error += e.getMessage();
     }
@@ -125,6 +133,13 @@ public class BikeToursFeatureSetController {
       else {
         error = "Invalid authorization code";
       }
+
+      try {
+        BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+      }catch (Exception e){
+        error += (e.getMessage());
+      }
+
     } catch (RuntimeException e) {
       error += e.getMessage();
     }
@@ -160,6 +175,13 @@ public class BikeToursFeatureSetController {
         error += e.getMessage();
       }
     }
+
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      error += (e.getMessage());
+    }
+
     return error;
   }
 
@@ -176,6 +198,13 @@ public class BikeToursFeatureSetController {
     Participant p = getSpecificParticipant(email);
     try {
       p.finishTripForParticipant();
+
+      try {
+        BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+      }catch (Exception e){
+        error += (e.getMessage());
+      }
+
     } catch (RuntimeException e) {
       error += e.getMessage();
     }
@@ -198,6 +227,13 @@ public class BikeToursFeatureSetController {
 
     try {
       p.cancelTripForParticipant();
+
+      try {
+        BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+      }catch (Exception e){
+        error += (e.getMessage());
+      }
+      
     } catch (RuntimeException e) {
       error += e.getMessage();
     }

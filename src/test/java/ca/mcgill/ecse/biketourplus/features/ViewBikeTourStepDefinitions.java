@@ -2,6 +2,7 @@ package ca.mcgill.ecse.biketourplus.features;
 
 import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
 import ca.mcgill.ecse.biketourplus.controller.BikeTourPlusFeatureSet1Controller;
+import ca.mcgill.ecse.biketourplus.controller.InvalidInputException;
 import ca.mcgill.ecse.biketourplus.controller.TOBikeTour;
 import ca.mcgill.ecse.biketourplus.controller.TOParticipantCost;
 import ca.mcgill.ecse.biketourplus.model.*;
@@ -209,9 +210,11 @@ public class ViewBikeTourStepDefinitions {
   /**
    * @author Martin Nguyen
    * @param string
+   * @throws InvalidInputException
+   * @throws NumberFormatException
    */
   @When("the manager attempts to view the bike tour with id {string} \\(p11)")
-  public void the_manager_attempts_to_view_the_bike_tour_with_id_p11(String string) {
+  public void the_manager_attempts_to_view_the_bike_tour_with_id_p11(String string) throws NumberFormatException, InvalidInputException {
     tour = BikeTourPlusFeatureSet1Controller.getBikeTour(Integer.parseInt(string));
   }
 

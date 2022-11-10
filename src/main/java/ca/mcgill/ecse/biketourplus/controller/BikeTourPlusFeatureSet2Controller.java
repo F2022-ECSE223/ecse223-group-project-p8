@@ -4,6 +4,7 @@ import ca.mcgill.ecse.biketourplus.model.BikeTourPlus;
 import ca.mcgill.ecse.biketourplus.model.Participant;
 import ca.mcgill.ecse.biketourplus.model.User;
 import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
+import ca.mcgill.ecse.biketourplus.Persistence.BikeTourPlusPersistence;
 
 import java.sql.Date;
 
@@ -46,6 +47,18 @@ public class BikeTourPlusFeatureSet2Controller {
       btp.setStartDate(startDate);
       btp.setNrWeeks(nrWeeks);
       btp.setPriceOfGuidePerWeek(priceOfGuidePerWeek);
+
+      try {
+        BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+        }catch (Exception e){
+        error += e.getMessage();
+        }
+        try {
+          BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+        }catch (Exception e){
+          error += e.getMessage();
+        }
+
     } catch (RuntimeException e) {
       error = e.getMessage();
     }
@@ -57,14 +70,22 @@ public class BikeTourPlusFeatureSet2Controller {
    * 
    * @param email String of email of participant to be removed
    * @author LukeBebee
+   * @throws InvalidInputException
    */
-  public static void deleteParticipant(String email) {
+  public static void deleteParticipant(String email) throws InvalidInputException {
     try {
       User u = User.getWithEmail(email);
       if (u instanceof Participant) { // Ensure user is a participant
         u.delete(); // Delete instance of participant
         // Our model ensures that any necessary associations are removed
       }
+
+      try {
+        BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+      }catch (Exception e){
+        throw new InvalidInputException(e.getMessage());
+      }
+
     } catch (RuntimeException e) {
       System.out.println(e.getMessage()); // Display any error that arrises
     }
