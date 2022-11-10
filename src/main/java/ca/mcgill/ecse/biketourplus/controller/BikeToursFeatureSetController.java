@@ -107,8 +107,8 @@ public class BikeToursFeatureSetController {
   /**
    * Method that handles payment for a participant
    * 
-   * @param p The participant that needs payment handling
-   * @param authorizationCode The authorization code for the transaction
+   * @param email The email of the participant that needs payment handling
+   * @param authCode The authorization code for the transaction
    * @return A String error. Blank if no error has occurred.
    * @author Ralph Choucha (RalphChoucha on Github)
    * @author LukeBebee
@@ -131,6 +131,7 @@ public class BikeToursFeatureSetController {
     } else {
       try {
         p.payForTrip();
+        p.setAuthorizationCode(authCode);
       } catch (RuntimeException e) {
         error += e.getMessage();
       }
@@ -210,7 +211,6 @@ public class BikeToursFeatureSetController {
       }
     }
 
-
     // Persistence
     try {
       BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
@@ -259,7 +259,7 @@ public class BikeToursFeatureSetController {
   /**
    * Helper method to find a specific Participant object by email
    * 
-   * @param email = A string that represents the specific participant's email
+   * @param email A string that represents the specific participant's email
    * @return The specific Participant object. If the method doesn't find a match in the Guide list
    *         returns a null Participant object
    * @author Ralph Choucha (RalphChoucha on GitHub)
