@@ -20,8 +20,10 @@ public class BikeToursFeatureSetController {
    * @author Ralph Choucha (RalphChoucha on GitHub)
    */
   public static String initiateBikeTourCreationProcess() {
-
     var error = "";
+    try {
+
+    
 
     List<Participant> participants = btp.getParticipants();
     List<Guide> guides = btp.getGuides();
@@ -73,6 +75,10 @@ public class BikeToursFeatureSetController {
     } catch (RuntimeException e) {
       error += e.getMessage();
     }
+  }
+  catch(Exception e) {
+
+  }
     return error;
   }
 
