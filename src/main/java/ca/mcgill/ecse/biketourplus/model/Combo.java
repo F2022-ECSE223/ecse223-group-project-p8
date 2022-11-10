@@ -4,7 +4,7 @@
 package ca.mcgill.ecse.biketourplus.model;
 import java.util.*;
 
-// line 68 "../../../../../BikeTourPlus.ump"
+// line 69 "../../../../../BikeTourPlus.ump"
 public class Combo extends BookableItem
 {
 

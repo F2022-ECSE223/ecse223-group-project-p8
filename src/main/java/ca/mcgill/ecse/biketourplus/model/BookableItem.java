@@ -4,7 +4,8 @@
 package ca.mcgill.ecse.biketourplus.model;
 import java.util.*;
 
-// line 58 "../../../../../BikeTourPlus.ump"
+// line 28 "../../../../../BikeTourPlusPersistence.ump"
+// line 59 "../../../../../BikeTourPlus.ump"
 public abstract class BookableItem
 {
 
@@ -184,6 +185,17 @@ public abstract class BookableItem
     {
       BookedItem aBookedItem = bookedItems.get(i - 1);
       aBookedItem.delete();
+    }
+  }
+
+  // line 30 "../../../../../BikeTourPlusPersistence.ump"
+   public static  void reinitializeUniqueName(List<Gear> gears, List<Combo> combos){
+    bookableitemsByName = new HashMap<String, BookableItem>();
+    for (Gear e : gears) {
+      bookableitemsByName.put(e.getName(), e);
+    }
+    for (Combo bundle : combos) {
+      bookableitemsByName.put(bundle.getName(), bundle);
     }
   }
 

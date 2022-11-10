@@ -3,7 +3,7 @@
 
 package ca.mcgill.ecse.biketourplus.model;
 
-// line 52 "../../../../../BikeTourPlus.ump"
+// line 53 "../../../../../BikeTourPlus.ump"
 public class BookedItem
 {
 

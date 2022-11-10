@@ -5,7 +5,7 @@ package ca.mcgill.ecse.biketourplus.model;
 import java.util.*;
 
 // line 1 "../../../../../ParticipantStateMachine.ump"
-// line 42 "../../../../../BikeTourPlus.ump"
+// line 43 "../../../../../BikeTourPlus.ump"
 public class Participant extends NamedUser
 {
 
