@@ -24,13 +24,7 @@ import java.util.Map;
 import java.sql.Date;
 
 
-// TODO Here is a list of things to check
-/*
- * Check logic and documentation for all methods
- * Make sure state names match the updated state names
- * Some methods that are marked with TODOs may not work, please check to verify
- * When working on controllers, check the respective tests to make sure they are logically sound before assuming controller methods work
- */
+
 
 public class BikeToursStepDefinitions { 
 
@@ -176,7 +170,7 @@ public class BikeToursStepDefinitions {
       List<String> participantList = new ArrayList<String>(Arrays.asList(participantListString.split(",")));
 
       // get actual tour for the right id (assuming in order of ids)
-      BikeTour actualTour = btp.getBikeTour(id - 1);
+      BikeTour actualTour = btp.getBikeTour(id);
 
       // check if they match
       assertEquals(id, actualTour.getId());
@@ -359,7 +353,6 @@ public class BikeToursStepDefinitions {
           }
   }
 
-  // TODO Check if this method works, it seems sketchy
   /**
    * Sets up the participant as banned
    * @param string
@@ -380,7 +373,6 @@ public class BikeToursStepDefinitions {
     }
   }
 
-  // TODO any changes to the above method may apply to this method as well
   /**
    * Sets up a participant as having started their tour
    * @param string
@@ -403,7 +395,6 @@ public class BikeToursStepDefinitions {
     }
   }
 
-  // TODO any changes to the above method may apply to this method as well
   /**
    * Sets up a participant as having paid for their tour
    * @param string
@@ -454,7 +445,6 @@ public class BikeToursStepDefinitions {
     }
   }
 
-  // TODO similar methods above may change, in which case this should as well
   /**
    * This method sets up the participant as having finished their tour
    * @param string
