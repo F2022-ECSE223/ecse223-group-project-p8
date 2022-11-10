@@ -2,6 +2,7 @@ package ca.mcgill.ecse.biketourplus.features;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import ca.mcgill.ecse.biketourplus.controller.BikeTourPlusFeatureSet4Controller;
+import ca.mcgill.ecse.biketourplus.controller.InvalidInputException;
 import ca.mcgill.ecse.biketourplus.model.Guide;
 import ca.mcgill.ecse.biketourplus.model.Manager;
 import ca.mcgill.ecse.biketourplus.model.User;
@@ -106,9 +107,10 @@ public class DeleteGuideStepDefinitions {
    *         Manager attempts to delete a guide with their email
    *
    * @param string the guide's email
+   * @throws InvalidInputException
    */
   @When("the manager attempts to delete the guide with email {string} \\(p6)")
-  public void the_manager_attempts_to_delete_the_guide_with_email_p6(String string) {
+  public void the_manager_attempts_to_delete_the_guide_with_email_p6(String string) throws InvalidInputException {
 
     BikeTourPlusFeatureSet4Controller.deleteGuide(string); // deleting the guide
 

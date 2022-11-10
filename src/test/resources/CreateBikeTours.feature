@@ -2,8 +2,8 @@ Feature: Initiate creation of bike tours
   As a manager, I want to initiate the creation of bike tours to assign guides and biking weeks to participants
 
   # For all scenarios, participants and guides are registered in the system following the order listed in their respective tables (top to bottom)
-
-  Background:
+ 
+  Background: 
     Given the following BikeTourPlus system exists:
       | startDate  | nrWeeks | priceOfGuidePerWeek |
       | 2023-03-13 |      10 |                 100 |
@@ -104,6 +104,7 @@ Feature: Initiate creation of bike tours
       | new@hotmail.ca     | newnew   | Johnny New       | (200)5559999     |       7 |                  4 |                  10 | true          |
       | charlie@hotmail.ca | charlie  | Charles Tremblay | (200)5559876     |       3 |                  2 |                   5 | false         |
       | john@hotmail.ca    | john123  | John Doe         | (200)5551234     |       5 |                  1 |                  10 | false         |
+      | mary@hotmail.ca    | mary003  | Mary Blue        | (200)5559988     |       9 |                  1 |                  10 | true          |
       | emily@hotmail.ca   | emily007 | Emily Green      | (200)5559876     |       2 |                  1 |                   5 | false         |
     When the administrator attempts to initiate the bike tour creation process
     Then the following bike tours shall exist in the system:
@@ -112,10 +113,12 @@ Feature: Initiate creation of bike tours
       |  2 |         4 |      10 | new@hotmail.ca     | jeff@email.com |
       |  3 |         2 |       4 | charlie@hotmail.ca | john@email.com |
       |  4 |         5 |       9 | john@hotmail.ca    | john@email.com |
+      |  5 |         1 |       9 | mary@hotmail.ca    | bob@email.com  |
     Then the participant with email "alice@gmail.com" shall be marked as "Assigned"
     Then the participant with email "new@hotmail.ca" shall be marked as "Assigned"
     Then the participant with email "charlie@hotmail.ca" shall be marked as "Assigned"
     Then the participant with email "john@hotmail.ca" shall be marked as "Assigned"
+    Then the participant with email "mary@hotmail.ca" shall be marked as "Assigned"
     Then the participant with email "emily@hotmail.ca" shall be marked as "NotAssigned"
     Then the number of bike tours shall be "5"
     Then the system shall raise the error "At least one participant could not be assigned to their bike tour"

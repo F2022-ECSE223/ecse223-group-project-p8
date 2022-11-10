@@ -3,6 +3,7 @@ package ca.mcgill.ecse.biketourplus.controller;
 import ca.mcgill.ecse.biketourplus.model.*;
 import ca.mcgill.ecse.biketourplus.model.Participant.TourStatus;
 import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
+import ca.mcgill.ecse.biketourplus.Persistence.BikeTourPlusPersistence;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -94,6 +95,20 @@ public class BikeToursFeatureSetController {
         error += e.getMessage();
       }
 
+      // Persistence
+      try {
+        BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+      }catch (Exception e){
+        error += (e.getMessage());
+      }
+
+    } catch (RuntimeException e) {
+      error += e.getMessage();
+    }
+  }
+  catch(Exception e) {
+
+
     return error;
   }
 
@@ -128,6 +143,18 @@ public class BikeToursFeatureSetController {
         error += e.getMessage();
       }  
     }
+      
+
+
+      // Persistence
+      try {
+        BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+      }catch (Exception e){
+        error += (e.getMessage());
+      }
+
+
+    }
     return error;
   }
 
@@ -161,6 +188,13 @@ public class BikeToursFeatureSetController {
         error += e.getMessage();
       }
     }
+
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      error += (e.getMessage());
+    }
+
     return error;
   }
 
@@ -175,6 +209,7 @@ public class BikeToursFeatureSetController {
     var error = "";
     // get participant
     Participant p = getSpecificParticipant(email);
+
     //check if p is null and return appropriate error
     if (p == null) {
       error = "Participant with email address " + email + " does not exist";
@@ -185,6 +220,17 @@ public class BikeToursFeatureSetController {
         error += e.getMessage();
       }
     }
+
+
+      // Persistence
+      try {
+        BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+      }catch (Exception e){
+        error += (e.getMessage());
+      }
+
+
+    
     return error;
   }
 
@@ -201,6 +247,8 @@ public class BikeToursFeatureSetController {
     var error = "";
     // get participant
     Participant p = getSpecificParticipant(email);
+
+
     //check if p is null and return the appropriate message
     if (p == null) {
       error = "Participant with email address " + email + " does not exist";
@@ -210,7 +258,17 @@ public class BikeToursFeatureSetController {
       } catch (RuntimeException e) {
         error += e.getMessage();
       }
-    }
+     }
+
+
+      try {
+        BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+      }catch (Exception e){
+        error += (e.getMessage());
+      }
+      
+
+    
     return error;
   }
 

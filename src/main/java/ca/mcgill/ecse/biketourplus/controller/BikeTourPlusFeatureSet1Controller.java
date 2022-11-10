@@ -6,6 +6,7 @@ import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
 import ca.mcgill.ecse.biketourplus.controller.BikeTourPlusFeatureSet1Controller;
 import ca.mcgill.ecse.biketourplus.controller.TOBikeTour;
 import ca.mcgill.ecse.biketourplus.controller.TOParticipantCost;
+import ca.mcgill.ecse.biketourplus.Persistence.BikeTourPlusPersistence;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -83,6 +84,12 @@ public class BikeTourPlusFeatureSet1Controller {
       btp.getManager().setPassword("manager");
     }
 
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      error += e.getMessage();
+    }
+
     return error;
   }
 
@@ -93,8 +100,9 @@ public class BikeTourPlusFeatureSet1Controller {
    * @param id the id of the bike tour the manager wants to view
    * @return a populated TOBikeTour object with all the bike tour information needed
    * @author Jacques Zaarour
+   * @throws InvalidInputException
    */
-  public static TOBikeTour getBikeTour(int id) {
+  public static TOBikeTour getBikeTour(int id) throws InvalidInputException {
 
     // The ID is indexed in the list rather than following the actual id of the app (could be a
     // mistake :/)
@@ -176,6 +184,15 @@ public class BikeTourPlusFeatureSet1Controller {
     TOBikeTour tobereturned = new TOBikeTour(id, startWeek, endWeek, guideEmail, guideName,
         totalCostForGuide, TOParticipantsArray);
 
+
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      throw new InvalidInputException(e.getMessage());
+    }
+
     return tobereturned;
+
+
   }
 }
