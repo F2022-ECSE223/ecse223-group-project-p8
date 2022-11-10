@@ -450,7 +450,7 @@ public class BikeToursStepDefinitions {
       BikeTour tour =  btp.addBikeTour(id, startWeek, endWeek, guide);
       for (String pString : participantList) {
         Participant p = (Participant) Participant.getWithEmail(pString);
-        p.setBikeTour(tour);
+        p.setParticipantTour(tour);
       }
     }
   }
