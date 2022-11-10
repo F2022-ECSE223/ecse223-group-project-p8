@@ -15,82 +15,87 @@ public class BikeToursFeatureSetController {
   static BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
 
   /*
-   * TODO finish the method Unsure whether we need a try catch block or if we can throw the error
-   * normally Unsure whether we assign a unique id to each new biketour created
+   * TODO Rewrite Method in accordance to the iteration document
    * 
    * @author Ralph Choucha (RalphChoucha on GitHub)
    */
   public static String initiateBikeTourCreationProcess() {
     var error = "";
-    try {
 
-    
-
-    List<Participant> participants = btp.getParticipants();
-    List<Guide> guides = btp.getGuides();
-    try {
-      // looping through participants using int j
-      for (int j = 0; j < participants.size(); j++) {
-        // if there are no biketours create a new one using the first participant
-        if (btp.getBikeTours().size() == 0) {
-          participants.get(j)
-              .setBikeTour(new BikeTour(0, participants.get(j).getWeekAvailableFrom(),
-                  participants.get(j).getWeekAvailableUntil(), null, btp));
-        }
-        // Otherwise if there are biketours already created
-        // looping through existing biketours using int k
-        for (int k = 0; k < btp.getBikeTours().size(); k++) {
-          // if an existing biketour has same startWeek and endWeek as a participant's availability
-          // add the participant to that specific biketour
-          if (btp.getBikeTours().get(k).getStartWeek() == participants.get(j).getWeekAvailableFrom()
-              && btp.getBikeTours().get(k).getEndWeek() == participants.get(j)
-                  .getWeekAvailableUntil()) {
-            participants.get(j).setBikeTour(btp.getBikeTours().get(k));
-          }
-          // otherwise if there are no matches create new biketour with id equal to the next
-          // available index
-          else {
+      List<Participant> participants = btp.getParticipants();
+      List<Guide> guides = btp.getGuides();
+      try {
+        // looping through participants using int j
+        for (int j = 0; j < participants.size(); j++) {
+          // if there are no biketours create a new one using the first participant
+          if (btp.getBikeTours().size() == 0) {
             participants.get(j)
-                .setBikeTour(new BikeTour(btp.getBikeTours().size(),
-                    participants.get(j).getWeekAvailableFrom(),
+                .setBikeTour(new BikeTour(0, participants.get(j).getWeekAvailableFrom(),
                     participants.get(j).getWeekAvailableUntil(), null, btp));
           }
-        }
-      }
-
-      // looping through guides to assign them to the Biketours created
-      for (Guide g : guides) {
-        // looping through the BikeTours that exist
-        for (BikeTour b : btp.getBikeTours()) {
-          // if the guide does not have any BikeTours and vice-versa
-          // assign them to the earliest created BikeTour
-          if (g.getBikeTours().size() == 0 && b.getGuide() == null) {
-            b.setGuide(g);
+          // Otherwise if there are biketours already created
+          // looping through existing biketours using int k
+          for (int k = 0; k < btp.getBikeTours().size(); k++) {
+            // if an existing biketour has same startWeek and endWeek as a participant's
+            // availability
+            // add the participant to that specific biketour
+            if (btp.getBikeTours().get(k).getStartWeek() == participants.get(j)
+                .getWeekAvailableFrom()
+                && btp.getBikeTours().get(k).getEndWeek() == participants.get(j)
+                    .getWeekAvailableUntil()) {
+              participants.get(j).setBikeTour(btp.getBikeTours().get(k));
+            }
+            // otherwise if there are no matches create new biketour with id equal to the next
+            // available index
+            else {
+              participants.get(j)
+                  .setBikeTour(new BikeTour(btp.getBikeTours().size(),
+                      participants.get(j).getWeekAvailableFrom(),
+                      participants.get(j).getWeekAvailableUntil(), null, btp));
+            }
           }
-          //initialize boolean overlap that gets set to true if we detect any overlap with any of the biketours the guide is already assigned to
-          boolean overlap = false;
-          //loop through the list of biketours that the guide has
-          for(BikeTour bT: g.getBikeTours()) {
-            //if the start week matches the end week (either way around) there is overlap
-            if(bT.getStartWeek() == b.getEndWeek() || bT.getEndWeek()== b.getStartWeek()) {
-              overlap = true;
-            }
-            //check case where b's startweek is in between bT's start and end week
-            if(bT.getStartWeek() < b.getStartWeek() && b.getStartWeek() < bT.getEndWeek() && b.getEndWeek() <= bT.getEndWeek()) {
-              overlap = true;
-            }
-            //check case where bT's startweek is in between b's start and end week
-            if(bT.getStartWeek() >= b.getStartWeek() && bT.getStartWeek() < b.getEndWeek() && b.getEndWeek() < bT.getEndWeek()) {
-              overlap = true;
-            }
-            //if no overlap, set guide
-            if(overlap == false) {
+        }
+
+        // looping through guides to assign them to the Biketours created
+        for (Guide g : guides) {
+          // looping through the BikeTours that exist
+          for (BikeTour b : btp.getBikeTours()) {
+            // if the guide does not have any BikeTours and vice-versa
+            // assign them to the earliest created BikeTour
+            if (g.getBikeTours().size() == 0 && b.getGuide() == null) {
               b.setGuide(g);
             }
+            // initialize boolean overlap that gets set to true if we detect any overlap with any of
+            // the biketours the guide is already assigned to
+            boolean overlap = false;
+            // loop through the list of biketours that the guide has
+            for (BikeTour bT : g.getBikeTours()) {
+              // if the start week matches the end week (either way around) there is overlap
+              if (bT.getStartWeek() == b.getEndWeek() || bT.getEndWeek() == b.getStartWeek()) {
+                overlap = true;
+              }
+              // check case where b's startweek is in between bT's start and end week
+              if (bT.getStartWeek() < b.getStartWeek() && b.getStartWeek() < bT.getEndWeek()
+                  && b.getEndWeek() <= bT.getEndWeek()) {
+                overlap = true;
+              }
+              // check case where bT's startweek is in between b's start and end week
+              if (bT.getStartWeek() >= b.getStartWeek() && bT.getStartWeek() < b.getEndWeek()
+                  && b.getEndWeek() < bT.getEndWeek()) {
+                overlap = true;
+              }
+              // if no overlap, set guide
+              if (overlap == false) {
+                b.setGuide(g);
+              }
+            }
           }
         }
+      } catch (RuntimeException e) {
+        error += e.getMessage();
       }
 
+      // Persistence
       try {
         BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
       }catch (Exception e){
@@ -103,7 +108,7 @@ public class BikeToursFeatureSetController {
   }
   catch(Exception e) {
 
-  }
+
     return error;
   }
 
@@ -126,25 +131,33 @@ public class BikeToursFeatureSetController {
     Participant p = getSpecificParticipant(email);
 
     // call payForTrip and check for errors
-    try {
-      if (p.getAuthorizationCode().equals(authCode)) {
+    // check first if p is null and return appropriate error
+    if (p == null) {
+      error = "Participant with email address " + email + " does not exist";
+    } else if (authCode.isBlank()) {
+      error = "Invalid authorization code";
+    } else {
+      try {
         p.payForTrip();
-      }
-      else {
-        error = "Invalid authorization code";
-      }
+      } catch (RuntimeException e) {
+        error += e.getMessage();
+      }  
+    }
+      
 
+
+      // Persistence
       try {
         BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
       }catch (Exception e){
         error += (e.getMessage());
       }
 
-    } catch (RuntimeException e) {
-      error += e.getMessage();
+
     }
     return error;
   }
+
 
   /**
    * Method that starts the BikeTour trips for Participants on a specified week
@@ -196,18 +209,28 @@ public class BikeToursFeatureSetController {
     var error = "";
     // get participant
     Participant p = getSpecificParticipant(email);
-    try {
-      p.finishTripForParticipant();
 
+    //check if p is null and return appropriate error
+    if (p == null) {
+      error = "Participant with email address " + email + " does not exist";
+    } else {
+      try {
+        p.finishTripForParticipant();
+      } catch (RuntimeException e) {
+        error += e.getMessage();
+      }
+    }
+
+
+      // Persistence
       try {
         BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
       }catch (Exception e){
         error += (e.getMessage());
       }
 
-    } catch (RuntimeException e) {
-      error += e.getMessage();
-    }
+
+    
     return error;
   }
 
@@ -225,8 +248,18 @@ public class BikeToursFeatureSetController {
     // get participant
     Participant p = getSpecificParticipant(email);
 
-    try {
-      p.cancelTripForParticipant();
+
+    //check if p is null and return the appropriate message
+    if (p == null) {
+      error = "Participant with email address " + email + " does not exist";
+    } else {
+      try {
+        p.cancelTripForParticipant();
+      } catch (RuntimeException e) {
+        error += e.getMessage();
+      }
+     }
+
 
       try {
         BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
@@ -234,9 +267,8 @@ public class BikeToursFeatureSetController {
         error += (e.getMessage());
       }
       
-    } catch (RuntimeException e) {
-      error += e.getMessage();
-    }
+
+    
     return error;
   }
 
