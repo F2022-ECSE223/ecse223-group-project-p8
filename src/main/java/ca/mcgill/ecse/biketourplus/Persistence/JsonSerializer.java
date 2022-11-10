@@ -55,7 +55,7 @@ public class JsonSerializer {
   /**
    * Sets up the XStream aliases for model classes to make the output JSON more human-friendly.
    *
-   * For example, "ca.mcgill.ecse.btms.model.Route" -> "Route"
+   * For example, "ca.mcgill.ecse.biketourplus.model.BikeTour" -> "BikeTour"
    */
   private void setupXStreamAliases(String packageName) {
     var modelPkg = packageName + ".model";

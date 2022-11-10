@@ -23,7 +23,7 @@ public class BikeTourPlusPersistence {
 
   public static BikeTourPlus load() {
     var biketour = (BikeTourPlus) serializer.deserialize(filename);
-    // model cannot be loaded - create empty BTMS
+    // model cannot be loaded - create empty BikeTour
     if (biketour == null) {
       biketour = new BikeTourPlus(null, 0, 0);
     } else {
