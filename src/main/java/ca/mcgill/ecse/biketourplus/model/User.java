@@ -99,8 +99,8 @@ public abstract class User
     for (Guide guide : guides) {
       usersByEmail.put(guide.getEmail(), guide);
     }
-    for (Member member : members) {
-      usersByEmail.put(member.getEmail(), member);
+    for (Participant participant : participants) {
+      usersByEmail.put(participant.getEmail(), participant);
     }
   }
 
