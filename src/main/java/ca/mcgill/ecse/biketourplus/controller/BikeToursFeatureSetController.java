@@ -45,9 +45,8 @@ public class BikeToursFeatureSetController {
                 }
               }
               // if we found that the current proposed tour has no conflicts, then create new tour and assign
-              if (!conflictWithProposedTour) {
-                BikeTour tourToAssign = btp.addBikeTour(btp.getBikeTours().size(), proposedStartWeek, proposedEndWeek, guide);
-                tourToAssign.setGuide(guide);
+              if (!conflictWithProposedTour && participant.getTourStatusFullName().equals("NotAssigned")) {
+                BikeTour tourToAssign = btp.addBikeTour(btp.getBikeTours().size()+1, proposedStartWeek, proposedEndWeek, guide);
                 participant.setParticipantTour(tourToAssign);
               }
               if (participant.getTourStatusFullName().equals("Assigned")) {break;}
