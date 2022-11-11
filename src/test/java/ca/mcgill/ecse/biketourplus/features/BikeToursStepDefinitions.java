@@ -1,5 +1,6 @@
 package ca.mcgill.ecse.biketourplus.features;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,6 +13,7 @@ import ca.mcgill.ecse.biketourplus.model.Guide;
 import ca.mcgill.ecse.biketourplus.model.Participant;
 import ca.mcgill.ecse.biketourplus.model.User;
 import ca.mcgill.ecse.biketourplus.model.BikeTour;
+import ca.mcgill.ecse.biketourplus.Persistence.BikeTourPlusPersistence;
 import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
 import ca.mcgill.ecse.biketourplus.controller.BikeToursFeatureSetController;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.io.File;
 import java.sql.Date;
 
 
@@ -30,6 +33,16 @@ public class BikeToursStepDefinitions {
 
   private String error;
   private BikeTourPlus btp;
+  private static String filename = "data.json";
+  
+  @Before
+  public static void setUp() {
+    BikeTourPlusPersistence.setFilename(filename);
+    // remove test file
+    new File(filename).delete();
+    // clear all data
+    BikeTourPlusApplication.getBikeTourPlus().delete();
+  }
 
   /**
    * This function sets up an instance of BikeTourPlus with values specified in the feature file
