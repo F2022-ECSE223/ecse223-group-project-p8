@@ -24,8 +24,22 @@ public class BikeToursFeatureSetController {
       for (Guide guide : btp.getGuides()) {
         for (Participant participant : btp.getParticipants()) {
           if (participant.getTourStatusFullName().equals("NotAssigned")) {
+
+            // check for existing tours
+            for (BikeTour guideTour : guide.getBikeTours()) {
+              boolean tourMatches = (guideTour.getStartWeek() >= participant.getWeekAvailableFrom()) && (guideTour.getEndWeek() <= participant.getWeekAvailableUntil()) && (participant.getNrWeeks() == (guideTour.getEndWeek() - guideTour.getStartWeek()));
+              if (tourMatches) {
+                participant.setParticipantTour(guideTour);
+                if (participant.getTourStatusFullName().equals("Assigned")) {break;}
+              }
+            }
+
+
             // create proposed tours
             for (int i = 0; i <= participant.getWeekAvailableUntil() - participant.getNrWeeks() - participant.getWeekAvailableFrom() + 1; i++) {
+
+              if (participant.getTourStatusFullName().equals("Assigned")) {break;} // added because of check for existing tours above
+
               int proposedStartWeek = participant.getWeekAvailableFrom() + i;
               int proposedEndWeek = proposedStartWeek + participant.getNrWeeks() - 1;
               // at this point we have our proposed tours, now check for earliest match and if there is one then we need to assign
