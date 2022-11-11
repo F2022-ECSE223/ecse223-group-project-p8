@@ -9,17 +9,21 @@ public class BikeToursFeatureSetController {
 
   static BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
 
-  /*
-   * This method creates bike tours as described in the iteration 3 document
+
+
+  /**
+   * This method creates bike tours and assigns guides/participants to them as described in the
+   * Iteration3Description
    * 
-   * @author Ralph Choucha (RalphChoucha on GitHub)
+   * @author RalphChoucha
    * @author LukeBebee
-   * @author (add yuyu)
-   * @author (add jack)
-   * @author (add brian)
+   * @author liu-yuyu
+   * @author Morava83
+   * @author jacqueszaarour
+   * @return A String error. Blank if no error has occurred.
    */
   public static String initiateBikeTourCreationProcess() {
-    var error = "";    
+    var error = "";
     try {
       for (Guide guide : btp.getGuides()) {
         for (Participant participant : btp.getParticipants()) {
@@ -27,38 +31,55 @@ public class BikeToursFeatureSetController {
 
             // check for existing tours
             for (BikeTour guideTour : guide.getBikeTours()) {
-              boolean tourMatches = (guideTour.getStartWeek() >= participant.getWeekAvailableFrom()) && (guideTour.getEndWeek() <= participant.getWeekAvailableUntil()) && (participant.getNrWeeks() == (guideTour.getEndWeek() - guideTour.getStartWeek()) + 1);
+              boolean tourMatches = (guideTour.getStartWeek() >= participant.getWeekAvailableFrom())
+                  && (guideTour.getEndWeek() <= participant.getWeekAvailableUntil()) && (participant
+                      .getNrWeeks() == (guideTour.getEndWeek() - guideTour.getStartWeek()) + 1);
               if (tourMatches) {
                 participant.setParticipantTour(guideTour);
-                if (participant.getTourStatusFullName().equals("Assigned")) {break;}
+                if (participant.getTourStatusFullName().equals("Assigned")) {
+                  break;
+                }
               }
             }
 
             // create proposed tours
-            for (int i = 0; i <= participant.getWeekAvailableUntil() - participant.getNrWeeks() - participant.getWeekAvailableFrom() + 1; i++) {
+            for (int i = 0; i <= participant.getWeekAvailableUntil() - participant.getNrWeeks()
+                - participant.getWeekAvailableFrom() + 1; i++) {
 
-              if (participant.getTourStatusFullName().equals("Assigned")) {break;} // added because of check for existing tours above
+              if (participant.getTourStatusFullName().equals("Assigned")) {
+                break;
+              } // added because of check for existing tours above
 
               int proposedStartWeek = participant.getWeekAvailableFrom() + i;
               int proposedEndWeek = proposedStartWeek + participant.getNrWeeks() - 1;
-              // at this point we have our proposed tours, now check for earliest match and if there is one then we need to assign
+              // at this point we have our proposed tours, now check for earliest match and if there
+              // is one then we need to assign
               boolean conflictWithProposedTour = false;
               for (BikeTour guideTour : guide.getBikeTours()) {
                 // loop through all of the guides tours to try and check for bad overlap
                 // check for conflict
-                if (((proposedStartWeek>=guideTour.getStartWeek())&&(proposedStartWeek<=guideTour.getEndWeek())) || ((proposedEndWeek>=guideTour.getStartWeek())&&(proposedEndWeek<=guideTour.getEndWeek()))) { // if there is a different conflict
+                if (((proposedStartWeek >= guideTour.getStartWeek())
+                    && (proposedStartWeek <= guideTour.getEndWeek()))
+                    || ((proposedEndWeek >= guideTour.getStartWeek())
+                        && (proposedEndWeek <= guideTour.getEndWeek()))) { // if there is a
+                                                                           // different conflict
                   conflictWithProposedTour = true;
-                }
-                else if ((proposedStartWeek < guideTour.getStartWeek()) && (guideTour.getEndWeek() < proposedEndWeek)) {
+                } else if ((proposedStartWeek < guideTour.getStartWeek())
+                    && (guideTour.getEndWeek() < proposedEndWeek)) {
                   conflictWithProposedTour = true;
                 }
               }
-              // if we found that the current proposed tour has no conflicts, then create new tour and assign
-              if (!conflictWithProposedTour && participant.getTourStatusFullName().equals("NotAssigned")) {
-                BikeTour tourToAssign = btp.addBikeTour(btp.getBikeTours().size()+1, proposedStartWeek, proposedEndWeek, guide);
+              // if we found that the current proposed tour has no conflicts, then create new tour
+              // and assign
+              if (!conflictWithProposedTour
+                  && participant.getTourStatusFullName().equals("NotAssigned")) {
+                BikeTour tourToAssign = btp.addBikeTour(btp.getBikeTours().size() + 1,
+                    proposedStartWeek, proposedEndWeek, guide);
                 participant.setParticipantTour(tourToAssign);
               }
-              if (participant.getTourStatusFullName().equals("Assigned")) {break;}
+              if (participant.getTourStatusFullName().equals("Assigned")) {
+                break;
+              }
             }
           }
         }
@@ -66,11 +87,11 @@ public class BikeToursFeatureSetController {
       // for loop to see if any participants not assigned
       for (Participant p : btp.getParticipants()) {
         if (p.getTourStatusFullName().equals("NotAssigned")) {
-          error += "At least one participant could not be assigned to their bike tour"; 
+          error += "At least one participant could not be assigned to their bike tour";
           break;
         }
       }
-    } catch(Exception e) {
+    } catch (Exception e) {
       error += e.getMessage();
     }
     // Persistence

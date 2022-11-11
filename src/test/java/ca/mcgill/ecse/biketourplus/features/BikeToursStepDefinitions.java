@@ -28,13 +28,12 @@ import java.sql.Date;
 
 
 
-
-public class BikeToursStepDefinitions { 
+public class BikeToursStepDefinitions {
 
   private String error;
   private BikeTourPlus btp;
   private static String filename = "data.json";
-  
+
   @Before
   public static void setUp() {
     BikeTourPlusPersistence.setFilename(filename);
@@ -47,6 +46,7 @@ public class BikeToursStepDefinitions {
   /**
    * This function sets up an instance of BikeTourPlus with values specified in the feature file
    * Originally written in and copied from UpdateBikeTourPlusStepDefinitions.java
+   * 
    * @param dataTable the data table from the feature file
    * @author LukeBebee
    */
@@ -69,7 +69,7 @@ public class BikeToursStepDefinitions {
     List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 
     // this will only have one iteration as the feature file only gives one row
-    for (Map<String, String> row : rows) { 
+    for (Map<String, String> row : rows) {
       startDateString = row.get("startDate");
       nrWeeksString = row.get("nrWeeks");
       priceOfGuidePerWeekString = row.get("priceOfGuidePerWeek");
@@ -91,6 +91,7 @@ public class BikeToursStepDefinitions {
 
   /**
    * This function sets up instances of Guide with values specified in the feature file
+   * 
    * @param dataTable
    * @author LukeBebee
    */
@@ -105,7 +106,7 @@ public class BikeToursStepDefinitions {
     // making a list of maps from the data table from the feature file
     List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 
-    for (Map<String, String> row : rows) { 
+    for (Map<String, String> row : rows) {
       email = row.get("email");
       password = row.get("password");
       name = row.get("name");
@@ -116,6 +117,7 @@ public class BikeToursStepDefinitions {
 
   /**
    * This function sets up instances of Participant with values specified in the feature file
+   * 
    * @param dataTable
    * @author LukeBebee
    */
@@ -141,12 +143,14 @@ public class BikeToursStepDefinitions {
       int weeksAvailableFrom = Integer.parseInt(row.get("weeksAvailableFrom"));
       int weeksAvailableUntil = Integer.parseInt(row.get("weeksAvailableUntil"));
       boolean lodgeRequired = Boolean.parseBoolean(lodgeRequiredString);
-      btp.addParticipant(email, password, name, emergencyContact, nrWeeks, weeksAvailableFrom, weeksAvailableUntil, lodgeRequired, "", 0);
+      btp.addParticipant(email, password, name, emergencyContact, nrWeeks, weeksAvailableFrom,
+          weeksAvailableUntil, lodgeRequired, "", 0);
     }
   }
 
   /**
    * This method calls the controller to initiate the bike tour creation proccess
+   * 
    * @author LukeBebee
    */
   @When("the administrator attempts to initiate the bike tour creation process")
@@ -154,9 +158,9 @@ public class BikeToursStepDefinitions {
     error = BikeToursFeatureSetController.initiateBikeTourCreationProcess();
   }
 
-  // TODO this method currently relies on biketours being in order of id, which may not be true
   /**
    * This method checks if bike tours exist in the system as they should
+   * 
    * @param dataTable
    * @author LukeBebee
    */
@@ -166,13 +170,13 @@ public class BikeToursStepDefinitions {
     // making a list of maps from the data table from the feature file
     List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 
-    //initialize variables
+    // initialize variables
     int id;
     int startWeek;
     int endWeek;
     Guide guide;
 
-    for (Map<String, String> row : rows) { 
+    for (Map<String, String> row : rows) {
       // get variables for expected tours
       id = Integer.parseInt(row.get("id"));
       startWeek = Integer.parseInt(row.get("startWeek"));
@@ -180,13 +184,14 @@ public class BikeToursStepDefinitions {
       String guideString = row.get("guide");
       guide = (Guide) Guide.getWithEmail(guideString);
       String participantListString = row.get("participants");
-      List<String> participantList = new ArrayList<String>(Arrays.asList(participantListString.split(",")));
+      List<String> participantList =
+          new ArrayList<String>(Arrays.asList(participantListString.split(",")));
 
       // get actual tour for the right id (assuming in order of ids)
       BikeTour actualTour = BikeTour.getWithId(id);
-      
+
       List<String> participants = new ArrayList<String>();
-      for(Participant p: actualTour.getParticipants()) {
+      for (Participant p : actualTour.getParticipants()) {
         participants.add(p.getEmail());
       }
 
@@ -201,6 +206,7 @@ public class BikeToursStepDefinitions {
 
   /**
    * checks if the participant is properly marked
+   * 
    * @param string
    * @param string2
    * @author LukeBebee
@@ -217,6 +223,7 @@ public class BikeToursStepDefinitions {
 
   /**
    * checks the number of bike tours
+   * 
    * @param string
    * @author LukeBebee
    */
@@ -227,6 +234,7 @@ public class BikeToursStepDefinitions {
 
   /**
    * checks the error raised by the controller
+   * 
    * @param string
    * @author LukeBebee
    */
@@ -237,6 +245,7 @@ public class BikeToursStepDefinitions {
 
   /**
    * This function sets up instances of Gear with values specified in the feature file
+   * 
    * @param dataTable
    * @author LukeBebee
    */
@@ -259,6 +268,7 @@ public class BikeToursStepDefinitions {
 
   /**
    * This function sets cancells the Tour of the inputted participant for testing
+   * 
    * @param string
    * @author LukeBebee
    */
@@ -308,74 +318,80 @@ public class BikeToursStepDefinitions {
     }
   }
 
-    /**
-     * @author Liu, ZiXu
-     *
-     * @Description: the code to set up all the gears the participants want
-     * 
-     * Edits: Changed variable names
-     *
-     * @param dataTable the table generated by cucumber
-     */
+  /**
+   * @author Liu, ZiXu
+   *
+   * @Description: the code to set up all the gears the participants want
+   * 
+   *               Edits: Changed variable names
+   *
+   * @param dataTable the table generated by cucumber
+   */
   @Given("the following participants request the following pieces of gear:")
   public void the_following_participants_request_the_following_pieces_of_gear(
       io.cucumber.datatable.DataTable dataTable) {
-    
-        List<Map<String, String>> rows = dataTable.asMaps();
-        for (var row: rows) { // Iterating through each row
-          String email = row.get("email"); // Getting the email of the participant
-          String gearName = row.get("gear"); // Getting the name of the gear
-          int quantity = Integer.parseInt(row.get("quantity")); // Getting the amount of gear a participant want
-          for (Participant p: btp.getParticipants()) { // Iterate through all the participants in bikeTourPlus
-            if (p.getEmail().equals(email)) { // If the emails match...
-              for (Gear g: btp.getGear()) { // Iterate through all the gears in bikeTourPlus
-                if (g.getName().equals(gearName)) { // If the names match, create a BookedItem for the participant
-                  p.addBookedItem(quantity, btp, g);
-                  break;
-                  }
-                }
+
+    List<Map<String, String>> rows = dataTable.asMaps();
+    for (var row : rows) { // Iterating through each row
+      String email = row.get("email"); // Getting the email of the participant
+      String gearName = row.get("gear"); // Getting the name of the gear
+      int quantity = Integer.parseInt(row.get("quantity")); // Getting the amount of gear a
+                                                            // participant want
+      for (Participant p : btp.getParticipants()) { // Iterate through all the participants in
+                                                    // bikeTourPlus
+        if (p.getEmail().equals(email)) { // If the emails match...
+          for (Gear g : btp.getGear()) { // Iterate through all the gears in bikeTourPlus
+            if (g.getName().equals(gearName)) { // If the names match, create a BookedItem for the
+                                                // participant
+              p.addBookedItem(quantity, btp, g);
               break;
-              }
             }
           }
+          break;
+        }
+      }
+    }
   }
 
-    /**
-     * @author Liu, ZiXu
-     *
-     * @Description: the code to set up all the combos each participant want
-     * 
-     * Edits: Changed variable names
-     *
-     * @param dataTable the table generated by cucumber
-     */
+  /**
+   * @author Liu, ZiXu
+   *
+   * @Description: the code to set up all the combos each participant want
+   * 
+   *               Edits: Changed variable names
+   *
+   * @param dataTable the table generated by cucumber
+   */
   @Given("the following participants request the following combos:")
   public void the_following_participants_request_the_following_combos(
       io.cucumber.datatable.DataTable dataTable) {
-        List<Map<String, String>> rows = dataTable.asMaps();
-        for (var row: rows) { // Iterating through each row
-          String email = row.get("email"); // Getting the email of the participant
-          String gearName = row.get("gear"); // Getting the name of the combo
-          int quantity = Integer.parseInt(row.get("quantity")); // Getting the amount of combo a participant want
-          for (Participant p: btp.getParticipants()) { // Iterate through all the participants in bikeTourPlus
-            if (p.getEmail().equals(email)) { // If the emails match...
-              for (Combo c: btp.getCombos()) { // Iterate through all the combos in bikeTourPlus
-                if (c.getName().equals(gearName)) { // If the names match, create a BookedItem for the participant
-                  p.addBookedItem(quantity, btp, c);
-                  break;
-                  }
-                }
+    List<Map<String, String>> rows = dataTable.asMaps();
+    for (var row : rows) { // Iterating through each row
+      String email = row.get("email"); // Getting the email of the participant
+      String gearName = row.get("gear"); // Getting the name of the combo
+      int quantity = Integer.parseInt(row.get("quantity")); // Getting the amount of combo a
+                                                            // participant want
+      for (Participant p : btp.getParticipants()) { // Iterate through all the participants in
+                                                    // bikeTourPlus
+        if (p.getEmail().equals(email)) { // If the emails match...
+          for (Combo c : btp.getCombos()) { // Iterate through all the combos in bikeTourPlus
+            if (c.getName().equals(gearName)) { // If the names match, create a BookedItem for the
+                                                // participant
+              p.addBookedItem(quantity, btp, c);
               break;
-              }
             }
           }
+          break;
+        }
+      }
+    }
   }
 
   /**
    * Sets up the participant as banned
+   * 
    * @param string
    * @author LukeBebee
-   * @author 
    */
   @Given("the participant with email {string} is banned")
   public void the_participant_with_email_is_banned(String string) {
@@ -383,7 +399,7 @@ public class BikeToursStepDefinitions {
     if (u instanceof Participant) {
       Participant p = (Participant) u;
       if (p.getTourStatusFullName().equals("NotAssigned")) {
-        p.setParticipantTour(null); 
+        p.setParticipantTour(null);
       }
       if (p.getTourStatusFullName().equals("Assigned")) {
         p.startTripForParticipant();
@@ -393,6 +409,7 @@ public class BikeToursStepDefinitions {
 
   /**
    * Sets up a participant as having started their tour
+   * 
    * @param string
    * @author LukeBebee
    */
@@ -415,6 +432,7 @@ public class BikeToursStepDefinitions {
 
   /**
    * Sets up a participant as having paid for their tour
+   * 
    * @param string
    * @author LukeBebee
    */
@@ -434,6 +452,7 @@ public class BikeToursStepDefinitions {
 
   /**
    * This method creates instances of BikeTour in the system
+   * 
    * @param dataTable
    * @author LukeBebee
    */
@@ -446,16 +465,17 @@ public class BikeToursStepDefinitions {
     int startWeek;
     int endWeek;
     Guide guide;
-    for (Map<String, String> row : rows) { 
+    for (Map<String, String> row : rows) {
       id = Integer.parseInt(row.get("id"));
       startWeek = Integer.parseInt(row.get("startWeek"));
       endWeek = Integer.parseInt(row.get("endWeek"));
       String guideString = row.get("guide");
       guide = (Guide) Guide.getWithEmail(guideString);
       String participantListString = row.get("participants");
-      List<String> participantList = new ArrayList<String>(Arrays.asList(participantListString.split(",")));
+      List<String> participantList =
+          new ArrayList<String>(Arrays.asList(participantListString.split(",")));
 
-      BikeTour tour =  btp.addBikeTour(id, startWeek, endWeek, guide);
+      BikeTour tour = btp.addBikeTour(id, startWeek, endWeek, guide);
       for (String pString : participantList) {
         Participant p = (Participant) Participant.getWithEmail(pString);
         p.setParticipantTour(tour);
@@ -465,6 +485,7 @@ public class BikeToursStepDefinitions {
 
   /**
    * This method sets up the participant as having finished their tour
+   * 
    * @param string
    * @author LukeBebee
    */
@@ -490,6 +511,7 @@ public class BikeToursStepDefinitions {
 
   /**
    * The manager cancels the tour for a participant using the controller
+   * 
    * @param string
    * @author LukeBebee
    */
@@ -500,17 +522,19 @@ public class BikeToursStepDefinitions {
 
   /**
    * The manager finishes the tour for a participant using the controller
+   * 
    * @param string
    * @author LukeBebee
    */
   @When("the manager attempts to finish the tour for the participant with email {string}")
   public void the_manager_attempts_to_finish_the_tour_for_the_participant_with_email(
       String string) {
-        error = BikeToursFeatureSetController.finishParticipantTrip(string);
+    error = BikeToursFeatureSetController.finishParticipantTrip(string);
   }
 
   /**
    * This method calls the controller to start the tours for the week
+   * 
    * @param string
    * @author LukeBebee
    */
@@ -521,6 +545,7 @@ public class BikeToursStepDefinitions {
 
   /**
    * This method attempts to confirm payment with a controller method
+   * 
    * @param string
    * @param string2
    * @author LukeBebee
@@ -528,11 +553,12 @@ public class BikeToursStepDefinitions {
   @When("the manager attempts to confirm payment for email {string} using authorization code {string}")
   public void the_manager_attempts_to_confirm_payment_for_email_using_authorization_code(
       String string, String string2) {
-        error = BikeToursFeatureSetController.payForParticipantTrip(string, string2);
+    error = BikeToursFeatureSetController.payForParticipantTrip(string, string2);
   }
 
   /**
    * Checks to ensure the participant does not exist
+   * 
    * @param string
    * @author LukeBebee
    */
@@ -545,6 +571,7 @@ public class BikeToursStepDefinitions {
 
   /**
    * This method checks the number of participants
+   * 
    * @param string
    * @author LukeBebee
    */
@@ -555,6 +582,7 @@ public class BikeToursStepDefinitions {
 
   /**
    * This checks a participant's existance and refund percent
+   * 
    * @param string
    * @param string2
    * @author LukeBebee
@@ -562,21 +590,24 @@ public class BikeToursStepDefinitions {
   @Then("a participant account shall exist with email {string} and a refund of {string} percent")
   public void a_participant_account_shall_exist_with_email_and_a_refund_of_percent(String string,
       String string2) {
-        User u = Participant.getWithEmail(string);
-        Participant p = (Participant) u;
-        // verify existance
-        boolean exists = false;
-        for (Participant participant : btp.getParticipants()) {
-          exists = string.equals(participant.getEmail());
-          if (exists) {break;}
-        }
-        assertTrue(exists);
-        // verify percentage amount
-        assertEquals(Integer.parseInt(string2), p.getRefundedPercentageAmount());
+    User u = Participant.getWithEmail(string);
+    Participant p = (Participant) u;
+    // verify existance
+    boolean exists = false;
+    for (Participant participant : btp.getParticipants()) {
+      exists = string.equals(participant.getEmail());
+      if (exists) {
+        break;
+      }
+    }
+    assertTrue(exists);
+    // verify percentage amount
+    assertEquals(Integer.parseInt(string2), p.getRefundedPercentageAmount());
   }
 
   /**
    * Check if such a participant exists
+   * 
    * @param string
    * @param string2
    * @author LukeBebee
@@ -590,7 +621,9 @@ public class BikeToursStepDefinitions {
     boolean exists = false;
     for (Participant participant : btp.getParticipants()) {
       exists = string.equals(participant.getEmail());
-      if (exists) {break;}
+      if (exists) {
+        break;
+      }
     }
     assertTrue(exists);
     // verify percentage amount
