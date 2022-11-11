@@ -49,7 +49,7 @@ public class BikeToursFeatureSetController {
                 if (((proposedStartWeek>=guideTour.getStartWeek())&&(proposedStartWeek<=guideTour.getEndWeek())) || ((proposedEndWeek>=guideTour.getStartWeek())&&(proposedEndWeek<=guideTour.getEndWeek()))) { // if there is a different conflict
                   conflictWithProposedTour = true;
                 }
-                else if ((proposedStartWeek <= guideTour.getStartWeek()) && (guideTour.getEndWeek() <= proposedEndWeek)) {
+                else if ((proposedStartWeek < guideTour.getStartWeek()) && (guideTour.getEndWeek() < proposedEndWeek)) {
                   conflictWithProposedTour = true;
                 }
               }
