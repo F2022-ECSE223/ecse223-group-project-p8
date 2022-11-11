@@ -170,7 +170,7 @@ public class BikeToursStepDefinitions {
       List<String> participantList = new ArrayList<String>(Arrays.asList(participantListString.split(",")));
 
       // get actual tour for the right id (assuming in order of ids)
-      BikeTour actualTour = btp.getBikeTour(id);
+      BikeTour actualTour = BikeTour.getWithId(id);
       
       List<String> participants = new ArrayList<String>();
       for(Participant p: actualTour.getParticipants()) {
