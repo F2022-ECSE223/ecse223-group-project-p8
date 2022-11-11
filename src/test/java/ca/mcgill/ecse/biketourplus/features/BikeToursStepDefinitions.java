@@ -171,13 +171,18 @@ public class BikeToursStepDefinitions {
 
       // get actual tour for the right id (assuming in order of ids)
       BikeTour actualTour = btp.getBikeTour(id);
+      
+      List<String> participants = new ArrayList<String>();
+      for(Participant p: actualTour.getParticipants()) {
+        participants.add(p.getEmail());
+      }
 
       // check if they match
       assertEquals(id, actualTour.getId());
       assertEquals(startWeek, actualTour.getStartWeek());
       assertEquals(endWeek, actualTour.getEndWeek());
       assertEquals(guide, actualTour.getGuide());
-      assertEquals(participantList, actualTour.getParticipants());
+      assertEquals(participantList, participants);
     }
   }
 
