@@ -27,13 +27,12 @@ public class BikeToursFeatureSetController {
 
             // check for existing tours
             for (BikeTour guideTour : guide.getBikeTours()) {
-              boolean tourMatches = (guideTour.getStartWeek() >= participant.getWeekAvailableFrom()) && (guideTour.getEndWeek() <= participant.getWeekAvailableUntil()) && (participant.getNrWeeks() == (guideTour.getEndWeek() - guideTour.getStartWeek()));
+              boolean tourMatches = (guideTour.getStartWeek() >= participant.getWeekAvailableFrom()) && (guideTour.getEndWeek() <= participant.getWeekAvailableUntil()) && (participant.getNrWeeks() == (guideTour.getEndWeek() - guideTour.getStartWeek()) + 1);
               if (tourMatches) {
                 participant.setParticipantTour(guideTour);
                 if (participant.getTourStatusFullName().equals("Assigned")) {break;}
               }
             }
-
 
             // create proposed tours
             for (int i = 0; i <= participant.getWeekAvailableUntil() - participant.getNrWeeks() - participant.getWeekAvailableFrom() + 1; i++) {
@@ -46,15 +45,11 @@ public class BikeToursFeatureSetController {
               boolean conflictWithProposedTour = false;
               for (BikeTour guideTour : guide.getBikeTours()) {
                 // loop through all of the guides tours to try and check for bad overlap
-                if ((guideTour.getStartWeek()== proposedStartWeek) && (guideTour.getEndWeek() == proposedEndWeek)) { // already existing tour that works at earliest available spot
-                  participant.setParticipantTour(guideTour);
-                  if (participant.getTourStatusFullName().equals("Assigned")) {break;}
-                }
                 // check for conflict
-                else if (((guideTour.getStartWeek() == proposedEndWeek)&&(proposedStartWeek<guideTour.getStartWeek())) || ((guideTour.getEndWeek()==proposedStartWeek)&&(proposedEndWeek>guideTour.getEndWeek()))) { // if there is conflict
+                if (((proposedStartWeek>=guideTour.getStartWeek())&&(proposedStartWeek<=guideTour.getEndWeek())) || ((proposedEndWeek>=guideTour.getStartWeek())&&(proposedEndWeek<=guideTour.getEndWeek()))) { // if there is a different conflict
                   conflictWithProposedTour = true;
                 }
-                else if (((proposedStartWeek > guideTour.getStartWeek())&&(proposedStartWeek < guideTour.getEndWeek())) || ((proposedEndWeek>guideTour.getStartWeek())&&(proposedEndWeek < guideTour.getEndWeek()))) { // if there is a different conflict
+                else if ((proposedStartWeek <= guideTour.getStartWeek()) && (guideTour.getEndWeek() <= proposedEndWeek)) {
                   conflictWithProposedTour = true;
                 }
               }
