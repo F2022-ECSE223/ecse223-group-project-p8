@@ -1,77 +1,75 @@
 package ca.mcgill.ecse.biketourplus.controller;
 
 import ca.mcgill.ecse.biketourplus.model.*;
-import ca.mcgill.ecse.biketourplus.model.Participant.TourStatus;
 import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
 import ca.mcgill.ecse.biketourplus.Persistence.BikeTourPlusPersistence;
-
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class BikeToursFeatureSetController {
 
   static BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
 
   /*
-   * TODO add try catch
+   * This method creates bike tours as described in the iteration 3 document
    * 
    * @author Ralph Choucha (RalphChoucha on GitHub)
    * @author LukeBebee
+   * @author (add yuyu)
+   * @author (add jack)
+   * @author (add brian)
    */
   public static String initiateBikeTourCreationProcess() {
     var error = "";    
-    
-    for (Guide guide : btp.getGuides()) {
-      for (Participant participant : btp.getParticipants()) {
-        if (participant.getTourStatusFullName().equals("NotAssigned")) {
-
-          // create proposed tours
-          for (int i = 0; i <= participant.getWeekAvailableUntil() - participant.getNrWeeks() - participant.getWeekAvailableFrom() + 1; i++) {
-            int proposedStartWeek = participant.getWeekAvailableFrom() + i;
-            int proposedEndWeek = proposedStartWeek + participant.getNrWeeks() - 1;
-            // at this point we have our proposed tours, now check for earliest match and if there is one then we need to assign
-
-            boolean conflictWithProposedTour = false;
-            for (BikeTour guideTour : guide.getBikeTours()) {
-              // loop through all of the guides tours to try and check for bad overlap
-              if ((guideTour.getStartWeek()== proposedStartWeek) && (guideTour.getEndWeek() == proposedEndWeek)) { // already existing tour that works at earliest available spot
-                participant.setParticipantTour(guideTour);
-                if (participant.getTourStatusFullName().equals("Assigned")) {break;}
+    try {
+      for (Guide guide : btp.getGuides()) {
+        for (Participant participant : btp.getParticipants()) {
+          if (participant.getTourStatusFullName().equals("NotAssigned")) {
+            // create proposed tours
+            for (int i = 0; i <= participant.getWeekAvailableUntil() - participant.getNrWeeks() - participant.getWeekAvailableFrom() + 1; i++) {
+              int proposedStartWeek = participant.getWeekAvailableFrom() + i;
+              int proposedEndWeek = proposedStartWeek + participant.getNrWeeks() - 1;
+              // at this point we have our proposed tours, now check for earliest match and if there is one then we need to assign
+              boolean conflictWithProposedTour = false;
+              for (BikeTour guideTour : guide.getBikeTours()) {
+                // loop through all of the guides tours to try and check for bad overlap
+                if ((guideTour.getStartWeek()== proposedStartWeek) && (guideTour.getEndWeek() == proposedEndWeek)) { // already existing tour that works at earliest available spot
+                  participant.setParticipantTour(guideTour);
+                  if (participant.getTourStatusFullName().equals("Assigned")) {break;}
+                }
+                // check for conflict
+                else if (((guideTour.getStartWeek() == proposedEndWeek)&&(proposedStartWeek<guideTour.getStartWeek())) || ((guideTour.getEndWeek()==proposedStartWeek)&&(proposedEndWeek>guideTour.getEndWeek()))) { // if there is conflict
+                  conflictWithProposedTour = true;
+                }
+                else if (((proposedStartWeek > guideTour.getStartWeek())&&(proposedStartWeek < guideTour.getEndWeek())) || ((proposedEndWeek>guideTour.getStartWeek())&&(proposedEndWeek < guideTour.getEndWeek()))) { // if there is a different conflict
+                  conflictWithProposedTour = true;
+                }
               }
-
-              // check for conflict
-              else if (((guideTour.getStartWeek() == proposedEndWeek)&&(proposedStartWeek<guideTour.getStartWeek())) || ((guideTour.getEndWeek()==proposedStartWeek)&&(proposedEndWeek<guideTour.getEndWeek()))) { // if there is conflict
-                conflictWithProposedTour = true;
+              // if we found that the current proposed tour has no conflicts, then create new tour and assign
+              if (!conflictWithProposedTour && participant.getTourStatusFullName().equals("NotAssigned")) {
+                BikeTour tourToAssign = btp.addBikeTour(btp.getBikeTours().size()+1, proposedStartWeek, proposedEndWeek, guide);
+                participant.setParticipantTour(tourToAssign);
               }
-              else if ((proposedStartWeek > guideTour.getStartWeek())&&(proposedStartWeek < guideTour.getEndWeek())) { // if there is a different conflict
-                conflictWithProposedTour = true;
-              }
-
-            
+              if (participant.getTourStatusFullName().equals("Assigned")) {break;}
             }
-            // if we found that the current proposed tour has no conflicts, then create new tour and assign
-            if (!conflictWithProposedTour) {
-              // create and assign
-            }
-
-            if (participant.getTourStatusFullName().equals("Assigned")) {break;}
           }
         }
       }
+      // for loop to see if any participants not assigned
+      for (Participant p : btp.getParticipants()) {
+        if (p.getTourStatusFullName().equals("NotAssigned")) {
+          error += "At least one participant could not be assigned to their bike tour"; 
+          break;
+        }
+      }
+    } catch(Exception e) {
+      error += e.getMessage();
     }
-    
-
-    // add for loop to see if any participants not assigned
-
     // Persistence
     try {
       BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
     } catch (Exception e) {
       error += (e.getMessage());
     }
-
     return error;
   }
 
@@ -85,7 +83,6 @@ public class BikeToursFeatureSetController {
    * @author LukeBebee
    */
 
-  // TODO Fix the state machine so that this method can function and be completed
 
   public static String payForParticipantTrip(String email, String authCode) {
     var error = "";
