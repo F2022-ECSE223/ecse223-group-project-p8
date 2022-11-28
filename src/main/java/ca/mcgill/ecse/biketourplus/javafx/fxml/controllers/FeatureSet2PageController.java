@@ -3,7 +3,6 @@ package ca.mcgill.ecse.biketourplus.javafx.fxml.controllers;
 import ca.mcgill.ecse.biketourplus.controller.*;
 import ca.mcgill.ecse.biketourplus.model.BikeTourPlus;
 import java.sql.Date;
-//import ca.mcgill.ecse.biketourplus.model.BikeTourPlus;
 import ca.mcgill.ecse.biketourplus.application.*;
 
 import javafx.event.ActionEvent;

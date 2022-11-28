@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane>
         <columnConstraints>
@@ -35,12 +35,20 @@
          <tabs>
             <Tab text="Manager Info">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="631.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="631.0">
+                     <children>
+                        <VBox prefHeight="337.0" prefWidth="600.0" />
+                        <fx:include source="pages/FeatureSet1Page.fxml" />
+                     </children></AnchorPane>
                </content>
             </Tab>
             <Tab text="BikeTourPlus Info">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="328.0" prefWidth="594.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                        <fx:include source="pages/FeatureSet2Page.fxml" />
+                     </children></AnchorPane>
                </content>
             </Tab>
             <Tab text="Participant Info">
