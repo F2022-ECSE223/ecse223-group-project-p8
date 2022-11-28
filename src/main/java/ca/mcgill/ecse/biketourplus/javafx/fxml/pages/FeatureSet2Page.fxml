@@ -2,43 +2,38 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-         <children>
-            <GridPane layoutX="-2.0" layoutY="-1.0" prefHeight="196.0" prefWidth="600.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="181.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="495.0" minWidth="10.0" prefWidth="419.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label text="Update Start Date" />
-                  <Label text="Update Number Of Weeks" GridPane.rowIndex="2" />
-                  <Label text="Update Price  of Guide per Week" GridPane.rowIndex="4" />
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Update Start Date" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Update Number Of Weeks" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Update Price Of Guide Per Week" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" />
-                  <TextField text="Input New Start Date" GridPane.columnIndex="1" />
-                  <TextField text="Input New Number Of Weeks" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField text="Input New Price of Guide Per Week" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-               </children>
-            </GridPane>
-         </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-  </items>
-</SplitPane>
+<GridPane prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="181.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="495.0" minWidth="10.0" prefWidth="419.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Label text="Update Start Date" translateX="1.0" />
+      <Label text="Update Number Of Weeks" translateX="1.0" GridPane.rowIndex="2" />
+      <Label text="Update Price  of Guide per Week" translateX="1.0" GridPane.rowIndex="4" />
+      <Button fx:id="updateStartDateButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateStartDateClicked" text="Update Start Date" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+      <Button fx:id="updateNrWeeksButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateNrWeeksClicked" text="Update Number Of Weeks" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
+      <Button fx:id="updateGuidePriceButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateGuidePriceClicked" text="Update Price Of Guide Per Week" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" />
+      <TextField fx:id="newStartDateTextField" text="Input New Start Date" GridPane.columnIndex="1" />
+      <TextField fx:id="newNrWeeksTextField" text="Input New Number Of Weeks" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="newGuidePriceTextField" text="Input New Price of Guide Per Week" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Button fx:id="removeParticipantButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#removeParticipantClicked" text="Remove Participant" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" />
+      <Label text="Remove Participant" translateX="1.0" GridPane.rowIndex="6" />
+      <TextField fx:id="emailParticipantRemoveTextField" text="Input Email of Participant" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+   </children>
+</GridPane>

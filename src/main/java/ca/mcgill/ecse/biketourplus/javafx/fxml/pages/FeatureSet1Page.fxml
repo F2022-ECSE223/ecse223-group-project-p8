@@ -52,6 +52,7 @@
                       <TableColumn prefWidth="75.0" text="Guide" />
                         <TableColumn prefWidth="75.0" text="Start Week" />
                         <TableColumn prefWidth="75.0" text="End Week" />
+                        <TableColumn fx:id="bikeTourParticipants" prefWidth="75.0" text="Participants" />
                     </columns>
                   </TableView>
                </children>
