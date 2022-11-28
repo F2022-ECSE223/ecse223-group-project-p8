@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import ca.mcgill.ecse.biketourplus.controller.*;
-import ca.mcgill.ecse.biketourplus.model.BikeTourPlus;
+//import ca.mcgill.ecse.biketourplus.model.BikeTourPlus;
 import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
 
 import javafx.collections.FXCollections;
@@ -18,7 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class Iteration4FeatureSet1 implements Initializable{
+public class FeatureSet1PageController implements Initializable{
 
     @FXML
     private TableView<TOBikeTour> bikeTourTable; 
