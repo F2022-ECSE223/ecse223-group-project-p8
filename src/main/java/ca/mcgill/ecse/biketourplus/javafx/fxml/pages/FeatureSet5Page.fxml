@@ -36,9 +36,9 @@
                   <Label text=" Gear Name:" GridPane.rowIndex="1" />
                   <Label text=" Update Gear Name:" GridPane.rowIndex="3" />
                   <Label text=" Add/Update Gear Price:" GridPane.rowIndex="5" />
-                  <TextField fx:id="gearNameTextField" text="Input Gear Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="newGearNameTextField" text="Input New Gear Name" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="gearPriceTextField" text="Input Gear Price" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="gearNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="newGearNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="gearPriceTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Button fx:id="deleteGearClickedButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteGearClicked" prefHeight="25.0" prefWidth="361.0" text="Delete Gear" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <Button fx:id="updateGearButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateGearClicked" text="Update Gear" GridPane.rowIndex="8" />
                   <Button fx:id="addGearButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addGearClicked" text="Add Gear" GridPane.rowIndex="7" />
