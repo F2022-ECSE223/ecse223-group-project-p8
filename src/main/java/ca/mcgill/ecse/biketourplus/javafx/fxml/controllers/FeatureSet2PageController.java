@@ -26,16 +26,8 @@ public class FeatureSet2PageController {
   private TextField newStartDateTextField;
 
   @FXML
-  private Button removeParticipantButton;
+  private Button updateSeasonButton;
 
-  @FXML
-  private Button updateGuidePriceButton;
-
-  @FXML
-  private Button updateNrWeeksButton;
-
-  @FXML
-  private Button updateStartDateButton;
 
   @FXML
   void removeParticipantClicked(ActionEvent event) {
@@ -44,28 +36,20 @@ public class FeatureSet2PageController {
       BikeTourPlusFeatureSet2Controller.deleteParticipant(email);
     } catch (InvalidInputException e) {
       // TODO Auto-generated catch block
-      e.printStackTrace();
+      System.out.println(e.getMessage());
     }
   }
 
   @FXML
-  void updateGuidePriceClicked(ActionEvent event) {
-    Date date = btp.getStartDate();
-    int weeks = btp.getNrWeeks();
-    BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(date, weeks, Integer.parseInt(newGuidePriceTextField.getText()));
-  }
-
-  @FXML
-  void updateNrWeeksClicked(ActionEvent event) {
-    Date date = btp.getStartDate();
-    int guidePrice = btp.getPriceOfGuidePerWeek();
-    BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(date, Integer.parseInt(newNrWeeksTextField.getText()), guidePrice);
-  }
-
-  @FXML
-  void updateStartDateClicked(ActionEvent event) {
-    int weeks = btp.getNrWeeks();
-    int guidePrice = btp.getPriceOfGuidePerWeek();
-    BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(date, weeks, guidePrice);
+  void updateSeasonClicked(ActionEvent event) {
+    Date date = Date.valueOf(newStartDateTextField.getText());
+    int weeks = Integer.parseInt(newNrWeeksTextField.getText());
+    int guidePrice = Integer.parseInt(newGuidePriceTextField.getText());
+    try {
+      BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(date, weeks, guidePrice);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    
   }
 }
