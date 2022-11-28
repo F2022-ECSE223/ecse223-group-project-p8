@@ -20,19 +20,19 @@ public class FeatureSet1PageController{
     private TableView<TOBikeTour> bikeTourTable; 
     
     @FXML
-    private TableColumn<TOBikeTour, Integer> bikeTourID;
+    private TableColumn<TOBikeTour, Integer> idCol;
     
     @FXML
-    private TableColumn<TOBikeTour, Integer> bikeTourStartWeek;
+    private TableColumn<TOBikeTour, Integer> startCol;
     
     @FXML
-    private TableColumn<TOBikeTour, Integer> bikeTourEndWeek;
+    private TableColumn<TOBikeTour, Integer> endCol;
 
     @FXML
-    private TableColumn<TOBikeTour, String> bikeTourGuide;
+    private TableColumn<TOBikeTour, String> guideCol;
 
     @FXML
-    private TableColumn<TOBikeTour, List<String>> bikeTourParticipants;
+    private TableColumn<TOBikeTour, List<String>> participantsCol;
 
     @FXML
     private TextField inputPasswordTextField;
@@ -66,10 +66,10 @@ public class FeatureSet1PageController{
         }
       }
 
-      bikeTourID.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("id"));
-      bikeTourGuide.setCellValueFactory(new PropertyValueFactory<TOBikeTour, String>("guideName"));
-      bikeTourStartWeek.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("startWeek"));
-      bikeTourEndWeek.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("endWeek"));
+      idCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("id"));
+      guideCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, String>("guideName"));
+      startCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("startWeek"));
+      endCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("endWeek"));
       //bikeTourParticipants.setCellValueFactory(new PropertyValueFactory<TOBikeTour, List<String>>("participants")); //idk how to get participants
 
       bikeTourTable.setItems(bikeTourList);

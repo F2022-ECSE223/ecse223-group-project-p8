@@ -46,13 +46,13 @@
               </rowConstraints>
                <children>
                   <Label text="View Bike Tours" />
-                  <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                  <TableView fx:id="bikeTourTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                     <columns>
-                      <TableColumn fx:id="bikeTourTable" prefWidth="75.0" text="ID" />
-                      <TableColumn prefWidth="75.0" text="Guide" />
-                        <TableColumn prefWidth="75.0" text="Start Week" />
-                        <TableColumn prefWidth="75.0" text="End Week" />
-                        <TableColumn fx:id="bikeTourParticipants" prefWidth="75.0" text="Participants" />
+                      <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="guideCol" prefWidth="75.0" text="Guide" />
+                        <TableColumn fx:id="startCol" prefWidth="75.0" text="Start Week" />
+                        <TableColumn fx:id="endCol" prefWidth="75.0" text="End Week" />
+                        <TableColumn fx:id="participantsCol" prefWidth="198.0" text="Participants" />
                     </columns>
                   </TableView>
                </children>
