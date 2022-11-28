@@ -1,6 +1,8 @@
 package ca.mcgill.ecse.biketourplus.javafx.fxml.controllers;
 
 import ca.mcgill.ecse.biketourplus.controller.*;
+import ca.mcgill.ecse.biketourplus.model.BikeTourPlus;
+import java.sql.Date;
 //import ca.mcgill.ecse.biketourplus.model.BikeTourPlus;
 import ca.mcgill.ecse.biketourplus.application.*;
 
@@ -49,16 +51,22 @@ public class FeatureSet2PageController {
 
   @FXML
   void updateGuidePriceClicked(ActionEvent event) {
-    BikeTourPlusFeatureSet2Controller.updateBikeTourPlus();
+    Date date = btp.getStartDate();
+    int weeks = btp.getNrWeeks();
+    BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(date, weeks, Integer.parseInt(newGuidePriceTextField.getText()));
   }
 
   @FXML
   void updateNrWeeksClicked(ActionEvent event) {
-
+    Date date = btp.getStartDate();
+    int guidePrice = btp.getPriceOfGuidePerWeek();
+    BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(date, Integer.parseInt(newNrWeeksTextField.getText()), guidePrice);
   }
 
   @FXML
   void updateStartDateClicked(ActionEvent event) {
-
+    int weeks = btp.getNrWeeks();
+    int guidePrice = btp.getPriceOfGuidePerWeek();
+    BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(date, weeks, guidePrice);
   }
 }
