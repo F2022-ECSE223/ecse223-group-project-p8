@@ -44,27 +44,12 @@ public class FeatureSet1PageController{
 
     @FXML
     void updatePasswordClicked(ActionEvent event) {
-      try {
-        error = BikeTourPlusFeatureSet1Controller.updateManager(inputPasswordTextField.getText());
-      } catch (Exception e) {
-        System.out.println(error);
-      }
+      ViewUtils.callController(BikeTourPlusFeatureSet1Controller.updateManager(inputPasswordTextField.getText()));
     }
     
     public void initialize() {
       // get list of TOBikeTour to set items in table
-      boolean idValid = true;
-      int id = 0;
-      ObservableList<TOBikeTour> bikeTourList = FXCollections.observableArrayList();
-      
-      while(idValid) {
-        try {
-          bikeTourList.add(BikeTourPlusFeatureSet1Controller.getBikeTour(id));
-          id++;
-        } catch (Exception e) {
-          idValid = false; // no more bike tours to display
-        }
-      }
+      ObservableList<TOBikeTour> bikeTourList = ViewUtils.getTours();
 
       idCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("id"));
       guideCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, String>("guideName"));

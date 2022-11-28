@@ -1,6 +1,7 @@
 package ca.mcgill.ecse.biketourplus.javafx.fxml.controllers;
 
 import ca.mcgill.ecse.biketourplus.controller.*;
+
 import ca.mcgill.ecse.biketourplus.model.BikeTourPlus;
 import java.sql.Date;
 import ca.mcgill.ecse.biketourplus.application.*;
@@ -29,27 +30,40 @@ public class FeatureSet2PageController {
   private Button updateSeasonButton;
 
 
+  
+  /**
+   * This method is called  when the user clicks on remove participant
+   * It calls on ViewUtils to show the proper message
+   * @param event
+   * @author LukeBebee
+   */
   @FXML
   void removeParticipantClicked(ActionEvent event) {
     String email = emailParticipantRemoveTextField.getText();
+    String error = "";
     try {
       BikeTourPlusFeatureSet2Controller.deleteParticipant(email);
-    } catch (InvalidInputException e) {
-      // TODO Auto-generated catch block
-      System.out.println(e.getMessage());
+    } catch (Exception e) {
+      error = e.getMessage();
     }
+    ViewUtils.callController(error);
+    
   }
 
+  /**
+   * This method is called  when the user clicks on updateSeason
+   * It calls on ViewUtils to show the proper message
+   * @param event
+   * @author LukeBebee
+   */
   @FXML
   void updateSeasonClicked(ActionEvent event) {
     Date date = Date.valueOf(newStartDateTextField.getText());
     int weeks = Integer.parseInt(newNrWeeksTextField.getText());
     int guidePrice = Integer.parseInt(newGuidePriceTextField.getText());
-    try {
-      BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(date, weeks, guidePrice);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    
+    ViewUtils.callController(BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(date, weeks, guidePrice));
+   
     
   }
 }
