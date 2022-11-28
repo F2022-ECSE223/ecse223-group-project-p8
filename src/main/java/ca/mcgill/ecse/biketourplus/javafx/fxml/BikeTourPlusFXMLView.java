@@ -8,6 +8,9 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class BikeTourPlusFXMLView extends Application {
+  
+  
+  
 
   @Override
   /**
@@ -23,10 +26,13 @@ public class BikeTourPlusFXMLView extends Application {
       primaryStage.setScene(scene);
       primaryStage.setMinWidth(800);
       primaryStage.setMinHeight(600);
-      primaryStage.setTitle("ClimbSafe");
+      primaryStage.setTitle("BikeTourPlus");
       primaryStage.show();
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
+  
+  
+  
 }
