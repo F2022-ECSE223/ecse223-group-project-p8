@@ -44,16 +44,28 @@ public class FeatureSet1PageController{
     
     String error = "";
 
+  /**
+   * This method updates the managers password with the password in the corresponding text field
+   * @author LukeBebee
+   */
     @FXML
     void updatePasswordClicked(ActionEvent event) {
       ViewUtils.callController(BikeTourPlusFeatureSet1Controller.updateManager(inputPasswordTextField.getText()));
     }
-    
+
+  /**
+   * This method refreshes the table
+   * @author LukeBebee
+   */
     @FXML
     void refreshClicked(ActionEvent event) {
       initialize();
     }
     
+  /**
+   * This method initializes the table with values from transfer objects
+   * @author LukeBebee
+   */
     public void initialize() {
       // get list of TOBikeTour to set items in table
       ObservableList<TOBikeTour> bikeTourList = ViewUtils.getTours();

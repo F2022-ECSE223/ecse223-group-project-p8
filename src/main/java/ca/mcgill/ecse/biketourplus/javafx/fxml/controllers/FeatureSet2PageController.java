@@ -59,7 +59,7 @@ public class FeatureSet2PageController {
     int guidePrice = Integer.parseInt(newGuidePriceTextField.getText());
     
     ViewUtils.callController(BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(date, weeks, guidePrice));
-   
+    
     
   }
 }
