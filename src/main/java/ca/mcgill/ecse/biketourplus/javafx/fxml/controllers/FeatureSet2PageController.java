@@ -2,17 +2,13 @@ package ca.mcgill.ecse.biketourplus.javafx.fxml.controllers;
 
 import ca.mcgill.ecse.biketourplus.controller.*;
 
-import ca.mcgill.ecse.biketourplus.model.BikeTourPlus;
 import java.sql.Date;
-import ca.mcgill.ecse.biketourplus.application.*;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class FeatureSet2PageController {
-  BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
   
   @FXML
   private TextField emailParticipantRemoveTextField;
@@ -58,6 +54,7 @@ public class FeatureSet2PageController {
    */
   @FXML
   void updateSeasonClicked(ActionEvent event) {
+
     
     if(newStartDateTextField.getText().equals("")) {
       ViewUtils.makePopupWindow("ERROR", "Enter a start date");
