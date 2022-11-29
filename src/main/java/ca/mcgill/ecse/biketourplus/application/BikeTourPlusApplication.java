@@ -13,8 +13,6 @@ public class BikeTourPlusApplication {
   public static final UIMode UI_MODE = UIMode.JAVAFX_FXML;
 
   public static void main(String[] args) {
-    // load persistence
-    //BikeTourPlusPersistence.load();
     
     // TODO Start the application user interface here
     Application.launch(BikeTourPlusFXMLView.class, args);
@@ -23,7 +21,8 @@ public class BikeTourPlusApplication {
   public static BikeTourPlus getBikeTourPlus() {
     if (bikeTourPlus == null) {
       // these attributes are default, you should set them later with the setters
-      bikeTourPlus = new BikeTourPlus(new Date(0), 0, 0);
+      //bikeTourPlus = new BikeTourPlus(new Date(0), 0, 0);
+      bikeTourPlus = BikeTourPlusPersistence.load();
     }
     return bikeTourPlus;
   }

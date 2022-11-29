@@ -1,5 +1,6 @@
 package ca.mcgill.ecse.biketourplus.javafx.fxml.controllers;
 
+import java.sql.Date;
 import java.util.List;
 import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
 import ca.mcgill.ecse.biketourplus.controller.*;
@@ -59,13 +60,11 @@ public class FeatureSet1PageController{
     
     public void initialize() {
       // get list of TOBikeTour to set items in table
-      ObservableList<TOBikeTour> bikeTourList = ViewUtils.getTours();
-      System.out.println("initializing");
-      System.out.println(bikeTourList);
-      System.out.println(BikeTourPlusApplication.getBikeTourPlus().getBikeTours());
+//      ViewUtils.callController(BikeTourPlusFeatureSet1Controller.updateBikeTourPlus(Date startDate, int nrWeeks, int priceOfGuidePerWeek));
+//      ViewUtils.callController(BikeToursFeatureSetController.initiateBikeTourCreationProcess());
       
-      System.out.println(BikeTourPlusApplication.getBikeTourPlus().getParticipants());
-
+      ObservableList<TOBikeTour> bikeTourList = ViewUtils.getTours();
+      
       idCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("id"));
       guideCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, String>("guideName"));
       startCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("startWeek"));
@@ -73,6 +72,10 @@ public class FeatureSet1PageController{
       //bikeTourParticipants.setCellValueFactory(new PropertyValueFactory<TOBikeTour, List<String>>("participants")); //idk how to get participants
 
       bikeTourTable.setItems(bikeTourList);
+      
+      
+      bikeTourTable.getItems().add(new TOBikeTour(1,1,1,"hi", "hi", 1));
+      
       
     }
 
