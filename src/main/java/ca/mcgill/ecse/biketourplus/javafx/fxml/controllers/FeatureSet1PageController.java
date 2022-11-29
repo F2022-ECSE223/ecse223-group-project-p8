@@ -1,7 +1,7 @@
 package ca.mcgill.ecse.biketourplus.javafx.fxml.controllers;
 
 import java.util.List;
-
+import ca.mcgill.ecse.biketourplus.application.BikeTourPlusApplication;
 import ca.mcgill.ecse.biketourplus.controller.*;
 
 import javafx.collections.FXCollections;
@@ -13,6 +13,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import ca.mcgill.ecse.biketourplus.model.*;
 
 public class FeatureSet1PageController{
 
@@ -40,6 +42,9 @@ public class FeatureSet1PageController{
     @FXML
     private Button updatePasswordButton;
     
+    @FXML
+    private Button refreshButton;
+    
     String error = "";
 
     @FXML
@@ -47,9 +52,19 @@ public class FeatureSet1PageController{
       ViewUtils.callController(BikeTourPlusFeatureSet1Controller.updateManager(inputPasswordTextField.getText()));
     }
     
+    @FXML
+    void refreshClicked(ActionEvent event) {
+      initialize();
+    }
+    
     public void initialize() {
       // get list of TOBikeTour to set items in table
       ObservableList<TOBikeTour> bikeTourList = ViewUtils.getTours();
+      System.out.println("initializing");
+      System.out.println(bikeTourList);
+      System.out.println(BikeTourPlusApplication.getBikeTourPlus().getBikeTours());
+      
+      System.out.println(BikeTourPlusApplication.getBikeTourPlus().getParticipants());
 
       idCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("id"));
       guideCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, String>("guideName"));
