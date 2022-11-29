@@ -23,7 +23,7 @@ public class ViewUtils {
   /** Calls the controller and shows an error, if applicable. */
   public static boolean callController(String result) {
     if (result.isEmpty()) {
-      BikeTourPlusFXMLView.getInstance().refresh();
+      //BikeTourPlusFXMLView.getInstance().refresh();
       showSuccess("Successfully made changes");
       return true;
     }
