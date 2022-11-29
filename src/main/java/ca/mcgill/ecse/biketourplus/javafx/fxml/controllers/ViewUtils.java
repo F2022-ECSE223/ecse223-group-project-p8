@@ -94,5 +94,13 @@ public class ViewUtils {
     }
   }
 
-  
+  public static boolean isAlpha(String name) {
+    for (Character ch : name.toCharArray()) {
+      if (!Character.isLetter(ch) && !Character.isWhitespace(ch)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
 }

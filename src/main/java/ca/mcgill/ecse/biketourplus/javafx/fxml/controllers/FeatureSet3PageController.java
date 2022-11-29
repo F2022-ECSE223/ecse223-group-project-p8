@@ -424,7 +424,7 @@ public class FeatureSet3PageController {
  * Remove the item chosen of the user in register
  * 
  * @param event
- * @author Karl Rouhana
+ * @author Jacques Zaarour
  */
 public void removeItemsFromChosen(ActionEvent event) {
 
@@ -515,7 +515,7 @@ public void removeItemsFromChosen(ActionEvent event) {
   /**
    * Refresh everything that appears on the UI
    * 
-   * @author Karl Rouhana
+   * @author Jacques Zaarour
    */
 public void initialize() {
 
@@ -577,7 +577,7 @@ public void initialize() {
     /**
    * private helper method to return the names of the items in the system
    *
-   * @author Karl Rouhana
+   * @author Jacques Zaarour
    * @return
    */
   private List<String> getNameOfGears() {
@@ -600,7 +600,7 @@ public void initialize() {
   /**
    * private helper method to return the names of the bundles in the system
    * 
-   * @author Karl Rouhana
+   * @author Jacques Zaarour
    * @return listOfNames - the list of names of the bundles
    */
   private List<String> getNameOfCombos() {
