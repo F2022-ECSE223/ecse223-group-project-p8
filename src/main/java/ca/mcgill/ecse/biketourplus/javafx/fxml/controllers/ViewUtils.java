@@ -1,5 +1,6 @@
 package ca.mcgill.ecse.biketourplus.javafx.fxml.controllers;
 
+
 import java.util.List;
 import ca.mcgill.ecse.biketourplus.controller.*;
 import ca.mcgill.ecse.biketourplus.javafx.fxml.BikeTourPlusFXMLView;
@@ -13,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 
 
 
