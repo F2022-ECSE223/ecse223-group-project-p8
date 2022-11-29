@@ -4,6 +4,7 @@ import java.sql.Date;
 import ca.mcgill.ecse.biketourplus.javafx.fxml.BikeTourPlusFXMLView;
 import ca.mcgill.ecse.biketourplus.model.BikeTourPlus;
 import javafx.application.Application;
+import ca.mcgill.ecse.biketourplus.Persistence.*;
 
 public class BikeTourPlusApplication {
 
@@ -12,6 +13,7 @@ public class BikeTourPlusApplication {
   public static final UIMode UI_MODE = UIMode.JAVAFX_FXML;
 
   public static void main(String[] args) {
+    
     // TODO Start the application user interface here
     Application.launch(BikeTourPlusFXMLView.class, args);
   }
@@ -19,7 +21,8 @@ public class BikeTourPlusApplication {
   public static BikeTourPlus getBikeTourPlus() {
     if (bikeTourPlus == null) {
       // these attributes are default, you should set them later with the setters
-      bikeTourPlus = new BikeTourPlus(new Date(0), 0, 0);
+      //bikeTourPlus = new BikeTourPlus(new Date(0), 0, 0);
+      bikeTourPlus = BikeTourPlusPersistence.load();
     }
     return bikeTourPlus;
   }

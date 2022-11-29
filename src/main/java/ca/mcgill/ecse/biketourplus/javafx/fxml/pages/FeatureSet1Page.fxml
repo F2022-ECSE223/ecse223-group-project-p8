@@ -26,8 +26,9 @@
               </rowConstraints>
                <children>
                   <Label text="Change Password:" />
-                  <TextField fx:id="inputPasswordTextField" text="Input New password" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                  <TextField fx:id="inputPasswordTextField" text="Input New Password" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
                   <Button fx:id="updatePasswordButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updatePasswordClicked" text="Update Password" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+                  <Label text="*Password must contain one uppercase letter and one special character (!#$)" translateY="-20.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children></AnchorPane>
@@ -52,6 +53,7 @@
                         <TableColumn fx:id="participantsCol" prefWidth="351.0" text="Participants" />
                     </columns>
                   </TableView>
+                  <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refreshClicked" text="Refresh" translateY="25.0" />
                </children>
             </GridPane>
          </children></AnchorPane>

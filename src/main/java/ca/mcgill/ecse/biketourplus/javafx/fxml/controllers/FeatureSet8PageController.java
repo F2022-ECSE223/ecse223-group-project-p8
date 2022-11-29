@@ -42,8 +42,19 @@ public class FeatureSet8PageController {
 	// Event Listener on Button[#calculateButton].onAction
 	@FXML
 	public void calculateClicked(ActionEvent event) {
-	  //TOParticipantCost toParticipantCost = 
-	  //toParticipantCost.getTotalCostForBikingTour();
-	    
+	  int id = BikeToursFeatureSetController.getBikeTourIdParticipant(emailTextField.getText());
+	  if(id != -1) {
+	    try {
+	        TOBikeTour bikeTourTO = BikeTourPlusFeatureSet1Controller.getBikeTour(id);
+	        int indexOfParticipant = BikeToursFeatureSetController.getParticipantIndex(emailTextField.getText());
+	        int costCents = bikeTourTO.getParticipantCost(indexOfParticipant).getTotalCostForBikingTour();
+	        totalPriceTextField.setText("$" + Double.toString(costCents/100.));
+	      } catch (InvalidInputException e) {
+	        JOptionPane.showMessageDialog(null, "Invalid participant email","ERROR",JOptionPane.ERROR_MESSAGE);
+	      } 
+	  }else {
+	    JOptionPane.showMessageDialog(null, "Invalid participant email","ERROR",JOptionPane.ERROR_MESSAGE);
+	  }
+  	  
 	}
 }
