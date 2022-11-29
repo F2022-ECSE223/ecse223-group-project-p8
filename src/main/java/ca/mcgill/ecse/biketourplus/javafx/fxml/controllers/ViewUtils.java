@@ -1,5 +1,6 @@
 package ca.mcgill.ecse.biketourplus.javafx.fxml.controllers;
 
+
 import java.util.List;
 import ca.mcgill.ecse.biketourplus.controller.*;
 import ca.mcgill.ecse.biketourplus.javafx.fxml.BikeTourPlusFXMLView;
@@ -17,13 +18,14 @@ import javafx.stage.Stage;
 
 
 
+
 // This class is adapted from the BTMS example repository
 public class ViewUtils {
 
   /** Calls the controller and shows an error, if applicable. */
   public static boolean callController(String result) {
     if (result.isEmpty()) {
-      BikeTourPlusFXMLView.getInstance().refresh();
+      //BikeTourPlusFXMLView.getInstance().refresh();
       showSuccess("Successfully made changes");
       return true;
     }
@@ -92,5 +94,13 @@ public class ViewUtils {
     }
   }
 
-  
+  public static boolean isAlpha(String name) {
+    for (Character ch : name.toCharArray()) {
+      if (!Character.isLetter(ch) && !Character.isWhitespace(ch)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
 }

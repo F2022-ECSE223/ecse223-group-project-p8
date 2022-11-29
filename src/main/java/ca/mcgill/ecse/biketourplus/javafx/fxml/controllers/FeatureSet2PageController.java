@@ -42,9 +42,9 @@ public class FeatureSet2PageController {
     String email = emailParticipantRemoveTextField.getText();
     String error = "";
     try {
-      BikeTourPlusFeatureSet2Controller.deleteParticipant(email);
+      error += BikeTourPlusFeatureSet2Controller.deleteParticipant(email);
     } catch (Exception e) {
-      error = e.getMessage();
+      error += e.getMessage();
     }
     ViewUtils.callController(error);
     
