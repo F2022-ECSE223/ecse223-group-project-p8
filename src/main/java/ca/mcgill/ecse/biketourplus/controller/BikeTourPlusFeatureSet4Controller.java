@@ -2,6 +2,7 @@ package ca.mcgill.ecse.biketourplus.controller;
 
 import ca.mcgill.ecse.biketourplus.application.*;
 import ca.mcgill.ecse.biketourplus.model.*;
+import java.util.regex.*;
 import ca.mcgill.ecse.biketourplus.Persistence.BikeTourPlusPersistence;
 
 
@@ -63,14 +64,8 @@ public class BikeTourPlusFeatureSet4Controller {
       return error;
     }
 
-    // check if email doesnt end with "@email.com"
-    if (!email.endsWith("@email.com")) {
-      error = "Invalid email";
-      return error;
-    }
-
-    // check if email doesn't start with "@email.com"
-    if (email.startsWith("@email.com")) {
+    // check if email is valid
+    if (!isEmailValid(email)) {
       error = "Invalid email";
       return error;
     }
@@ -101,7 +96,7 @@ public class BikeTourPlusFeatureSet4Controller {
 
     try {
       BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
-    }catch (Exception e){
+    } catch (Exception e) {
       error += (e.getMessage());
     }
 
@@ -158,7 +153,7 @@ public class BikeTourPlusFeatureSet4Controller {
 
     try {
       BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
-    }catch (Exception e){
+    } catch (Exception e) {
       error += (e.getMessage());
     }
 
@@ -172,9 +167,11 @@ public class BikeTourPlusFeatureSet4Controller {
    * @param email A string that represents the Guide to be deleted's email
    * @author Ralph Choucha (RalphChoucha on GitHub)
    * @throws InvalidInputException
+   * @return A string error. Blank if the Guide object exists.
    */
-  public static void deleteGuide(String email) throws InvalidInputException {
+  public static String deleteGuide(String email) throws InvalidInputException {
 
+    var error = "";
     // get specific guide instance
     Guide guideToDelete = getSpecificGuide(email);
 
@@ -183,14 +180,17 @@ public class BikeTourPlusFeatureSet4Controller {
     if (guideToDelete != null) {
       btp.removeGuide(guideToDelete);
       guideToDelete.delete();
+    } else {
+      error += "The specified guide does not exist";
     }
 
     try {
       BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
-    }catch (Exception e){
+    } catch (Exception e) {
       throw new InvalidInputException(e.getMessage());
     }
 
+    return error;
   }
 
   /**
@@ -210,6 +210,26 @@ public class BikeTourPlusFeatureSet4Controller {
       }
     }
     return guide;
+  }
+
+  /**
+   * Method that uses a Regex to check if email matches a valid pattern
+   * 
+   * @param email The email string to be checked
+   * @return True if email is valid and False if it isn't
+   * 
+   *         This helper method has been taken from
+   *         https://www.geeksforgeeks.org/check-email-address-valid-not-java/
+   */
+  private static boolean isEmailValid(String email) {
+    String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@"
+        + "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
+
+    Pattern pattern = Pattern.compile(emailRegex);
+    if (email == null) {
+      return false;
+    }
+    return pattern.matcher(email).matches();
   }
 
 }

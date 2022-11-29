@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
 import ca.mcgill.ecse.biketourplus.controller.BikeTourPlusFeatureSet4Controller;
+import ca.mcgill.ecse.biketourplus.controller.InvalidInputException;
+import ca.mcgill.ecse.biketourplus.javafx.fxml.controllers.ViewUtils;
 import javafx.event.ActionEvent;
 
 public class FeatureSet4PageController {
@@ -35,19 +37,16 @@ public class FeatureSet4PageController {
   @FXML
   private Button deleteGuideButton;
   @FXML
-  private TextField emailSearchField;
-  @FXML
-  private Button searchButton;
+  private TextField emailUpdateField;
+
 
   // Event Listener on Button[#registerGuideButton].onAction
   @FXML
   public void registerGuideClicked(ActionEvent event) {
-    try {
-      BikeTourPlusFeatureSet4Controller.registerGuide(guideEmailField.getText(),
-          passwordField.getText(), guideNameField.getText(), contactField.getText());
-    } catch (Exception e) {
-      JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-    }
+    ViewUtils
+        .callController(BikeTourPlusFeatureSet4Controller.registerGuide(guideEmailField.getText(),
+            passwordField.getText(), guideNameField.getText(), contactField.getText()));
+
     guideEmailField.clear();
     passwordField.clear();
     guideNameField.clear();
@@ -60,42 +59,28 @@ public class FeatureSet4PageController {
     newNameField.clear();
     newPasswordField.clear();
     newContactField.clear();
-    emailSearchField.clear();
+    emailUpdateField.clear();
   }
 
   // Event Listener on Button[#saveChangesButton].onAction
   @FXML
   public void saveChangesClicked(ActionEvent event) {
-    try {
-      BikeTourPlusFeatureSet4Controller.updateGuide(emailSearchField.getText(),
-          newPasswordField.getText(), newNameField.getText(), newContactField.getText());
-    } catch (Exception e) {
-      JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-    }
+
+    ViewUtils.callController(BikeTourPlusFeatureSet4Controller.updateGuide(emailUpdateField.getText(),
+          newPasswordField.getText(), newNameField.getText(), newContactField.getText()));
+
     newNameField.clear();
     newPasswordField.clear();
     newContactField.clear();
-    emailSearchField.clear();
+    emailUpdateField.clear();
   }
 
   // Event Listener on Button[#deleteGuideButton].onAction
   @FXML
-  public void deleteGuideClicked(ActionEvent event) {
-    try {
-      BikeTourPlusFeatureSet4Controller.deleteGuide(guideEmailDField.getText());
-    } catch (Exception e) {
-      JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-    }
+  public void deleteGuideClicked(ActionEvent event) throws InvalidInputException {
+
+    ViewUtils.callController(BikeTourPlusFeatureSet4Controller.deleteGuide(guideEmailDField.getText()));
     guideEmailDField.clear();
   }
 
-  // Event Listener on Button[#searchButton].onAction
-  @FXML
-  public void searchButtonClicked(ActionEvent event) {
-    if (emailSearchField.getText().isBlank()) {
-      JOptionPane.showMessageDialog(null, "Cannot search if field is blank", "ERROR",
-          JOptionPane.ERROR_MESSAGE);
-      // TODO Complete the method
-    }
-  }
 }
