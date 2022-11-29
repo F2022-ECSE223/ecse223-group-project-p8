@@ -11,6 +11,10 @@ import ca.mcgill.ecse.biketourplus.controller.InvalidInputException;
 import ca.mcgill.ecse.biketourplus.javafx.fxml.controllers.ViewUtils;
 import javafx.event.ActionEvent;
 
+/**
+ * @author Ralph Choucha (RalphChoucha on GitHub)
+ */
+
 public class FeatureSet4PageController {
   @FXML
   private TextField guideNameField;
@@ -43,14 +47,15 @@ public class FeatureSet4PageController {
   // Event Listener on Button[#registerGuideButton].onAction
   @FXML
   public void registerGuideClicked(ActionEvent event) {
-    ViewUtils
+    if (ViewUtils
         .callController(BikeTourPlusFeatureSet4Controller.registerGuide(guideEmailField.getText(),
-            passwordField.getText(), guideNameField.getText(), contactField.getText()));
+            passwordField.getText(), guideNameField.getText(), contactField.getText()))) {
+      guideEmailField.clear();
+      passwordField.clear();
+      guideNameField.clear();
+      contactField.clear();
+    }
 
-    guideEmailField.clear();
-    passwordField.clear();
-    guideNameField.clear();
-    contactField.clear();
   }
 
   // Event Listener on Button[#clearSelectionButton].onAction
@@ -66,20 +71,23 @@ public class FeatureSet4PageController {
   @FXML
   public void saveChangesClicked(ActionEvent event) {
 
-    ViewUtils.callController(BikeTourPlusFeatureSet4Controller.updateGuide(emailUpdateField.getText(),
-          newPasswordField.getText(), newNameField.getText(), newContactField.getText()));
+    if (ViewUtils
+        .callController(BikeTourPlusFeatureSet4Controller.updateGuide(emailUpdateField.getText(),
+            newPasswordField.getText(), newNameField.getText(), newContactField.getText()))) {
 
-    newNameField.clear();
-    newPasswordField.clear();
-    newContactField.clear();
-    emailUpdateField.clear();
+      newNameField.clear();
+      newPasswordField.clear();
+      newContactField.clear();
+      emailUpdateField.clear();
+    }
   }
 
   // Event Listener on Button[#deleteGuideButton].onAction
   @FXML
   public void deleteGuideClicked(ActionEvent event) throws InvalidInputException {
 
-    ViewUtils.callController(BikeTourPlusFeatureSet4Controller.deleteGuide(guideEmailDField.getText()));
+    ViewUtils
+        .callController(BikeTourPlusFeatureSet4Controller.deleteGuide(guideEmailDField.getText()));
     guideEmailDField.clear();
   }
 
