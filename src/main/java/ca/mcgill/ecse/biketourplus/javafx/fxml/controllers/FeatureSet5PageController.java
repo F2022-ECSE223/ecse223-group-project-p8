@@ -35,8 +35,6 @@ public class FeatureSet5PageController {
 	public void deleteGearClicked(ActionEvent event) {
 	  if(gearNameTextField.getText().equals("")) {
 	       JOptionPane.showMessageDialog(null, "Gear name text field is empty.","ERROR",JOptionPane.ERROR_MESSAGE);
-	       newGearNameTextField.clear();
-	       gearPriceTextField.clear();
 	     }else {
 	       String msg = BikeTourPlusFeatureSet5Controller.deleteGear(gearNameTextField.getText());
 	       if(! msg.equals("")) {
@@ -52,12 +50,8 @@ public class FeatureSet5PageController {
 	public void updateGearClicked(ActionEvent event) {
 	 if(gearNameTextField.getText().equals("")) {
 	   JOptionPane.showMessageDialog(null, "Gear name text field is empty.","ERROR",JOptionPane.ERROR_MESSAGE);
-	   newGearNameTextField.clear();
-       gearPriceTextField.clear();
 	 }else if(gearPriceTextField.getText().equals("")) {
 	   JOptionPane.showMessageDialog(null, "Gear price text field is empty.","ERROR",JOptionPane.ERROR_MESSAGE);
-	   gearNameTextField.clear();
-	   newGearNameTextField.clear();
 	 }else {
 	   try {
 	     if(newGearNameTextField.getText().equals("")){
@@ -78,18 +72,16 @@ public class FeatureSet5PageController {
        }catch (Exception e){
          JOptionPane.showMessageDialog(null, "Price entered isn't a numerical value","ERROR",JOptionPane.ERROR_MESSAGE);
        }
-	   gearNameTextField.clear();
-	   newGearNameTextField.clear();
-	   gearPriceTextField.clear(); 
 	 }
+	 gearNameTextField.clear();
+     newGearNameTextField.clear();
+     gearPriceTextField.clear(); 
 	}
 	// Event Listener on Button[#addGearButton].onAction
 	@FXML
 	public void addGearClicked(ActionEvent event) {
 	  if(gearPriceTextField.getText().equals("")) {
 	       JOptionPane.showMessageDialog(null, "Gear price text field is empty.","ERROR",JOptionPane.ERROR_MESSAGE);
-	       gearNameTextField.clear();
-	       newGearNameTextField.clear();
 	  }else {
 	    try {
 	      String msg = BikeTourPlusFeatureSet5Controller.addGear(gearNameTextField.getText(), (int) (100*Double.parseDouble(gearPriceTextField.getText())));  
@@ -99,9 +91,9 @@ public class FeatureSet5PageController {
 	    }catch (Exception e){
 	      JOptionPane.showMessageDialog(null, "Price entered isn't a numerical value","ERROR",JOptionPane.ERROR_MESSAGE);
 	    }
-	    gearNameTextField.clear();
-	    newGearNameTextField.clear();
-	    gearPriceTextField.clear(); 
 	  }
+	  gearNameTextField.clear();
+      newGearNameTextField.clear();
+      gearPriceTextField.clear(); 
 	}
 }
