@@ -34,11 +34,13 @@ public class FeatureSet5PageController {
 	@FXML
 	public void deleteGearClicked(ActionEvent event) {
 	  if(gearNameTextField.getText().equals("")) {
-	       JOptionPane.showMessageDialog(null, "Gear name text field is empty.","ERROR",JOptionPane.ERROR_MESSAGE);
+	       //JOptionPane.showMessageDialog(null, "Gear name text field is empty.","ERROR",JOptionPane.ERROR_MESSAGE);
+	       ViewUtils.makePopupWindow("ERROR","Gear name text field is empty.");
 	     }else {
 	       String msg = BikeTourPlusFeatureSet5Controller.deleteGear(gearNameTextField.getText());
 	       if(! msg.equals("")) {
-	         JOptionPane.showMessageDialog(null, "The piece of gear is in a combo and cannot be deleted","ERROR",JOptionPane.ERROR_MESSAGE);
+	         //JOptionPane.showMessageDialog(null, "The piece of gear is in a combo and cannot be deleted","ERROR",JOptionPane.ERROR_MESSAGE);
+	         ViewUtils.makePopupWindow("ERROR","The piece of gear is in a combo and cannot be deleted");
 	       }
 	       gearNameTextField.clear();
 	       newGearNameTextField.clear();
@@ -49,9 +51,11 @@ public class FeatureSet5PageController {
 	@FXML
 	public void updateGearClicked(ActionEvent event) {
 	 if(gearNameTextField.getText().equals("")) {
-	   JOptionPane.showMessageDialog(null, "Gear name text field is empty.","ERROR",JOptionPane.ERROR_MESSAGE);
+	   //JOptionPane.showMessageDialog(null, "Gear name text field is empty.","ERROR",JOptionPane.ERROR_MESSAGE);
+       ViewUtils.makePopupWindow("ERROR","Gear name text field is empty.");
 	 }else if(gearPriceTextField.getText().equals("")) {
-	   JOptionPane.showMessageDialog(null, "Gear price text field is empty.","ERROR",JOptionPane.ERROR_MESSAGE);
+	   //JOptionPane.showMessageDialog(null, "Gear price text field is empty.","ERROR",JOptionPane.ERROR_MESSAGE);
+       ViewUtils.makePopupWindow("ERROR","Gear price text field is empty.");
 	 }else {
 	   try {
 	     if(newGearNameTextField.getText().equals("")){
@@ -59,18 +63,24 @@ public class FeatureSet5PageController {
 	     }
 	     String msg = BikeTourPlusFeatureSet5Controller.updateGear(gearNameTextField.getText(), newGearNameTextField.getText(), (int) (100*Double.parseDouble(gearPriceTextField.getText())));
 	     if(msg.equals("A combo with the same name already exists")) {
-	       JOptionPane.showMessageDialog(null, "A combo with the same name already exists","ERROR",JOptionPane.ERROR_MESSAGE);
+	       //JOptionPane.showMessageDialog(null, "A combo with the same name already exists","ERROR",JOptionPane.ERROR_MESSAGE);
+	       ViewUtils.makePopupWindow("ERROR","A combo with the same name already exists");
 	     }else if(msg.equals("A piece of gear with the same name already exists")) {
-	       JOptionPane.showMessageDialog(null, "A piece of gear with the same name already exists","ERROR",JOptionPane.ERROR_MESSAGE);
+	       //JOptionPane.showMessageDialog(null, "A piece of gear with the same name already exists","ERROR",JOptionPane.ERROR_MESSAGE);
+	       ViewUtils.makePopupWindow("ERROR","A piece of gear with the same name already exists");
 	     }else if(msg.equals("The piece of gear does not exist")) {
-	       JOptionPane.showMessageDialog(null, "The piece of gear does not exist","ERROR",JOptionPane.ERROR_MESSAGE);
+	       //JOptionPane.showMessageDialog(null, "The piece of gear does not exist","ERROR",JOptionPane.ERROR_MESSAGE);
+           ViewUtils.makePopupWindow("ERROR","The piece of gear does not exist");
 	     }else if(msg.equals("The name must not be empty")) {
-           JOptionPane.showMessageDialog(null, "New gear name text field is empty.","ERROR",JOptionPane.ERROR_MESSAGE);
+           //JOptionPane.showMessageDialog(null, "New gear name text field is empty.","ERROR",JOptionPane.ERROR_MESSAGE);
+           ViewUtils.makePopupWindow("ERROR","New gear name text field is empty");
          }else if(msg.equals("The price per week must be greater than or equal to 0")) {
-           JOptionPane.showMessageDialog(null, "New gear price cannot be negative.","ERROR",JOptionPane.ERROR_MESSAGE);
+           //JOptionPane.showMessageDialog(null, "New gear price cannot be negative.","ERROR",JOptionPane.ERROR_MESSAGE);
+           ViewUtils.makePopupWindow("ERROR","New gear price cannot be negative.");
          }
        }catch (Exception e){
-         JOptionPane.showMessageDialog(null, "Price entered isn't a numerical value","ERROR",JOptionPane.ERROR_MESSAGE);
+         //JOptionPane.showMessageDialog(null, "Price entered isn't a numerical value","ERROR",JOptionPane.ERROR_MESSAGE);
+         ViewUtils.makePopupWindow("ERROR","Price entered isn't a numerical value");
        }
 	 }
 	 gearNameTextField.clear();
@@ -81,15 +91,18 @@ public class FeatureSet5PageController {
 	@FXML
 	public void addGearClicked(ActionEvent event) {
 	  if(gearPriceTextField.getText().equals("")) {
-	       JOptionPane.showMessageDialog(null, "Gear price text field is empty.","ERROR",JOptionPane.ERROR_MESSAGE);
+	       //JOptionPane.showMessageDialog(null, "Gear price text field is empty.","ERROR",JOptionPane.ERROR_MESSAGE);
+	       ViewUtils.makePopupWindow("ERROR","Gear price text field is empty.");
 	  }else {
 	    try {
 	      String msg = BikeTourPlusFeatureSet5Controller.addGear(gearNameTextField.getText(), (int) (100*Double.parseDouble(gearPriceTextField.getText())));  
 	      if(! msg.equals("")) {
-	          JOptionPane.showMessageDialog(null, msg,"ERROR",JOptionPane.ERROR_MESSAGE);
+	          //JOptionPane.showMessageDialog(null, msg,"ERROR",JOptionPane.ERROR_MESSAGE);
+	          ViewUtils.makePopupWindow("ERROR",msg);
 	        }
 	    }catch (Exception e){
-	      JOptionPane.showMessageDialog(null, "Price entered isn't a numerical value","ERROR",JOptionPane.ERROR_MESSAGE);
+	      //JOptionPane.showMessageDialog(null, "Price entered isn't a numerical value","ERROR",JOptionPane.ERROR_MESSAGE);
+	      ViewUtils.makePopupWindow("ERROR","Price entered isn't a numerical value");
 	    }
 	  }
 	  gearNameTextField.clear();
