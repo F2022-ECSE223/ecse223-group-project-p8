@@ -3,9 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -15,12 +13,12 @@
 
 <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-alignment: center;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.biketourplus.javafx.fxml.controllers.FeatureSet3PageController">
    <children>
-      <Button fx:id="RegisterParticipantButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#RegisterParticipantUI" prefHeight="15.0" prefWidth="150.0" snapToPixel="false" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Register" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="10" GridPane.vgrow="ALWAYS">
+      <Button fx:id="RegisterParticipantButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#RegisterParticipantUI" prefHeight="15.0" prefWidth="150.0" snapToPixel="false" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Register" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="10" GridPane.vgrow="ALWAYS">
          <font>
             <Font name="Cambria Bold" size="20.0" />
          </font>
          <GridPane.margin>
-            <Insets right="60.0" top="20.0" />
+            <Insets right="30.0" />
          </GridPane.margin>
       </Button>
       <TextField fx:id="AddLastName" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="120.0" promptText="Last name" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
@@ -109,7 +107,7 @@
             <Font name="System Italic" size="12.0" />
          </font>
       </TextField>
-      <Label alignment="CENTER" layoutX="10.0" layoutY="352.0" text="Lodge required?" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+      <Label alignment="CENTER" layoutX="10.0" layoutY="352.0" text="Lodge required?" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
          <font>
             <Font name="System Italic" size="14.0" />
          </font>
@@ -120,7 +118,7 @@
             <Insets left="25.0" />
          </GridPane.margin>
       </Label>
-      <CheckBox fx:id="lodgeRequiredCheck" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+      <CheckBox fx:id="lodgeRequiredCheck" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
@@ -139,31 +137,9 @@
             <Insets />
          </GridPane.margin>
       </Label>
-      <Label alignment="CENTER" layoutX="553.0" layoutY="248.0" text="Add Combo" wrapText="true" GridPane.halignment="LEFT" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+      <Button fx:id="addItemButton" alignment="CENTER" layoutX="308.0" layoutY="502.0" mnemonicParsing="false" onAction="#addItem" prefHeight="30.0" prefWidth="60.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Add" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.valignment="CENTER">
          <font>
-            <Font name="System Italic" size="14.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-      </Label>
-      <Button fx:id="addGearButton" alignment="CENTER" layoutX="308.0" layoutY="502.0" mnemonicParsing="false" onAction="#addGear" prefHeight="25.0" prefWidth="60.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Add" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-         <font>
-            <Font name="Cambria Bold" size="14.0" />
-         </font>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-      </Button>
-      <Button fx:id="addComboButton" alignment="CENTER" layoutX="717.0" layoutY="119.0" mnemonicParsing="false" onAction="#addCombo" prefHeight="25.0" prefWidth="60.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Add" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-         <font>
-            <Font name="Cambria Bold" size="14.0" />
+            <Font name="Cambria Bold" size="12.0" />
          </font>
          <GridPane.margin>
             <Insets />
@@ -181,18 +157,11 @@
          </padding>
       </Label>
       <Separator prefWidth="200.0" GridPane.columnSpan="8" GridPane.valignment="BOTTOM" />
-      <ListView fx:id="AddedEquipmentList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectItem" prefHeight="125.0" prefWidth="193.0" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.halignment="LEFT" GridPane.rowIndex="8" GridPane.rowSpan="5" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets left="30.0" top="-20.0" />
-         </GridPane.margin>
-      </ListView>
       <TextField fx:id="AddFirstName" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="120.0" promptText="First name" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </TextField>
-      <ComboBox fx:id="AvailableItemList" prefHeight="20.0" prefWidth="200.0" promptText=" Available items" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-      <ComboBox fx:id="AvailableComboList" prefHeight="20.0" prefWidth="200.0" promptText=" Available Combos" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
       <Label alignment="CENTER" prefHeight="62.0" prefWidth="218.0" text="Gears &amp; Combos" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
          <font>
             <Font name="Cambria" size="20.0" />
@@ -212,12 +181,12 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <Button fx:id="RemoveItemButton" alignment="CENTER" mnemonicParsing="false" onAction="#removeItemsFromChosen" prefHeight="29.0" prefWidth="90.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Remove" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="TOP">
+      <Button fx:id="RemoveItemButton" alignment="CENTER" mnemonicParsing="false" onAction="#removeItem" prefHeight="30.0" prefWidth="90.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Remove" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
          <font>
-            <Font name="Cambria Bold" size="10.0" />
+            <Font name="Cambria Bold" size="12.0" />
          </font>
          <GridPane.margin>
-            <Insets left="5.0" />
+            <Insets />
          </GridPane.margin>
       </Button>
       <Label alignment="CENTER" text="Availablility" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
@@ -258,48 +227,19 @@
             <Insets left="25.0" />
          </GridPane.margin>
       </Label>
-      <Button fx:id="UpdateParticipantButton" alignment="CENTER" mnemonicParsing="false" onAction="#updateParticipantUI" prefHeight="15.0" prefWidth="150.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Update" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="10">
+      <Button fx:id="UpdateParticipantButton" alignment="CENTER" mnemonicParsing="false" onAction="#updateParticipantUI" prefHeight="15.0" prefWidth="150.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Update" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
          <font>
             <Font name="Cambria Bold" size="20.0" />
          </font>
          <GridPane.margin>
-            <Insets top="20.0" />
+            <Insets />
          </GridPane.margin>
       </Button>
-      <Button fx:id="DeleteParticipantButton" alignment="CENTER" mnemonicParsing="false" onAction="#deleteMemberUI" prefHeight="38.0" prefWidth="197.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Delete Participant" textAlignment="CENTER" textFill="#d74040" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
+      <TextField fx:id="addEmergencyPhone1" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Choose Gear or Combo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
          <font>
-            <Font name="Cambria Bold" size="20.0" />
+            <Font name="System Italic" size="12.0" />
          </font>
-         <GridPane.margin>
-            <Insets top="20.0" />
-         </GridPane.margin>
-      </Button>
-      <ListView fx:id="EquipmentQuantityList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectItem" prefHeight="125.0" prefWidth="50.0" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.rowSpan="2" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets right="70.0" top="-20.0" />
-         </GridPane.margin></ListView>
-      <Label alignment="CENTER" prefHeight="18.0" prefWidth="30.0" text="QTY" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
-         <font>
-            <Font name="Cambria" size="14.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <GridPane.margin>
-            <Insets bottom="20.0" left="80.0" />
-         </GridPane.margin>
-      </Label>
-      <Label alignment="CENTER" layoutX="170.0" layoutY="411.0" prefHeight="18.0" prefWidth="120.0" text="Added Equipment:" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
-         <font>
-            <Font name="Cambria" size="14.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <GridPane.margin>
-            <Insets bottom="20.0" left="30.0" />
-         </GridPane.margin>
-      </Label>
+      </TextField>
    </children>
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.00001831054686" minWidth="10.0" prefWidth="107.0" />
@@ -318,10 +258,10 @@
       <RowConstraints maxHeight="171.9999755859375" minHeight="3.0" prefHeight="50.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="184.0" minHeight="2.0" prefHeight="50.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="184.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="200.43087768554688" minHeight="4.0" prefHeight="4.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="200.43087768554688" minHeight="0.0" prefHeight="45.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="264.800048828125" minHeight="0.0" prefHeight="59.0" vgrow="NEVER" />
-      <RowConstraints maxHeight="264.800048828125" minHeight="10.0" prefHeight="52.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="200.43087768554688" minHeight="4.0" prefHeight="30.600006103515625" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="200.43087768554688" minHeight="0.0" prefHeight="59.20003662109377" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="264.800048828125" minHeight="0.0" prefHeight="70.19996337890626" vgrow="NEVER" />
+      <RowConstraints maxHeight="264.800048828125" minHeight="0.0" prefHeight="0.0" vgrow="NEVER" />
       <RowConstraints maxHeight="264.800048828125" minHeight="10.0" prefHeight="137.0" vgrow="NEVER" />
       <RowConstraints />
       <RowConstraints />
