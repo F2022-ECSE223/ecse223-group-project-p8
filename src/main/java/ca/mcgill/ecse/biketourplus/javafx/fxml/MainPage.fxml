@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,9 +13,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
 
    <children>
       <GridPane prefHeight="60.0" prefWidth="800.0">
@@ -33,7 +36,7 @@
          </children>
       </GridPane>
       <Separator prefWidth="200.0" />
-      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
             <Tab text="Manager Info">
                <content>
@@ -60,7 +63,63 @@
             </Tab>
             <Tab text="Guide Info">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="562.0" prefWidth="800.0">
+                     <children>
+                        <AnchorPane prefHeight="569.0" prefWidth="800.0">
+                           <children>
+                              <AnchorPane layoutY="-30.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0">
+                                 <children>
+                                    <Label layoutX="69.0" layoutY="199.0" prefHeight="18.0" prefWidth="73.0" text="Guide Name:" />
+                                    <TextField fx:id="guideNameField" layoutX="157.0" layoutY="197.0" />
+                                    <Label layoutX="69.0" layoutY="243.0" prefHeight="18.0" prefWidth="73.0" text="Guide Email:" />
+                                    <TextField fx:id="guideEmailField" layoutX="157.0" layoutY="241.0" />
+                                    <Label layoutX="69.0" layoutY="287.0" prefHeight="18.0" prefWidth="73.0" text="Password:" />
+                                    <Label layoutX="69.0" layoutY="334.0" prefHeight="18.0" prefWidth="73.0" text="Contact:" />
+                                    <TextField fx:id="contactField" layoutX="157.0" layoutY="332.0" />
+                                    <Button fx:id="registerGuideButton" layoutX="113.0" layoutY="385.0" mnemonicParsing="false" onAction="#registerGuideClicked" prefHeight="26.0" prefWidth="150.0" text="Register Guide" />
+                                    <TextField fx:id="passwordField" layoutX="157.0" layoutY="284.0" />
+                                    <Label layoutX="469.0" layoutY="300.0" prefHeight="18.0" prefWidth="73.0" text="New Name:" />
+                                    <TextField fx:id="newNameField" layoutX="559.0" layoutY="297.0" />
+                                    <Label layoutX="69.0" layoutY="506.0" prefHeight="18.0" prefWidth="73.0" text="Guide Email:" />
+                                    <TextField fx:id="guideEmailDField" layoutX="150.0" layoutY="502.0" />
+                                    <Label layoutX="469.0" layoutY="341.0" prefHeight="18.0" prefWidth="82.0" text="New Password" />
+                                    <TextField fx:id="newPasswordField" layoutX="558.0" layoutY="337.0" />
+                                    <Label layoutX="469.0" layoutY="382.0" prefHeight="18.0" prefWidth="82.0" text="New Contact:" />
+                                    <TextField fx:id="newContactField" layoutX="558.0" layoutY="378.0" />
+                                    <Button fx:id="clearSelectionButton" layoutX="510.0" layoutY="466.0" mnemonicParsing="false" onAction="#clearSelectionClicked" prefHeight="26.0" prefWidth="166.0" text="Clear Selection" />
+                                    <Button fx:id="saveChangesButton" layoutX="510.0" layoutY="514.0" mnemonicParsing="false" onAction="#saveChangesClicked" prefHeight="26.0" prefWidth="166.0" text="Save Changes" />
+                                    <Button fx:id="deleteGuideButton" layoutX="105.0" layoutY="549.0" mnemonicParsing="false" onAction="#deleteGuideClicked" prefHeight="26.0" prefWidth="166.0" text="Delete Guide" />
+                                    <Label layoutX="441.0" layoutY="137.0" text="Update Guide">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="emailSearchField" layoutX="559.0" layoutY="185.0" />
+                                    <Label layoutX="469.0" layoutY="188.0" prefHeight="18.0" prefWidth="73.0" text="Search Email:" />
+                                    <Label layoutX="69.0" layoutY="137.0" text="Register Guide">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator layoutX="397.0" layoutY="100.0" orientation="VERTICAL" prefHeight="498.0" prefWidth="6.0" />
+                                    <Separator layoutY="437.0" prefHeight="5.0" prefWidth="399.0" />
+                                    <Label layoutX="69.0" layoutY="453.0" text="Delete Guide">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator layoutX="5.0" layoutY="95.0" prefHeight="6.0" prefWidth="794.0" />
+                                    <Label layoutX="279.0" layoutY="33.0" text="Register/Update Guide">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="searchButton" layoutX="515.0" layoutY="229.0" mnemonicParsing="false" onAction="#searchButtonClicked" prefHeight="26.0" prefWidth="166.0" text="Search" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children></AnchorPane>
                </content>
             </Tab>
             <Tab text="Gear Info">
