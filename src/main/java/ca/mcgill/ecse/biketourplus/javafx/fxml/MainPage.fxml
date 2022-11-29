@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
 
    <children>
       <GridPane prefHeight="60.0" prefWidth="800.0">
@@ -32,13 +32,15 @@
          </children>
       </GridPane>
       <Separator prefWidth="200.0" />
+
       <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+
          <tabs>
             <Tab text="Manager Info">
                <content>
                   <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="566.0" prefWidth="800.0">
                      <children>
-                        <VBox prefHeight="337.0" prefWidth="600.0" />
+                        <VBox prefHeight="569.0" prefWidth="800.0" />
                         <fx:include source="pages/FeatureSet1Page.fxml" />
                      </children></AnchorPane>
                </content>
@@ -54,7 +56,11 @@
             </Tab>
             <Tab text="Participant Info">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutX="68.0" layoutY="41.0" prefHeight="200.0" prefWidth="100.0" />
+                        <fx:include source="pages/FeatureSet3Page.fxml" />
+                     </children></AnchorPane>
                </content>
             </Tab>
             <Tab text="Guide Info">
@@ -81,7 +87,11 @@
                      <tabs>
                         <Tab text="Initiate Bike Tour Creation">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox layoutX="17.0" layoutY="31.0" prefHeight="200.0" prefWidth="100.0" />
+                                    <fx:include source="pages/FeatureSet7Page.fxml" />
+                                 </children></AnchorPane>
                            </content>
                         </Tab>
                         <Tab text="Participant Payment">
