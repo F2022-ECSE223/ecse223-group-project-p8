@@ -81,7 +81,7 @@ public class BikeTourPlusFeatureSet3Controller {
 
     // If valid inputs, add participant to btp
     btp.addParticipant(email, password, name, emergencyContact, nrWeeks, weekAvailableFrom,
-        weekAvailableUntil, lodgeRequired, emergencyContact, weekAvailableUntil);
+        weekAvailableUntil, lodgeRequired, null, 0);
 
     try {
       BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());

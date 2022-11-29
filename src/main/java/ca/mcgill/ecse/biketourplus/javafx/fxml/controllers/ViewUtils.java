@@ -1,5 +1,6 @@
 package ca.mcgill.ecse.biketourplus.javafx.fxml.controllers;
 
+
 import java.util.List;
 import ca.mcgill.ecse.biketourplus.controller.*;
 import ca.mcgill.ecse.biketourplus.javafx.fxml.BikeTourPlusFXMLView;
@@ -13,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 
 
 
@@ -92,5 +94,13 @@ public class ViewUtils {
     }
   }
 
-  
+  public static boolean isAlpha(String name) {
+    for (Character ch : name.toCharArray()) {
+      if (!Character.isLetter(ch) && !Character.isWhitespace(ch)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
 }
