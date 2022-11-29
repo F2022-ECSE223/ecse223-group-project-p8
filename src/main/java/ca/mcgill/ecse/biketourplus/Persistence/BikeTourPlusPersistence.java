@@ -6,7 +6,7 @@ import ca.mcgill.ecse.biketourplus.model.BikeTourPlus;
 
 public class BikeTourPlusPersistence {
 
-  private static String filename = "data.json";
+  private static String filename = "btp.data";
   private static JsonSerializer serializer = new JsonSerializer("ca.mcgill.ecse.biketourplus");
 
   public static void setFilename(String filename) {

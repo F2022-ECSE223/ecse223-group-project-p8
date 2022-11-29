@@ -14,8 +14,8 @@ import javafx.stage.Stage;
 
 public class BikeTourPlusFXMLView extends Application {
   
-  private static BikeTourPlusFXMLView instance;
   public static final EventType<Event> REFRESH_EVENT = new EventType<>("REFRESH");
+  private static BikeTourPlusFXMLView instance;
   private List<Node> refreshableNodes = new ArrayList<>();
 
 
@@ -45,6 +45,23 @@ public class BikeTourPlusFXMLView extends Application {
   
   public static BikeTourPlusFXMLView getInstance() {
     return instance;
+  }
+  
+  // Register the node for receiving refresh events
+  public void registerRefreshEvent(Node node) {
+    refreshableNodes.add(node);
+  }
+
+  // Register multiple nodes for receiving refresh events
+  public void registerRefreshEvent(Node... nodes) {
+    for (var node: nodes) {
+      refreshableNodes.add(node);
+    }
+  }
+
+  // remove the node from receiving refresh events
+  public void removeRefreshableNode(Node node) {
+    refreshableNodes.remove(node);
   }
   
   // fire the refresh event to all registered nodes

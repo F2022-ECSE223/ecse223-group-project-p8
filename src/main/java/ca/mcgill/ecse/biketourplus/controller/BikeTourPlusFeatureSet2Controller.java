@@ -72,23 +72,27 @@ public class BikeTourPlusFeatureSet2Controller {
    * @author LukeBebee
    * @throws InvalidInputException
    */
-  public static void deleteParticipant(String email) throws InvalidInputException {
+  public static String deleteParticipant(String email) throws InvalidInputException {
+    String error = "";
     try {
       User u = User.getWithEmail(email);
       if (u instanceof Participant) { // Ensure user is a participant
         u.delete(); // Delete instance of participant
         // Our model ensures that any necessary associations are removed
       }
-
-      try {
-        BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
-      }catch (Exception e){
-        throw new InvalidInputException(e.getMessage());
+      else {
+        error += "Participant does not exist";
       }
-
     } catch (RuntimeException e) {
-      System.out.println(e.getMessage()); // Display any error that arrises
+      error += e.getMessage(); // Display any error that arises
     }
+    
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      throw new InvalidInputException(e.getMessage());
+    }
+    return error;
   }
 
   /**
