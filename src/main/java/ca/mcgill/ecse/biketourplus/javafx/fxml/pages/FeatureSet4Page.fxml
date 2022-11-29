@@ -18,24 +18,24 @@
       <TextField fx:id="contactField" layoutX="157.0" layoutY="332.0" />
       <Button fx:id="registerGuideButton" layoutX="113.0" layoutY="385.0" mnemonicParsing="false" onAction="#registerGuideClicked" prefHeight="26.0" prefWidth="150.0" text="Register Guide" />
       <TextField fx:id="passwordField" layoutX="157.0" layoutY="284.0" />
-      <Label layoutX="469.0" layoutY="300.0" prefHeight="18.0" prefWidth="73.0" text="New Name:" />
-      <TextField fx:id="newNameField" layoutX="559.0" layoutY="297.0" />
+      <Label layoutX="469.0" layoutY="232.0" prefHeight="18.0" prefWidth="73.0" text="New Name:" />
+      <TextField fx:id="newNameField" layoutX="559.0" layoutY="230.0" />
       <Label layoutX="69.0" layoutY="506.0" prefHeight="18.0" prefWidth="73.0" text="Guide Email:" />
       <TextField fx:id="guideEmailDField" layoutX="150.0" layoutY="502.0" />
-      <Label layoutX="469.0" layoutY="341.0" prefHeight="18.0" prefWidth="82.0" text="New Password" />
-      <TextField fx:id="newPasswordField" layoutX="558.0" layoutY="337.0" />
-      <Label layoutX="469.0" layoutY="382.0" prefHeight="18.0" prefWidth="82.0" text="New Contact:" />
-      <TextField fx:id="newContactField" layoutX="558.0" layoutY="378.0" />
-      <Button fx:id="clearSelectionButton" layoutX="510.0" layoutY="466.0" mnemonicParsing="false" onAction="#clearSelectionClicked" prefHeight="26.0" prefWidth="166.0" text="Clear Selection" />
-      <Button fx:id="saveChangesButton" layoutX="510.0" layoutY="514.0" mnemonicParsing="false" onAction="#saveChangesClicked" prefHeight="26.0" prefWidth="166.0" text="Save Changes" />
+      <Label layoutX="469.0" layoutY="274.0" prefHeight="18.0" prefWidth="82.0" text="New Password" />
+      <TextField fx:id="newPasswordField" layoutX="558.0" layoutY="270.0" />
+      <Label layoutX="469.0" layoutY="315.0" prefHeight="18.0" prefWidth="82.0" text="New Contact:" />
+      <TextField fx:id="newContactField" layoutX="558.0" layoutY="311.0" />
+      <Button fx:id="clearSelectionButton" layoutX="506.0" layoutY="385.0" mnemonicParsing="false" onAction="#clearSelectionClicked" prefHeight="26.0" prefWidth="166.0" text="Clear Selection" />
+      <Button fx:id="saveChangesButton" layoutX="506.0" layoutY="433.0" mnemonicParsing="false" onAction="#saveChangesClicked" prefHeight="26.0" prefWidth="166.0" text="Save Changes" />
       <Button fx:id="deleteGuideButton" layoutX="105.0" layoutY="549.0" mnemonicParsing="false" onAction="#deleteGuideClicked" prefHeight="26.0" prefWidth="166.0" text="Delete Guide" />
       <Label layoutX="441.0" layoutY="137.0" text="Update Guide">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="emailSearchField" layoutX="559.0" layoutY="185.0" />
-      <Label layoutX="469.0" layoutY="188.0" prefHeight="18.0" prefWidth="73.0" text="Search Email:" />
+      <TextField fx:id="emailUpdateField" layoutX="559.0" layoutY="185.0" />
+      <Label layoutX="469.0" layoutY="189.0" prefHeight="18.0" prefWidth="73.0" text="Guide Email:" />
       <Label layoutX="69.0" layoutY="137.0" text="Register Guide">
          <font>
             <Font size="16.0" />
@@ -54,6 +54,5 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="searchButton" layoutX="515.0" layoutY="229.0" mnemonicParsing="false" onAction="#searchButtonClicked" prefHeight="26.0" prefWidth="166.0" text="Search" />
    </children>
 </AnchorPane>
