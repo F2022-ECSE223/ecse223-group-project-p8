@@ -15,7 +15,7 @@
 
 <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-alignment: center;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.biketourplus.javafx.fxml.controllers.FeatureSet3PageController">
    <children>
-      <Button fx:id="RegisterParticipantButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addItem" prefHeight="15.0" prefWidth="150.0" snapToPixel="false" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Register" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="10" GridPane.vgrow="ALWAYS">
+      <Button fx:id="RegisterParticipantButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#RegisterParticipantUI" prefHeight="15.0" prefWidth="150.0" snapToPixel="false" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Register" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="10" GridPane.vgrow="ALWAYS">
          <font>
             <Font name="Cambria Bold" size="20.0" />
          </font>
@@ -120,7 +120,7 @@
             <Insets left="25.0" />
          </GridPane.margin>
       </Label>
-      <CheckBox fx:id="LodgeRequiredCheck" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+      <CheckBox fx:id="lodgeRequiredCheck" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
@@ -153,7 +153,7 @@
             <Insets />
          </GridPane.margin>
       </Label>
-      <Button fx:id="addItemButton" alignment="CENTER" layoutX="308.0" layoutY="502.0" mnemonicParsing="false" onAction="#addItem" prefHeight="25.0" prefWidth="60.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Add" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+      <Button fx:id="addGearButton" alignment="CENTER" layoutX="308.0" layoutY="502.0" mnemonicParsing="false" onAction="#addGear" prefHeight="25.0" prefWidth="60.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Add" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.valignment="CENTER">
          <font>
             <Font name="Cambria Bold" size="14.0" />
          </font>
@@ -161,7 +161,7 @@
             <Insets />
          </GridPane.margin>
       </Button>
-      <Button fx:id="addComboButton" alignment="CENTER" layoutX="717.0" layoutY="119.0" mnemonicParsing="false" onAction="#addBundle" prefHeight="25.0" prefWidth="60.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Add" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+      <Button fx:id="addComboButton" alignment="CENTER" layoutX="717.0" layoutY="119.0" mnemonicParsing="false" onAction="#addCombo" prefHeight="25.0" prefWidth="60.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Add" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
          <font>
             <Font name="Cambria Bold" size="14.0" />
          </font>
@@ -212,7 +212,7 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <Button fx:id="RemoveItemButton" alignment="CENTER" mnemonicParsing="false" onAction="#addItem" prefHeight="29.0" prefWidth="90.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Remove" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="TOP">
+      <Button fx:id="RemoveItemButton" alignment="CENTER" mnemonicParsing="false" onAction="#removeItemsFromChosen" prefHeight="29.0" prefWidth="90.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Remove" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="TOP">
          <font>
             <Font name="Cambria Bold" size="10.0" />
          </font>
@@ -258,7 +258,7 @@
             <Insets left="25.0" />
          </GridPane.margin>
       </Label>
-      <Button fx:id="UpdateParticipantButton" alignment="CENTER" mnemonicParsing="false" onAction="#addItem" prefHeight="15.0" prefWidth="150.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Update" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="10">
+      <Button fx:id="UpdateParticipantButton" alignment="CENTER" mnemonicParsing="false" onAction="#updateParticipantUI" prefHeight="15.0" prefWidth="150.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Update" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="10">
          <font>
             <Font name="Cambria Bold" size="20.0" />
          </font>
@@ -266,7 +266,7 @@
             <Insets top="20.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="DeleteParticipantButton" alignment="CENTER" mnemonicParsing="false" onAction="#addItem" prefHeight="38.0" prefWidth="197.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Delete Participant" textAlignment="CENTER" textFill="#d74040" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
+      <Button fx:id="DeleteParticipantButton" alignment="CENTER" mnemonicParsing="false" onAction="#deleteMemberUI" prefHeight="38.0" prefWidth="197.0" style="-fx-border-radius: ; -fx-border-style: ; -fx-background-radius: ; -fx-background-color: rgb(161,3,14);" text="Delete Participant" textAlignment="CENTER" textFill="#d74040" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
          <font>
             <Font name="Cambria Bold" size="20.0" />
          </font>

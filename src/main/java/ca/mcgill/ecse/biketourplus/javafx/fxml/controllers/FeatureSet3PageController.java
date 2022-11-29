@@ -41,9 +41,9 @@ public class FeatureSet3PageController {
   @FXML
   private Button registerParticipantButton;
   @FXML
-  private TextField addFirstName;
+  private TextField AddFirstName;
   @FXML
-  private TextField addLastName;
+  private TextField AddLastName;
   @FXML
   private TextField addPassword;
   @FXML
@@ -81,17 +81,11 @@ public class FeatureSet3PageController {
 
   private static BikeTourPlus system = BikeTourPlusApplication.getBikeTourPlus();// The system instance
 
-  // For Registering
+  //For Registering
   private List<String> bookedItemsToAdd = new ArrayList<>();
   private List<Integer> numberOfItemsToAdd = new ArrayList<>();
   private List<BookableItem> allBookedItemsList = new ArrayList<>();
   
-  // For Updating
-  private List<String> bookedGearsToUpdate = new ArrayList<>();
-  private List<Integer> numberOfGearsToUpdate = new ArrayList<>();
-  private List<BookableItem> updateAllBookedGearsList = new ArrayList<>();
-
-
   // Event Listener on Button[#registerParticipantButton].onAction
   @FXML
   /**
@@ -105,12 +99,17 @@ public class FeatureSet3PageController {
 
     // Get the required parameters from the UI
 
-    String name = addFirstName.getText() + " " + addLastName.getText();
+    String name = AddFirstName.getText() + " " + AddLastName.getText();
     String email = addEmail.getText();
     String password = addPassword.getText();
     String emergency = addEmergencyPhone.getText();
     boolean lodge = lodgeRequiredCheck.isSelected();
 
+    // Check if information entered is not empty
+    if (AddFirstName.getText().equals("") || AddLastName.getText().equals("") || email.equals("")|| password.equals("") || emergency.equals("")) {
+      ViewUtils.showError("The input fields must not be empty.");
+      return;
+    }
 
     // Check if name entered is alphanumeric
     if (!ViewUtils.isAlpha(name)) {
@@ -135,7 +134,7 @@ public class FeatureSet3PageController {
     try {
       startweek = Integer.parseInt(this.addStartweek.getText());
     } catch (Exception e) {
-      ViewUtils.showError("The number of weeks wanted must be an integer");
+      ViewUtils.showError("The start week must be be an integer");
       return;
     }
 
@@ -146,19 +145,12 @@ public class FeatureSet3PageController {
     try {
       endweek = Integer.parseInt(this.addEndWeek.getText());
     } catch (Exception e) {
-      ViewUtils.showError("The number of weeks wanted must be an integer");
+      ViewUtils.showError("The end week must be an integer");
       return;
     }
 
 
-    // Check if information entered is not empty
-    if (addFirstName.getText().equals("") || addLastName.getText().equals("") || email.equals("")
-        || password.equals("") || emergency.equals("")) {
 
-      ViewUtils.showError("The input fields must not be empty.");
-      return;
-
-    }
 
       // Try to register the participant
 
@@ -166,22 +158,16 @@ public class FeatureSet3PageController {
       error = BikeTourPlusFeatureSet3Controller.registerParticipant(email, password, name, emergency,
           numberOfWeeksWanted, startweek, endweek, lodge);
 
-
-      // Clear the temporary lists for the next customer
-      bookedItemsToAdd.clear();
-      numberOfItemsToAdd.clear();
-      allBookedItemsList.clear();
-
-
-      // Clear the selected gears in the table
-      refreshListViewString(listOfGearsChosen, bookedItemsToAdd);
-      refreshListViewInteger(listOfNumberOfGearsChosen, numberOfItemsToAdd);
-
       clearFields();
+
+      if (error.equals("")){
+        ViewUtils.showSuccess("Registration successfully processed for member " + name + "." + '\n');
+      }else{
+        ViewUtils.showError(error);
+      }
 
       // Catch and output the error if there's one
   
-      ViewUtils.showError(error);
       return;
   }
 
@@ -225,7 +211,7 @@ public class FeatureSet3PageController {
 
       // The participant clicked on add without selecting any gear
     } else {
-      ViewUtils.showError("You have to select an gear to add");
+      ViewUtils.showError("You have to select a gear to add");
       return;
 
     }
@@ -292,7 +278,7 @@ public class FeatureSet3PageController {
   public void updateParticipantUI(ActionEvent event) {
 
     // Get the required parameters from the UI
-    String name = addFirstName.getText() + " " + addLastName.getText();
+    String name = AddFirstName.getText() + " " + AddLastName.getText();
     String email = addEmail.getText();
     String password = addPassword.getText();
     String emergency = addEmergencyPhone.getText();
@@ -337,7 +323,7 @@ public class FeatureSet3PageController {
     }
 
     // Check if information entered is not empty
-    if (addFirstName.getText().equals("") || addLastName.getText().equals("")
+    if (AddFirstName.getText().equals("") || AddLastName.getText().equals("")
         || email.equals("") || password.equals("") || emergency.equals("")) {
 
       ViewUtils.showError("The input fields must not be empty.");
@@ -349,21 +335,16 @@ public class FeatureSet3PageController {
     String error;
     error = BikeTourPlusFeatureSet3Controller.updateParticipant(email, password, name, emergency,numberOfWeeksWanted, startweek, endweek, lodge);
 
-    // Clear the temporary lists for the next customer
-    bookedItemsToAdd.clear();
-    numberOfItemsToAdd.clear();
-    allBookedItemsList.clear();
-
-
-    // Clear the selected gears in the table
-    refreshListViewString(listOfGearsChosen, bookedItemsToAdd);
-    refreshListViewInteger(listOfNumberOfGearsChosen, numberOfItemsToAdd);
-
     clearFields();
+
+    if (error.equals("")){
+      ViewUtils.showSuccess("Registration successfully processed for member " + name + "." + '\n');
+    }else{
+      ViewUtils.showError(error);
+    }
 
     // Catch and output the error if there's one
 
-    ViewUtils.showError(error);
     return;
 
   }
@@ -490,8 +471,8 @@ public void removeItemsFromChosen(ActionEvent event) {
    * @author Jacques Zaarour
    */
   private void clearFields() {
-    addFirstName.clear();
-    addLastName.clear();
+    AddFirstName.clear();
+    AddLastName.clear();
     addEmail.clear();
     addPassword.clear();
     addEmergencyPhone.clear();
