@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.biketourplus.javafx.fxml.controllers.FeatureSet5PageController">
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.biketourplus.javafx.fxml.controllers.FeatureSet9PageController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="252.0" prefWidth="494.0">
          <children>
@@ -30,17 +30,17 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text=" Gear Name:" GridPane.rowIndex="1" />
-                  <Label text=" Update Gear Name:" GridPane.rowIndex="3" />
-                  <Label text=" Add/Update Gear Price:" GridPane.rowIndex="5" />
-                  <TextField fx:id="gearNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="newGearNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="gearPriceTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Button fx:id="deleteGearClickedButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteGearClicked" prefHeight="25.0" prefWidth="361.0" text="Delete Gear" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <Button fx:id="updateGearButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateGearClicked" text="Update Gear" GridPane.rowIndex="8" />
-                  <Button fx:id="addGearButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addGearClicked" text="Add Gear" GridPane.rowIndex="7" />
+                  <Label text=" Particular Week:" GridPane.rowIndex="1" />
+                  <TextField fx:id="weekTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="finishButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#finishClicked" prefHeight="25.0" prefWidth="361.0" text="Finish Participant's Trip" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Button fx:id="startButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#startClicked" prefHeight="25.0" prefWidth="361.0" text="Start All Trips for Week" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text=" Participant Email:" GridPane.rowIndex="6" />
+                  <TextField fx:id="participantEmailTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Button fx:id="cancelButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cancelClicked" prefHeight="25.0" prefWidth="361.0" text="Cancel Participant's Trip" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                </children>
             </GridPane>
          </children></AnchorPane>

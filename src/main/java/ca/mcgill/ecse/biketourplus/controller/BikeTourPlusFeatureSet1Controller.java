@@ -21,15 +21,23 @@ public class BikeTourPlusFeatureSet1Controller {
   /**
    * Update manager account and password so that the account is accurate
    * 
+   * * null check added by Lukas Bebee
+   * 
    * @param password the new password that the Manager wants to set
    * @return String of error message (empty string if no error)
    * @author Jacques Zaarour
+   * @author Lukas Bebee
    */
 
   public static String updateManager(String password) {
     var error = "";
-    // if(btp.getManager().equals(null)){btp.setManager(null);}
-    btp.getManager().setEmail("manager@btp.com");
+    if(!btp.hasManager()){
+      Manager m = new Manager("manager@btp.com", password, btp);
+      btp.setManager(m);
+     }
+    else {
+      btp.getManager().setEmail("manager@btp.com");
+    }
 
 
     // check for blank password

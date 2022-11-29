@@ -1,5 +1,11 @@
 package ca.mcgill.ecse.biketourplus.javafx.fxml.controllers;
 
+
+import java.util.List;
+import ca.mcgill.ecse.biketourplus.controller.*;
+import ca.mcgill.ecse.biketourplus.javafx.fxml.BikeTourPlusFXMLView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,14 +15,34 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+
+
+
+
+// This class is adapted from the BTMS example repository
 public class ViewUtils {
 
+  /** Calls the controller and shows an error, if applicable. */
+  public static boolean callController(String result) {
+    if (result.isEmpty()) {
+      BikeTourPlusFXMLView.getInstance().refresh();
+      showSuccess("Successfully made changes");
+      return true;
+    }
+    showError(result);
+    return false;
+  }
+
+  /** Calls the controller and returns true on success. This method is included for readability. */
+  public static boolean successful(String controllerResult) {
+    return callController(controllerResult);
+  }
+
   /**
-   * Makes a popup window
-   * 
-   * @param title The title of the popup window
-   * @param message The message of the popup window
-   * @author Adam Kazma (inspired from BTMS)
+   * Creates a popup window.
+   *
+   * @param title: title of the popup window
+   * @param message: message to display
    */
   public static void makePopupWindow(String title, String message) {
     Stage dialog = new Stage();
@@ -41,38 +67,32 @@ public class ViewUtils {
     dialog.show();
   }
 
-  /**
-   * Makes a popup window with title Error
-   * 
-   * @param message The message of the popup window
-   * @author Adam Kazma (inspired from BTMS)
-   */
   public static void showError(String message) {
     makePopupWindow("Error", message);
   }
-
-  /**
-   * Makes a popup window with title Successful Operation
-   * 
-   * @param message The message of the popup window
-   * @author Adam Kazma
-   */
+  
   public static void showSuccess(String message) {
-    makePopupWindow("Successful Operation", message);
+    makePopupWindow("Success", message);
   }
 
+  
   /**
-   * Checks that the input string is alphabetic
-   * 
-   * @param name The string we want to check is alpha numeric
-   * @author Adam Kazma (inspired from BTMS)
+   * Feature set 1 helper method
+   * gets a list of bike tour transfer objects
+   *
+   * @return ObservableList<TOBikeTour> tourList
    */
-  public static boolean isAlpha(String name) {
-    for (Character ch : name.toCharArray()) {
-      if (!Character.isLetter(ch) && !Character.isWhitespace(ch)) {
-        return false;
-      }
+  public static ObservableList<TOBikeTour> getTours() {
+    int id = 0;
+    ObservableList<TOBikeTour> tourList = FXCollections.observableArrayList();
+    while (true) {
+      try {
+        tourList.add(BikeTourPlusFeatureSet1Controller.getBikeTour(id));
+      } catch (Exception e) {
+        return tourList;
+      } 
     }
-    return true;
   }
+
+  
 }

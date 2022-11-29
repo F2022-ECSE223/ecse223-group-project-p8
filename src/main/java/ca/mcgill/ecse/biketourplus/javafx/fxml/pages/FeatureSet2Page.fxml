@@ -7,16 +7,14 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.biketourplus.javafx.fxml.controllers.FeatureSet2PageController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="181.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="495.0" minWidth="10.0" prefWidth="419.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
@@ -24,16 +22,14 @@
    </rowConstraints>
    <children>
       <Label text="Update Start Date" translateX="1.0" />
-      <Label text="Update Number Of Weeks" translateX="1.0" GridPane.rowIndex="2" />
-      <Label text="Update Price  of Guide per Week" translateX="1.0" GridPane.rowIndex="4" />
-      <Button fx:id="updateStartDateButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateStartDateClicked" text="Update Start Date" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
-      <Button fx:id="updateNrWeeksButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateNrWeeksClicked" text="Update Number Of Weeks" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
-      <Button fx:id="updateGuidePriceButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateGuidePriceClicked" text="Update Price Of Guide Per Week" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" />
+      <Label text="Update Number Of Weeks" translateX="1.0" GridPane.rowIndex="1" />
+      <Label text="Update Price  of Guide per Week" translateX="1.0" GridPane.rowIndex="2" />
+      <Button fx:id="updateSeasonButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateSeasonClicked" text="Update Bike Tour Season" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
       <TextField fx:id="newStartDateTextField" text="Input New Start Date" GridPane.columnIndex="1" />
-      <TextField fx:id="newNrWeeksTextField" text="Input New Number Of Weeks" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField fx:id="newGuidePriceTextField" text="Input New Price of Guide Per Week" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Button fx:id="removeParticipantButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#removeParticipantClicked" text="Remove Participant" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" />
-      <Label text="Remove Participant" translateX="1.0" GridPane.rowIndex="6" />
-      <TextField fx:id="emailParticipantRemoveTextField" text="Input Email of Participant" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <TextField fx:id="newNrWeeksTextField" text="Input New Number Of Weeks" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="newGuidePriceTextField" text="Input New Price of Guide Per Week" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Button fx:id="removeParticipantButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#removeParticipantClicked" text="Remove Participant" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" />
+      <Label text="Remove Participant" translateX="1.0" GridPane.rowIndex="4" />
+      <TextField fx:id="emailParticipantRemoveTextField" text="Input Email of Participant" GridPane.columnIndex="1" GridPane.rowIndex="4" />
    </children>
 </GridPane>
