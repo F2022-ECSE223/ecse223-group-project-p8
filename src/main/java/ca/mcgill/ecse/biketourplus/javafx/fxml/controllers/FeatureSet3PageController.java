@@ -418,7 +418,7 @@ public class FeatureSet3PageController {
         .select(listOfNumberOfGearsChosen.getSelectionModel().getSelectedIndex());
   }
 
-// Event Listener on Button[#removeItems].onAction
+// Event Listener on Button[#removeGears].onAction
 @FXML
 /**
  * Remove the item chosen of the user in register
