@@ -295,4 +295,25 @@ public class BikeToursFeatureSetController {
     return id;
   }
   
+  /**
+   * Helper method to return a participant's index given their email
+   * 
+   * @param email A string that represents the specific participant's email
+   * @return id The index of the particpant in the system
+   * @author Brian Morava (Morava83 on GitHub)
+   */
+
+  public static int getParticipantIndex(String email) {
+    int index = -1;
+    Participant participant = null;
+    for (Participant p : btp.getParticipants()) {
+      if (p.getEmail().equals(email)) {
+        participant = p;
+      }
+    }
+    if(participant != null) {
+      index = participant.getBikeTour().indexOfParticipant(participant);
+    }
+    return index;
+  }
 }
