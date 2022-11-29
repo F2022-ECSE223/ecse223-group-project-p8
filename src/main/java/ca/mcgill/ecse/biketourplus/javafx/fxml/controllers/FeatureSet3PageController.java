@@ -53,9 +53,9 @@ public class FeatureSet3PageController {
   @FXML
   private CheckBox lodgeRequiredCheck;
   @FXML
-  private Button addItemButton;
+  private Button addGearButton;
   @FXML
-  private Button addBundleButton;
+  private Button addComboButton;
   @FXML
   private ComboBox<String> addedGearsList = new ComboBox<String>();
   @FXML
@@ -180,7 +180,7 @@ public class FeatureSet3PageController {
    * @param event - press of the add button
    * @author Jacques Zaarour
    */
-  public void addItem(ActionEvent event) {
+  public void addGear(ActionEvent event) {
 
     int numberOfItemWanted = 1;
 
@@ -227,7 +227,7 @@ public class FeatureSet3PageController {
    * @param event - press of the add button
    * @author Jacques Zaarour
    */
-  public void addBundle(ActionEvent event) {
+  public void addCombo(ActionEvent event) {
 
     int numberOfComboWanted = 1;
 
