@@ -71,11 +71,7 @@ public class FeatureSet1PageController{
       endCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("endWeek"));
       //bikeTourParticipants.setCellValueFactory(new PropertyValueFactory<TOBikeTour, List<String>>("participants")); //idk how to get participants
 
-      bikeTourTable.setItems(bikeTourList);
-      
-      
-      bikeTourTable.getItems().add(new TOBikeTour(1,1,1,"hi", "hi", 1));
-      
+      bikeTourTable.setItems(bikeTourList);      
       
     }
 
