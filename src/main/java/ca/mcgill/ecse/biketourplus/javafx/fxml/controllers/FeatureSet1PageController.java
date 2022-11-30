@@ -72,20 +72,13 @@ public class FeatureSet1PageController{
       while (true) {
         try {
           TOBikeTour tour = BikeTourPlusFeatureSet1Controller.getBikeTour(id);
+          System.out.println(tour);
           bikeTourTable.getItems().add(tour);
           id++;
         } catch (Exception e) {
-          ViewUtils.callController(e.getMessage());
+          return;
         }
-      }
-      
-//      idCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("id"));
-//      guideCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, String>("guideName"));
-//      startCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("startWeek"));
-//      endCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("endWeek"));
-//      participantsCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, List<TOParticipantCost>>("participantCosts"));
-//
-//      // set items   
+      } 
       
       
     }
