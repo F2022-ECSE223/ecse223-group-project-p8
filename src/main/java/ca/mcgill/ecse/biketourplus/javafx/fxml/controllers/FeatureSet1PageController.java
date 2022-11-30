@@ -13,7 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import ca.mcgill.ecse.biketourplus.controller.TOParticipantCost;
-import ca.mcgill.ecse.biketourplus.model.Participant;
 import ca.mcgill.ecse.biketourplus.controller.TOBikeTour;
 
 
