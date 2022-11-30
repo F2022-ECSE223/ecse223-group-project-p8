@@ -2,17 +2,13 @@ package ca.mcgill.ecse.biketourplus.javafx.fxml.controllers;
 
 import ca.mcgill.ecse.biketourplus.controller.*;
 
-import ca.mcgill.ecse.biketourplus.model.BikeTourPlus;
 import java.sql.Date;
-import ca.mcgill.ecse.biketourplus.application.*;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class FeatureSet2PageController {
-  BikeTourPlus btp = BikeTourPlusApplication.getBikeTourPlus();
   
   @FXML
   private TextField emailParticipantRemoveTextField;
@@ -58,12 +54,43 @@ public class FeatureSet2PageController {
    */
   @FXML
   void updateSeasonClicked(ActionEvent event) {
-    Date date = Date.valueOf(newStartDateTextField.getText());
-    int weeks = Integer.parseInt(newNrWeeksTextField.getText());
-    int guidePrice = Integer.parseInt(newGuidePriceTextField.getText());
+
     
-    ViewUtils.callController(BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(date, weeks, guidePrice));
-   
-    
-  }
+    if(newStartDateTextField.getText().equals("")) {
+      ViewUtils.makePopupWindow("ERROR", "Enter a start date");
+    }else if(newNrWeeksTextField.getText().equals("")) {
+      ViewUtils.makePopupWindow("ERROR", "Enter a number of weeks");
+    }else if(newGuidePriceTextField.getText().equals("")) {
+      ViewUtils.makePopupWindow("ERROR", "Enter a price");
+    }else{
+      
+      try {
+        Date date = Date.valueOf(newStartDateTextField.getText()); 
+      }catch(Exception e) {
+        ViewUtils.makePopupWindow("ERROR", "Invalid Date Entry");
+      }
+      
+      try {
+        int weeks = Integer.parseInt(newNrWeeksTextField.getText()); 
+      }catch(Exception e) {
+        ViewUtils.makePopupWindow("ERROR", "Invalid Number of Weeks Entry");
+      }
+      
+      try {
+        int guidePrice = Integer.parseInt(newGuidePriceTextField.getText()); 
+      }catch(Exception e) {
+        ViewUtils.makePopupWindow("ERROR", "Invalid Price Entry");
+      }
+      
+      try {
+        Date date = Date.valueOf(newStartDateTextField.getText());
+        int weeks = Integer.parseInt(newNrWeeksTextField.getText()); 
+        int guidePrice = Integer.parseInt(newGuidePriceTextField.getText()); 
+        ViewUtils.callController(BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(date, weeks, guidePrice));
+      }catch(Exception e) {
+        ViewUtils.makePopupWindow("ERROR", "ERROR\n" +e);
+      }
+    }
+  } 
+  
 }
