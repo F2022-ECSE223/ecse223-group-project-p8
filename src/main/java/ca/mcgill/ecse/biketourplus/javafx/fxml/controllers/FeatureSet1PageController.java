@@ -34,26 +34,26 @@ public class FeatureSet1PageController{
     @FXML
     private TableColumn<TOBikeTour, List<TOParticipantCost>> participantsCol;
     
-//    @FXML
-//    private TableView<TOParticipantCost> participantTable; 
-//    
-//    @FXML
-//    private TableColumn<TOParticipantCost, String> nameCol;
-//    
-//    @FXML
-//    private TableColumn<TOParticipantCost, String> statusCol;
-//    
-//    @FXML
-//    private TableColumn<TOParticipantCost, Integer> itemCostCol;
-//
-//    @FXML
-//    private TableColumn<TOParticipantCost, Integer> totalCostCol;
-//
-//    @FXML
-//    private TableColumn<TOParticipantCost, String> authCol;
-//    
-//    @FXML
-//    private TableColumn<TOParticipantCost, Integer> refundCol;
+    @FXML
+    private TableView<TOParticipantCost> participantTable; 
+    
+    @FXML
+    private TableColumn<TOParticipantCost, String> nameCol;
+    
+    @FXML
+    private TableColumn<TOParticipantCost, String> statusCol;
+    
+    @FXML
+    private TableColumn<TOParticipantCost, Integer> itemCostCol;
+
+    @FXML
+    private TableColumn<TOParticipantCost, Integer> totalCostCol;
+
+    @FXML
+    private TableColumn<TOParticipantCost, String> authCol;
+    
+    @FXML
+    private TableColumn<TOParticipantCost, Integer> refundCol;
     
     
     
@@ -93,16 +93,16 @@ public class FeatureSet1PageController{
    * @author LukeBebee
    */
     public void initialize() {
-      // get list of TOBikeTour to set items in table
+//       get list of TOBikeTour to set items in table
       List<TOBikeTour> bikeTours = new ArrayList();
-      //List<TOParticipantCost> participants = new ArrayList();
+      List<TOParticipantCost> participants = new ArrayList();
       int id = 1;
       while (true) {
         try {
           TOBikeTour tour = BikeTourPlusFeatureSet1Controller.getBikeTour(id);
-          //System.out.println(tour.toString());
+//          System.out.println(tour.toString());
           bikeTours.add(tour); 
-          //participants.addAll(tour.getParticipantCosts());
+          participants.addAll(tour.getParticipantCosts());
           id++;
         } catch (Exception e) {
           break;
@@ -117,15 +117,15 @@ public class FeatureSet1PageController{
       
       
       
-//      nameCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, String>("participantName"));
+      nameCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, String>("participantName"));
 //      statusCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, String>("status"));
-//      itemCostCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, Integer>("totalCostForBookableItems"));
-//      totalCostCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, Integer>("totalCostForBikingTour"));
+      itemCostCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, Integer>("totalCostForBookableItems"));
+      totalCostCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, Integer>("totalCostForBikingTour"));
 //      authCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, String>("authorizationCode"));
 //      refundCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, Integer>("refundedPercentageAmount"));
-//      
-//      
-//      participantTable.getItems().setAll(participants);
+      
+      
+      participantTable.getItems().setAll(participants);
       bikeTourTable.getItems().setAll(bikeTours);
     }
 }

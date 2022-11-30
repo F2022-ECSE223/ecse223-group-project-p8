@@ -126,34 +126,23 @@ public class BikeTourPlusFeatureSet1Controller {
 
 
     // create a list of participants
-    var participantsList = btp.getBikeTour(id).getParticipants();
+    List<Participant> participantsList = new ArrayList();
+    participantsList.addAll(btp.getBikeTour(id).getParticipants());
 
-    // get emails of participants
+    // get attributes of participants
     List<String> participantsEmails = new ArrayList<String>();
+    List<String> participantsNames = new ArrayList<String>();
+//    List<String> participantsStatus = new ArrayList<String>();
+//    List<String> participantsAuth = new ArrayList<String>();
+//    List<Integer> participantsRefund = new ArrayList<Integer>();
     for (Participant p : participantsList) {
       participantsEmails.add(p.getEmail());
+      participantsNames.add(p.getName());
+//      participantsNames.add(p.getTourStatusFullName());
+//      participantsAuth.add(p.getAuthorizationCode());
+//      participantsRefund.add(p.getRefundedPercentageAmount());
     }
 
-    // get names of participants
-    List<String> participantsNames = new ArrayList<String>();
-    for (Participant p : participantsList) {
-      participantsNames.add(p.getName());
-    }
-    
-    List<String> participantsStatus = new ArrayList<String>();
-    for (Participant p : participantsList) {
-      participantsNames.add(p.getTourStatusFullName());
-    }
-    
-    List<String> participantsAuth = new ArrayList<String>();
-    for (Participant p : participantsList) {
-      participantsAuth.add(p.getAuthorizationCode());
-    }
-    
-    List<Integer> participantsRefund = new ArrayList<Integer>();
-    for (Participant p : participantsList) {
-      participantsRefund.add(p.getRefundedPercentageAmount());
-    }
 
     // add an empty array ot TOParticipantCost in order to accomodate differnet costs for each
     // individual person
@@ -194,10 +183,15 @@ public class BikeTourPlusFeatureSet1Controller {
           participantcost += b.getQuantity() * pricefinal * discount;
         }
       }
+      
 
-      TOParticipantCost toParticipants =
-          new TOParticipantCost(participantsEmails.get(i), participantsNames.get(i), participantsStatus.get(i),
-              numberofWeeks * participantcost, numberofWeeks * participantcost + totalCostForGuide, participantsAuth.get(i), participantsRefund.get(i));
+//      TOParticipantCost toParticipants =
+//          new TOParticipantCost(participantsEmails.get(i), participantsNames.get(i), participantsStatus.get(i),
+//              numberofWeeks * participantcost, numberofWeeks * participantcost + totalCostForGuide, participantsAuth.get(i), participantsRefund.get(i));
+    TOParticipantCost toParticipants =
+    new TOParticipantCost(participantsEmails.get(i), participantsNames.get(i),
+        numberofWeeks * participantcost, numberofWeeks * participantcost + totalCostForGuide);
+
       TOParticipantsArray[i] = toParticipants;
     }
 
