@@ -139,6 +139,21 @@ public class BikeTourPlusFeatureSet1Controller {
     for (Participant p : participantsList) {
       participantsNames.add(p.getName());
     }
+    
+    List<String> participantsStatus = new ArrayList<String>();
+    for (Participant p : participantsList) {
+      participantsNames.add(p.getTourStatusFullName());
+    }
+    
+    List<String> participantsAuth = new ArrayList<String>();
+    for (Participant p : participantsList) {
+      participantsAuth.add(p.getAuthorizationCode());
+    }
+    
+    List<Integer> participantsRefund = new ArrayList<Integer>();
+    for (Participant p : participantsList) {
+      participantsRefund.add(p.getRefundedPercentageAmount());
+    }
 
     // add an empty array ot TOParticipantCost in order to accomodate differnet costs for each
     // individual person
@@ -181,8 +196,8 @@ public class BikeTourPlusFeatureSet1Controller {
       }
 
       TOParticipantCost toParticipants =
-          new TOParticipantCost(participantsEmails.get(i), participantsNames.get(i),
-              numberofWeeks * participantcost, numberofWeeks * participantcost + totalCostForGuide);
+          new TOParticipantCost(participantsEmails.get(i), participantsNames.get(i), participantsStatus.get(i),
+              numberofWeeks * participantcost, numberofWeeks * participantcost + totalCostForGuide, participantsAuth.get(i), participantsRefund.get(i));
       TOParticipantsArray[i] = toParticipants;
     }
 

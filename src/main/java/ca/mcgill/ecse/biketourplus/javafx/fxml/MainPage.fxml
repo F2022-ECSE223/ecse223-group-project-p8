@@ -36,7 +36,7 @@
       <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
 
          <tabs>
-            <Tab text="Manager Info">
+            <Tab text="Manager View">
                <content>
                   <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="566.0" prefWidth="800.0">
                      <children>
@@ -54,7 +54,7 @@
                      </children></AnchorPane>
                </content>
             </Tab>
-            <Tab text="Participant Info">
+            <Tab text="Participants">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -63,7 +63,7 @@
                      </children></AnchorPane>
                </content>
             </Tab>
-            <Tab text="Guide Info">
+            <Tab text="Guides">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="562.0" prefWidth="800.0">
                      <children>
@@ -72,7 +72,7 @@
                      </children></AnchorPane>
                </content>
             </Tab>
-            <Tab text="Gear Info">
+            <Tab text="Gear">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
