@@ -38,9 +38,9 @@
          <tabs>
             <Tab text="Manager View">
                <content>
-                  <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="566.0" prefWidth="800.0">
+                  <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
                      <children>
-                        <VBox prefHeight="569.0" prefWidth="800.0" />
+                        <VBox prefHeight="600.0" prefWidth="800.0" />
                         <fx:include source="pages/FeatureSet1Page.fxml" />
                      </children></AnchorPane>
                </content>
