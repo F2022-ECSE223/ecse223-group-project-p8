@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
-import javax.swing.JOptionPane;
 import ca.mcgill.ecse.biketourplus.controller.*;
 
 public class FeatureSet8PageController {
@@ -46,7 +45,17 @@ public class FeatureSet8PageController {
 	// Event Listener on Button[#calculateButton].onAction
 	@FXML
 	public void calculateClicked(ActionEvent event) {
-	  int id = BikeToursFeatureSetController.getBikeTourIdParticipant(emailTextField.getText());
+	  int id = -1;
+	  boolean flag = false;
+	  try {
+	    id = BikeToursFeatureSetController.getBikeTourIdParticipant(emailTextField.getText());  
+	  }catch(Exception e) {
+	    ViewUtils.makePopupWindow("ERROR","Participant with email: " + emailTextField.getText() + " has not been registered for a bike tour");
+	    emailTextField.clear();
+	    authCodeTextField.clear();
+	    flag = true;
+	  }
+	  
 	  if(id != -1) {
 	    try {
 	        TOBikeTour bikeTourTO = BikeTourPlusFeatureSet1Controller.getBikeTour(id);
@@ -56,10 +65,14 @@ public class FeatureSet8PageController {
 	      } catch (InvalidInputException e) {
 	        //JOptionPane.showMessageDialog(null, "Invalid participant email","ERROR",JOptionPane.ERROR_MESSAGE);
 	        ViewUtils.makePopupWindow("ERROR","Invalid participant email");
+	        emailTextField.clear();
+	        authCodeTextField.clear();
 	      } 
-	  }else {
+	  }else if(!flag) {
 	    //JOptionPane.showMessageDialog(null, "Invalid participant email","ERROR",JOptionPane.ERROR_MESSAGE);
 	    ViewUtils.makePopupWindow("ERROR","Invalid participant email");
+	    emailTextField.clear();
+	    authCodeTextField.clear();
 	  }
   	  
 	}

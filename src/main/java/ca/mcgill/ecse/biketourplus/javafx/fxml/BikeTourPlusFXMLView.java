@@ -37,6 +37,7 @@ public class BikeTourPlusFXMLView extends Application {
       primaryStage.setMinHeight(600);
       primaryStage.setTitle("BikeTourPlus");
       primaryStage.show();
+      //refresh();
     } catch (IOException e) {
       e.printStackTrace();
     }

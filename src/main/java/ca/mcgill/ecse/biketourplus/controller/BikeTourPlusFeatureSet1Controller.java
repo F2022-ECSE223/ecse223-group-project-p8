@@ -117,7 +117,7 @@ public class BikeTourPlusFeatureSet1Controller {
     id -= 1;
 
     // basic information attainable from the class diagram
-    var startWeek = btp.getBikeTour(id).getStartWeek();
+    var startWeek = btp.getBikeTour(id).getStartWeek();//causing an index out of bounds error???? - Brian
     var endWeek = btp.getBikeTour(id).getEndWeek();
     var numberofWeeks = endWeek - startWeek + 1;
     var guideEmail = btp.getBikeTour(id).getGuide().getEmail();
