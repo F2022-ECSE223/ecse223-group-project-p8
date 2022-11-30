@@ -1,5 +1,6 @@
 package ca.mcgill.ecse.biketourplus.javafx.fxml.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import ca.mcgill.ecse.biketourplus.controller.*;
 
@@ -68,18 +69,25 @@ public class FeatureSet1PageController{
    */
     public void initialize() {
       // get list of TOBikeTour to set items in table
+      List<TOBikeTour> bikeTours = new ArrayList();
       int id = 1;
       while (true) {
         try {
           TOBikeTour tour = BikeTourPlusFeatureSet1Controller.getBikeTour(id);
-          System.out.println(tour);
-          bikeTourTable.getItems().add(tour);
+
+          bikeTours.add(tour);          
           id++;
         } catch (Exception e) {
-          return;
+          break;
         }
-      } 
+      }
       
+      idCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("id"));
+      guideCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, String>("guideName"));
+      startCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("startWeek"));
+      endCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("endWeek"));
+      participantsCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, List<TOParticipantCost>>("participantCosts"));
+      bikeTourTable.getItems().setAll(bikeTours);
       
     }
 }
