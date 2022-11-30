@@ -184,13 +184,15 @@ public class BikeTourPlusFeatureSet1Controller {
         }
       }
       
+      
+      
 
 //      TOParticipantCost toParticipants =
 //          new TOParticipantCost(participantsEmails.get(i), participantsNames.get(i), participantsStatus.get(i),
 //              numberofWeeks * participantcost, numberofWeeks * participantcost + totalCostForGuide, participantsAuth.get(i), participantsRefund.get(i));
     TOParticipantCost toParticipants =
     new TOParticipantCost(participantsEmails.get(i), participantsNames.get(i),
-        numberofWeeks * participantcost, numberofWeeks * participantcost + totalCostForGuide);
+        numberofWeeks * participantcost, numberofWeeks * participantcost + totalCostForGuide, participantsList.get(i).getBikeTour().getId());
 
       TOParticipantsArray[i] = toParticipants;
     }

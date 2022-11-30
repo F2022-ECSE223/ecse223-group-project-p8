@@ -55,6 +55,9 @@ public class FeatureSet1PageController{
     @FXML
     private TableColumn<TOParticipantCost, Integer> refundCol;
     
+    @FXML
+    private TableColumn<TOParticipantCost, Integer> tourCol;
+    
     
     
     
@@ -109,6 +112,19 @@ public class FeatureSet1PageController{
         }
       }
       
+      
+
+//      for (TOParticipantCost part : participants) {
+//        for (TOBikeTour tour : bikeTours) {
+//        if (tour.getParticipantCosts().contains(part)) {
+//          part.tourID = tour.getId();
+//        }
+//        
+//        
+//        }
+//    }
+      
+      
       idCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("id"));
       guideCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, String>("guideName"));
       startCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("startWeek"));
@@ -123,6 +139,8 @@ public class FeatureSet1PageController{
       totalCostCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, Integer>("totalCostForBikingTour"));
 //      authCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, String>("authorizationCode"));
 //      refundCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, Integer>("refundedPercentageAmount"));
+      tourCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, Integer>("tourID"));
+
       
       
       participantTable.getItems().setAll(participants);

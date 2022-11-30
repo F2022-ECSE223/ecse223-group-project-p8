@@ -17,4 +17,5 @@ class TOParticipantCost {
   participantName;
   Integer totalCostForBookableItems;
   Integer totalCostForBikingTour;
+  Integer tourID;
 }

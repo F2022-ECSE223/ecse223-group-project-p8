@@ -72,6 +72,7 @@
                                     <TableColumn fx:id="totalCostCol" prefWidth="75.0" text="Total Cost" />
                                     <TableColumn fx:id="authCol" prefWidth="75.0" text="Auth Code" />
                                     <TableColumn fx:id="refundCol" prefWidth="75.0" text="Refund" />
+                                    <TableColumn fx:id="tourCol" prefWidth="199.0" text="ID of Bike Tour (0 if unassigned)" />
                                 </columns>
                               </TableView>
                            </children>

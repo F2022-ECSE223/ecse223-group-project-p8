@@ -16,17 +16,19 @@ public class TOParticipantCost
   private String participantName;
   private int totalCostForBookableItems;
   private int totalCostForBikingTour;
+  private int tourID;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOParticipantCost(String aParticipantEmail, String aParticipantName, int aTotalCostForBookableItems, int aTotalCostForBikingTour)
+  public TOParticipantCost(String aParticipantEmail, String aParticipantName, int aTotalCostForBookableItems, int aTotalCostForBikingTour, int aTourID)
   {
     participantEmail = aParticipantEmail;
     participantName = aParticipantName;
     totalCostForBookableItems = aTotalCostForBookableItems;
     totalCostForBikingTour = aTotalCostForBikingTour;
+    tourID = aTourID;
   }
 
   //------------------------
@@ -53,6 +55,11 @@ public class TOParticipantCost
     return totalCostForBikingTour;
   }
 
+  public int getTourID()
+  {
+    return tourID;
+  }
+
   public void delete()
   {}
 
@@ -63,6 +70,7 @@ public class TOParticipantCost
             "participantEmail" + ":" + getParticipantEmail()+ "," +
             "participantName" + ":" + getParticipantName()+ "," +
             "totalCostForBookableItems" + ":" + getTotalCostForBookableItems()+ "," +
-            "totalCostForBikingTour" + ":" + getTotalCostForBikingTour()+ "]";
+            "totalCostForBikingTour" + ":" + getTotalCostForBikingTour()+ "," +
+            "tourID" + ":" + getTourID()+ "]";
   }
 }
