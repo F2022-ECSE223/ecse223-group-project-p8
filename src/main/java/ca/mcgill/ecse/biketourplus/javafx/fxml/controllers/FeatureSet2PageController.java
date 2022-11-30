@@ -91,7 +91,6 @@ public class FeatureSet2PageController {
         ViewUtils.makePopupWindow("ERROR", "ERROR\n" +e);
       }
     }
-  }
-  
+  } 
   
 }

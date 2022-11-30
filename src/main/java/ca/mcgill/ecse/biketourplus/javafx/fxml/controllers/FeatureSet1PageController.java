@@ -70,14 +70,18 @@ public class FeatureSet1PageController{
       // get list of TOBikeTour to set items in table
       ObservableList<TOBikeTour> bikeTourList = ViewUtils.getTours();
       
-      idCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("id"));
-      guideCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, String>("guideName"));
-      startCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("startWeek"));
-      endCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("endWeek"));
-      participantsCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, List<TOParticipantCost>>("participantCosts"));
-
-      // set items
-      bikeTourTable.setItems(bikeTourList);     
+      for (TOBikeTour tour : bikeTourList) {
+        bikeTourTable.getItems().add(tour);
+      }
+      
+//      idCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("id"));
+//      guideCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, String>("guideName"));
+//      startCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("startWeek"));
+//      endCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("endWeek"));
+//      participantsCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, List<TOParticipantCost>>("participantCosts"));
+//
+//      // set items
+//      bikeTourTable.setItems(bikeTourList);     
       
       
     }

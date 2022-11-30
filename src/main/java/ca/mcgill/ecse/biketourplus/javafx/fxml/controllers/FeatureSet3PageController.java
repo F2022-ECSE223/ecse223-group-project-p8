@@ -33,6 +33,8 @@ public class FeatureSet3PageController {
   private TextField addStartweek;
   @FXML
   private TextField addEndWeek;
+  @FXML
+  private TextField addItemTextField;
   
   // Event Listener on Button[#registerParticipantButton].onAction
   @FXML
@@ -103,7 +105,6 @@ public class FeatureSet3PageController {
     error = BikeTourPlusFeatureSet3Controller.registerParticipant(email, password, name, emergency,
         numberOfWeeksWanted, startweek, endweek, lodge);
 
-    clearFields();
 
     if (error.equals("")){
       ViewUtils.showSuccess("Registration successfully processed for member " + name + "." + '\n');
@@ -185,7 +186,6 @@ public class FeatureSet3PageController {
     String error;
     error = BikeTourPlusFeatureSet3Controller.updateParticipant(email, password, name, emergency,numberOfWeeksWanted, startweek, endweek, lodge);
 
-    clearFields();
 
     if (error.equals("")){
       ViewUtils.showSuccess("Registration successfully processed for member " + name + "." + '\n');
@@ -208,7 +208,7 @@ public class FeatureSet3PageController {
    * @author Jacques Zaarour
    */
   public void addItem(ActionEvent event) {
-      ViewUtils.callController(BikeTourPlusFeatureSet3Controller.addBookableItemToParticipant(addEmail.getText(), addItemButton.getText()));
+      ViewUtils.callController(BikeTourPlusFeatureSet3Controller.addBookableItemToParticipant(addEmail.getText(), addItemTextField.getText()));
   }
 
 
@@ -221,25 +221,8 @@ public class FeatureSet3PageController {
    * @author Jacques Zaarour
    */
   public void removeItem(ActionEvent event) {
-      ViewUtils.callController(BikeTourPlusFeatureSet3Controller.removeBookableItemFromParticipant(addEmail.getText(), addItemButton.getText()));
+      ViewUtils.callController(BikeTourPlusFeatureSet3Controller.removeBookableItemFromParticipant(addEmail.getText(), addItemTextField.getText()));
   }
 
-
-  /**
-   * Private helper method that Clear all fields in the register Tab
-   * 
-   * @author Jacques Zaarour
-   */
-  private void clearFields() {
-    AddFirstName.clear();
-    AddLastName.clear();
-    addEmail.clear();
-    addPassword.clear();
-    addEmergencyPhone.clear();
-    lodgeRequiredCheck.disarm();
-    addNumberWeeks.setText("");
-    addStartweek.setText("");
-    addEndWeek.setText("");
-  }
 
 }
