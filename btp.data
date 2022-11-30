@@ -36,18 +36,6 @@
             "bikeTours": [
               ""
             ]
-          },
-          {
-            "email": "ben@gmail.com",
-            "password": 9876,
-            "name": "Ben Hill",
-            "emergencyContact": "(222) 987-6666",
-            "bikeTourPlus": {
-              "@reference": "../../.."
-            },
-            "bikeTours": [
-              ""
-            ]
           }
         ]
       }
