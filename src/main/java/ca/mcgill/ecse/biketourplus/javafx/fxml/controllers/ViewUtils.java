@@ -82,19 +82,19 @@ public class ViewUtils {
    *
    * @return ObservableList<TOBikeTour> tourList
    */
-  public static ObservableList<TOBikeTour> getTours() {
-    int id = 1;
-    ObservableList<TOBikeTour> tourList = FXCollections.observableArrayList();
-    while (true) {
-      try {
-        tourList.add(BikeTourPlusFeatureSet1Controller.getBikeTour(id));
-        //System.out.println("ID " + id + " added");
-      } catch (Exception e) {
-       //System.out.println("Error:" + e.getMessage());
-        return tourList;
-      } 
-    }
-  }
+//  public static ObservableList<TOBikeTour> getTours() {
+//    int id = 1;
+//    ObservableList<TOBikeTour> tourList = FXCollections.observableArrayList();
+//    while (true) {
+//      try {
+//        tourList.add(BikeTourPlusFeatureSet1Controller.getBikeTour(id));
+//        //System.out.println("ID " + id + " added");
+//      } catch (Exception e) {
+//       //System.out.println("Error:" + e.getMessage());
+//        return tourList;
+//      } 
+//    }
+//  }
 
   public static boolean isAlpha(String name) {
     for (Character ch : name.toCharArray()) {

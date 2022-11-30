@@ -68,10 +68,15 @@ public class FeatureSet1PageController{
    */
     public void initialize() {
       // get list of TOBikeTour to set items in table
-      ObservableList<TOBikeTour> bikeTourList = ViewUtils.getTours();
-      
-      for (TOBikeTour tour : bikeTourList) {
-        bikeTourTable.getItems().add(tour);
+      int id = 1;
+      while (true) {
+        try {
+          TOBikeTour tour = BikeTourPlusFeatureSet1Controller.getBikeTour(id);
+          bikeTourTable.getItems().add(tour);
+          id++;
+        } catch (Exception e) {
+          ViewUtils.callController(e.getMessage());
+        }
       }
       
 //      idCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("id"));
@@ -80,8 +85,7 @@ public class FeatureSet1PageController{
 //      endCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("endWeek"));
 //      participantsCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, List<TOParticipantCost>>("participantCosts"));
 //
-//      // set items
-//      bikeTourTable.setItems(bikeTourList);     
+//      // set items   
       
       
     }
