@@ -17,18 +17,24 @@ public class TOParticipantCost
   private int totalCostForBookableItems;
   private int totalCostForBikingTour;
   private int tourID;
+  private String status;
+  private String authorizationCode;
+  private int refundedPercentageAmount;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOParticipantCost(String aParticipantEmail, String aParticipantName, int aTotalCostForBookableItems, int aTotalCostForBikingTour, int aTourID)
+  public TOParticipantCost(String aParticipantEmail, String aParticipantName, int aTotalCostForBookableItems, int aTotalCostForBikingTour, int aTourID, String aStatus, String aAuthorizationCode, int aRefundedPercentageAmount)
   {
     participantEmail = aParticipantEmail;
     participantName = aParticipantName;
     totalCostForBookableItems = aTotalCostForBookableItems;
     totalCostForBikingTour = aTotalCostForBikingTour;
     tourID = aTourID;
+    status = aStatus;
+    authorizationCode = aAuthorizationCode;
+    refundedPercentageAmount = aRefundedPercentageAmount;
   }
 
   //------------------------
@@ -60,6 +66,21 @@ public class TOParticipantCost
     return tourID;
   }
 
+  public String getStatus()
+  {
+    return status;
+  }
+
+  public String getAuthorizationCode()
+  {
+    return authorizationCode;
+  }
+
+  public int getRefundedPercentageAmount()
+  {
+    return refundedPercentageAmount;
+  }
+
   public void delete()
   {}
 
@@ -71,6 +92,9 @@ public class TOParticipantCost
             "participantName" + ":" + getParticipantName()+ "," +
             "totalCostForBookableItems" + ":" + getTotalCostForBookableItems()+ "," +
             "totalCostForBikingTour" + ":" + getTotalCostForBikingTour()+ "," +
-            "tourID" + ":" + getTourID()+ "]";
+            "tourID" + ":" + getTourID()+ "," +
+            "status" + ":" + getStatus()+ "," +
+            "authorizationCode" + ":" + getAuthorizationCode()+ "," +
+            "refundedPercentageAmount" + ":" + getRefundedPercentageAmount()+ "]";
   }
 }

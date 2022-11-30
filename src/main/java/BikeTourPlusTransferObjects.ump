@@ -18,4 +18,7 @@ class TOParticipantCost {
   Integer totalCostForBookableItems;
   Integer totalCostForBikingTour;
   Integer tourID;
+  status;
+  authorizationCode;
+  Integer refundedPercentageAmount;
 }

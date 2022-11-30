@@ -185,14 +185,20 @@ public class BikeTourPlusFeatureSet1Controller {
       }
       
       
+      String status = "Unset";
+      String auth = "Unset";
+      int refund = -1;
       
+      status = participantsList.get(i).getTourStatusFullName();
+      auth = participantsList.get(i).getAuthorizationCode();
+      refund = participantsList.get(i).getRefundedPercentageAmount();
 
 //      TOParticipantCost toParticipants =
 //          new TOParticipantCost(participantsEmails.get(i), participantsNames.get(i), participantsStatus.get(i),
 //              numberofWeeks * participantcost, numberofWeeks * participantcost + totalCostForGuide, participantsAuth.get(i), participantsRefund.get(i));
     TOParticipantCost toParticipants =
     new TOParticipantCost(participantsEmails.get(i), participantsNames.get(i),
-        numberofWeeks * participantcost, numberofWeeks * participantcost + totalCostForGuide, participantsList.get(i).getBikeTour().getId());
+        numberofWeeks * participantcost, numberofWeeks * participantcost + totalCostForGuide, participantsList.get(i).getBikeTour().getId(), status, auth, refund);
 
       TOParticipantsArray[i] = toParticipants;
     }

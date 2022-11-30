@@ -114,15 +114,7 @@ public class FeatureSet1PageController{
       
       
 
-//      for (TOParticipantCost part : participants) {
-//        for (TOBikeTour tour : bikeTours) {
-//        if (tour.getParticipantCosts().contains(part)) {
-//          part.tourID = tour.getId();
-//        }
-//        
-//        
-//        }
-//    }
+
       
       
       idCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("id"));
@@ -134,11 +126,11 @@ public class FeatureSet1PageController{
       
       
       nameCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, String>("participantName"));
-//      statusCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, String>("status"));
+      statusCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, String>("status"));
       itemCostCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, Integer>("totalCostForBookableItems"));
       totalCostCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, Integer>("totalCostForBikingTour"));
-//      authCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, String>("authorizationCode"));
-//      refundCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, Integer>("refundedPercentageAmount"));
+      authCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, String>("authorizationCode"));
+      refundCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, Integer>("refundedPercentageAmount"));
       tourCol.setCellValueFactory(new PropertyValueFactory<TOParticipantCost, Integer>("tourID"));
 
       
