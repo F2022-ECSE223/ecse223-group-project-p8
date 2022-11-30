@@ -17,22 +17,22 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class FeatureSet1PageController{
 
     @FXML
-    private TableView<TOBikeTour> bikeTourTable; 
+    private TableView<TOBikeTourUI> bikeTourTable; 
     
     @FXML
-    private TableColumn<TOBikeTour, Integer> idCol;
+    private TableColumn<TOBikeTourUI, Integer> idCol;
     
     @FXML
-    private TableColumn<TOBikeTour, Integer> startCol;
+    private TableColumn<TOBikeTourUI, Integer> startCol;
     
     @FXML
-    private TableColumn<TOBikeTour, Integer> endCol;
+    private TableColumn<TOBikeTourUI, Integer> endCol;
 
     @FXML
-    private TableColumn<TOBikeTour, String> guideCol;
+    private TableColumn<TOBikeTourUI, String> guideCol;
 
     @FXML
-    private TableColumn<TOBikeTour, List<TOParticipantCost>> participantsCol;
+    private TableColumn<TOBikeTourUI, String> participantsCol;
     
     @FXML
     private TableView<TOParticipantCost> participantTable; 
@@ -94,6 +94,7 @@ public class FeatureSet1PageController{
   /**
    * This method initializes the table with values from transfer objects
    * @author LukeBebee
+   * @author Jacques Zaarour
    */
     public void initialize() {
 //       get list of TOBikeTour to set items in table
@@ -112,16 +113,28 @@ public class FeatureSet1PageController{
         }
       }
       
+      // get list of TOBikeTourUI
+      List<TOBikeTourUI> bikeToursUI = new ArrayList();
+      id = 1;
+      while (true) {
+        try {
+          TOBikeTourUI tourUI = BikeTourPlusFeatureSet1Controller.populateTOBikeTourUI(id);
+          bikeToursUI.add(tourUI);  
+          id++;
+        } catch (Exception e) {
+          break;
+        }
+      }
       
 
 
       
       
-      idCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("id"));
-      guideCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, String>("guideName"));
-      startCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("startWeek"));
-      endCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, Integer>("endWeek"));
-      participantsCol.setCellValueFactory(new PropertyValueFactory<TOBikeTour, List<TOParticipantCost>>("participantCosts"));
+      idCol.setCellValueFactory(new PropertyValueFactory<TOBikeTourUI, Integer>("id"));
+      guideCol.setCellValueFactory(new PropertyValueFactory<TOBikeTourUI, String>("guideName"));
+      startCol.setCellValueFactory(new PropertyValueFactory<TOBikeTourUI, Integer>("startWeek"));
+      endCol.setCellValueFactory(new PropertyValueFactory<TOBikeTourUI, Integer>("endWeek"));
+      participantsCol.setCellValueFactory(new PropertyValueFactory<TOBikeTourUI, String>("participants"));
       
       
       
@@ -136,7 +149,8 @@ public class FeatureSet1PageController{
       
       
       participantTable.getItems().setAll(participants);
-      bikeTourTable.getItems().setAll(bikeTours);
+//      bikeTourTable.getItems().setAll(bikeTours);
+      bikeTourTable.getItems().setAll(bikeToursUI);
     }
 }
 

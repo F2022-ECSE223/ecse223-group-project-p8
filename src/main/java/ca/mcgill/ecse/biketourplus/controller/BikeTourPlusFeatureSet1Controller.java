@@ -220,4 +220,60 @@ public class BikeTourPlusFeatureSet1Controller {
 
 
   }
+  
+  
+  
+  
+  
+  
+  /**
+   * Populate the TOBikeTourUI for the UI table generation
+   * 
+   * @param id the id of the bike tour the manager wants to view
+   * @return a populated TOBikeTour object with all the bike tour information needed
+   * @author Jacques Zaarour
+   */
+
+  public static TOBikeTourUI populateTOBikeTourUI(int id) throws InvalidInputException {
+
+    // The ID is indexed in the list rather than following the actual id of the app (could be a
+    // mistake :/)
+    id -= 1;
+
+    // basic information attainable from the class diagram
+    var startWeek = btp.getBikeTour(id).getStartWeek();
+    var endWeek = btp.getBikeTour(id).getEndWeek();
+    var guideName = btp.getBikeTour(id).getGuide().getName();
+
+    // create a list of participants
+    var participantsList = btp.getBikeTour(id).getParticipants();
+
+    // get names of participants
+    String participantsNames = "";
+    for (Participant p : participantsList) {
+      participantsNames+=p.getName();
+      participantsNames+=", ";
+    }
+
+
+    // return the ID to the correct value
+
+    id += 1;
+    TOBikeTourUI tobereturned = new TOBikeTourUI(id,guideName, startWeek, endWeek, participantsNames);
+
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      throw new InvalidInputException(e.getMessage());
+    }
+
+    return tobereturned;
+  }
+  
+  
+  
+  
+  
+  
+  
 }
