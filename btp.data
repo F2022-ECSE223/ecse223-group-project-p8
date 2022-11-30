@@ -1,11 +1,11 @@
 {
   "BikeTourPlus": {
-    "startDate": "2023-06-13",
-    "nrWeeks": 6,
-    "priceOfGuidePerWeek": 60,
+    "startDate": "2023-06-01",
+    "nrWeeks": 5,
+    "priceOfGuidePerWeek": 50,
     "manager": {
       "email": "manager@btp.com",
-      "password": "Pass#d",
+      "password": "manager",
       "bikeTourPlus": {
         "@reference": "../.."
       }
@@ -13,6 +13,18 @@
     "guides": [
       {
         "Guide": [
+          {
+            "email": "bob@gmail.com",
+            "password": "password",
+            "name": "Bob Hill",
+            "emergencyContact": "(222) 123-4567",
+            "bikeTourPlus": {
+              "@reference": "../../.."
+            },
+            "bikeTours": [
+              ""
+            ]
+          },
           {
             "email": "sarah@yahoo.ca",
             "password": "pwd",
@@ -22,608 +34,8 @@
               "@reference": "../../.."
             },
             "bikeTours": [
-              {
-                "BikeTour": [
-                  {
-                    "id": 1,
-                    "startWeek": 2,
-                    "endWeek": 3,
-                    "participants": [
-                      {
-                        "Participant": {
-                          "email": "joe@hotmail.com",
-                          "password": 1234,
-                          "name": "Joe Black",
-                          "emergencyContact": "(222) 987-6540",
-                          "nrWeeks": 2,
-                          "weekAvailableFrom": 2,
-                          "weekAvailableUntil": 6,
-                          "lodgeRequired": false,
-                          "refundedPercentageAmount": 0,
-                          "tourStatus": "Assigned",
-                          "bikeTourPlus": {
-                            "@reference": "../../../../../../.."
-                          },
-                          "bikeTour": {
-                            "@reference": "../../.."
-                          },
-                          "bookedItems": [
-                            {
-                              "BookedItem": [
-                                {
-                                  "quantity": 1,
-                                  "bikeTourPlus": {
-                                    "@reference": "../../../../../../../../.."
-                                  },
-                                  "participant": {
-                                    "@reference": "../../.."
-                                  },
-                                  "item": {
-                                    "@class": "Combo",
-                                    "name": "plus",
-                                    "bookedItems": [
-                                      {
-                                        "BookedItem": [
-                                          {
-                                            "@reference": "../../.."
-                                          },
-                                          {
-                                            "quantity": 1,
-                                            "bikeTourPlus": {
-                                              "@reference": "../../../../../../../../../../../.."
-                                            },
-                                            "participant": {
-                                              "email": "jack@hotmail.com",
-                                              "password": 1234,
-                                              "name": "Jack Black",
-                                              "emergencyContact": 2229876542,
-                                              "nrWeeks": 5,
-                                              "weekAvailableFrom": 1,
-                                              "weekAvailableUntil": 6,
-                                              "lodgeRequired": true,
-                                              "refundedPercentageAmount": 0,
-                                              "tourStatus": "Assigned",
-                                              "bikeTourPlus": {
-                                                "@reference": "../../../../../../../../../../../../.."
-                                              },
-                                              "bikeTour": {
-                                                "id": 5,
-                                                "startWeek": 1,
-                                                "endWeek": 5,
-                                                "participants": [
-                                                  {
-                                                    "Participant": {
-                                                      "@reference": "../../.."
-                                                    }
-                                                  }
-                                                ],
-                                                "guide": {
-                                                  "email": "susi@gmail.com",
-                                                  "password": 8765,
-                                                  "name": "Susi Hill",
-                                                  "emergencyContact": 2221112222,
-                                                  "bikeTourPlus": {
-                                                    "@reference": "../../../../../../../../../../../../../../.."
-                                                  },
-                                                  "bikeTours": [
-                                                    {
-                                                      "BikeTour": {
-                                                        "@reference": "../../.."
-                                                      }
-                                                    }
-                                                  ]
-                                                },
-                                                "bikeTourPlus": {
-                                                  "@reference": "../../../../../../../../../../../../../.."
-                                                }
-                                              },
-                                              "bookedItems": [
-                                                {
-                                                  "BookedItem": [
-                                                    {
-                                                      "quantity": 1,
-                                                      "bikeTourPlus": {
-                                                        "@reference": "../../../../../../../../../../../../../../.."
-                                                      },
-                                                      "participant": {
-                                                        "@reference": "../../.."
-                                                      },
-                                                      "item": {
-                                                        "@class": "Combo",
-                                                        "name": "standard",
-                                                        "bookedItems": [
-                                                          {
-                                                            "BookedItem": {
-                                                              "@reference": "../../.."
-                                                            }
-                                                          }
-                                                        ],
-                                                        "discount": 20,
-                                                        "bikeTourPlus": {
-                                                          "@reference": "../../../../../../../../../../../../../../../.."
-                                                        },
-                                                        "comboItems": [
-                                                          {
-                                                            "ComboItem": [
-                                                              {
-                                                                "quantity": 1,
-                                                                "bikeTourPlus": {
-                                                                  "@reference": "../../../../../../../../../../../../../../../../../.."
-                                                                },
-                                                                "combo": {
-                                                                  "@reference": "../../.."
-                                                                },
-                                                                "gear": {
-                                                                  "name": "spare tire",
-                                                                  "bookedItems": [
-                                                                    {
-                                                                      "BookedItem": [
-                                                                        {
-                                                                          "quantity": 1,
-                                                                          "bikeTourPlus": {
-                                                                            "@reference": "../../../../../../../../../../../../../../../../../../../../.."
-                                                                          },
-                                                                          "participant": {
-                                                                            "email": "jane@hotmail.com",
-                                                                            "password": 1234,
-                                                                            "name": "Jane Black",
-                                                                            "emergencyContact": "(222) 987-6541",
-                                                                            "nrWeeks": 3,
-                                                                            "weekAvailableFrom": 3,
-                                                                            "weekAvailableUntil": 5,
-                                                                            "lodgeRequired": false,
-                                                                            "refundedPercentageAmount": 0,
-                                                                            "tourStatus": "Assigned",
-                                                                            "bikeTourPlus": {
-                                                                              "@reference": "../../../../../../../../../../../../../../../../../../../../../.."
-                                                                            },
-                                                                            "bikeTour": {
-                                                                              "id": 4,
-                                                                              "startWeek": 3,
-                                                                              "endWeek": 5,
-                                                                              "participants": [
-                                                                                {
-                                                                                  "Participant": {
-                                                                                    "@reference": "../../.."
-                                                                                  }
-                                                                                }
-                                                                              ],
-                                                                              "guide": {
-                                                                                "email": "ben@gmail.com",
-                                                                                "password": 9876,
-                                                                                "name": "Benny Hill",
-                                                                                "emergencyContact": 2229876666,
-                                                                                "bikeTourPlus": {
-                                                                                  "@reference": "../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                },
-                                                                                "bikeTours": [
-                                                                                  {
-                                                                                    "BikeTour": {
-                                                                                      "@reference": "../../.."
-                                                                                    }
-                                                                                  }
-                                                                                ]
-                                                                              },
-                                                                              "bikeTourPlus": {
-                                                                                "@reference": "../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                              }
-                                                                            },
-                                                                            "bookedItems": [
-                                                                              {
-                                                                                "BookedItem": [
-                                                                                  {
-                                                                                    "quantity": 1,
-                                                                                    "bikeTourPlus": {
-                                                                                      "@reference": "../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                    },
-                                                                                    "participant": {
-                                                                                      "@reference": "../../.."
-                                                                                    },
-                                                                                    "item": {
-                                                                                      "@class": "Gear",
-                                                                                      "name": "repair kit",
-                                                                                      "bookedItems": [
-                                                                                        {
-                                                                                          "BookedItem": [
-                                                                                            {
-                                                                                              "quantity": 2,
-                                                                                              "bikeTourPlus": {
-                                                                                                "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                              },
-                                                                                              "participant": {
-                                                                                                "@reference": "../../../../../../../../../../../../../../../../../../../../.."
-                                                                                              },
-                                                                                              "item": {
-                                                                                                "@class": "Gear",
-                                                                                                "@reference": "../../.."
-                                                                                              },
-                                                                                              "cachedHashCode": -1,
-                                                                                              "canSetParticipant": true,
-                                                                                              "canSetItem": true
-                                                                                            },
-                                                                                            {
-                                                                                              "@reference": "../../.."
-                                                                                            },
-                                                                                            {
-                                                                                              "quantity": 3,
-                                                                                              "bikeTourPlus": {
-                                                                                                "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                              },
-                                                                                              "participant": {
-                                                                                                "email": "jon@hotmail.com",
-                                                                                                "password": 1234,
-                                                                                                "name": "Jon Black",
-                                                                                                "emergencyContact": "(222) 987-6544",
-                                                                                                "nrWeeks": 3,
-                                                                                                "weekAvailableFrom": 1,
-                                                                                                "weekAvailableUntil": 6,
-                                                                                                "lodgeRequired": false,
-                                                                                                "refundedPercentageAmount": 0,
-                                                                                                "tourStatus": "Assigned",
-                                                                                                "bikeTourPlus": {
-                                                                                                  "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                                },
-                                                                                                "bikeTour": {
-                                                                                                  "id": 2,
-                                                                                                  "startWeek": 4,
-                                                                                                  "endWeek": 6,
-                                                                                                  "participants": [
-                                                                                                    {
-                                                                                                      "Participant": [
-                                                                                                        {
-                                                                                                          "@reference": "../../.."
-                                                                                                        },
-                                                                                                        {
-                                                                                                          "email": "jennifer@hotmail.com",
-                                                                                                          "password": 5555,
-                                                                                                          "name": "Jennifer Black",
-                                                                                                          "emergencyContact": 2229876545,
-                                                                                                          "nrWeeks": 3,
-                                                                                                          "weekAvailableFrom": 3,
-                                                                                                          "weekAvailableUntil": 6,
-                                                                                                          "lodgeRequired": true,
-                                                                                                          "refundedPercentageAmount": 0,
-                                                                                                          "tourStatus": "Assigned",
-                                                                                                          "bikeTourPlus": {
-                                                                                                            "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                                          },
-                                                                                                          "bikeTour": {
-                                                                                                            "@reference": "../../.."
-                                                                                                          },
-                                                                                                          "bookedItems": [
-                                                                                                            ""
-                                                                                                          ]
-                                                                                                        }
-                                                                                                      ]
-                                                                                                    }
-                                                                                                  ],
-                                                                                                  "guide": {
-                                                                                                    "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                                  },
-                                                                                                  "bikeTourPlus": {
-                                                                                                    "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                                  }
-                                                                                                },
-                                                                                                "bookedItems": [
-                                                                                                  {
-                                                                                                    "BookedItem": [
-                                                                                                      {
-                                                                                                        "@reference": "../../.."
-                                                                                                      },
-                                                                                                      {
-                                                                                                        "quantity": 1,
-                                                                                                        "bikeTourPlus": {
-                                                                                                          "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                                        },
-                                                                                                        "participant": {
-                                                                                                          "@reference": "../../.."
-                                                                                                        },
-                                                                                                        "item": {
-                                                                                                          "@class": "Gear",
-                                                                                                          "@reference": "../../../../../../../../../../../.."
-                                                                                                        },
-                                                                                                        "cachedHashCode": -1,
-                                                                                                        "canSetParticipant": true,
-                                                                                                        "canSetItem": true
-                                                                                                      },
-                                                                                                      {
-                                                                                                        "quantity": 2,
-                                                                                                        "bikeTourPlus": {
-                                                                                                          "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                                        },
-                                                                                                        "participant": {
-                                                                                                          "@reference": "../../.."
-                                                                                                        },
-                                                                                                        "item": {
-                                                                                                          "@class": "Gear",
-                                                                                                          "name": "helmet",
-                                                                                                          "bookedItems": [
-                                                                                                            {
-                                                                                                              "BookedItem": [
-                                                                                                                {
-                                                                                                                  "quantity": 1,
-                                                                                                                  "bikeTourPlus": {
-                                                                                                                    "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                                                  },
-                                                                                                                  "participant": {
-                                                                                                                    "@reference": "../../../../../../../../../../../.."
-                                                                                                                  },
-                                                                                                                  "item": {
-                                                                                                                    "@class": "Gear",
-                                                                                                                    "@reference": "../../.."
-                                                                                                                  },
-                                                                                                                  "cachedHashCode": -1,
-                                                                                                                  "canSetParticipant": true,
-                                                                                                                  "canSetItem": true
-                                                                                                                },
-                                                                                                                {
-                                                                                                                  "@reference": "../../.."
-                                                                                                                }
-                                                                                                              ]
-                                                                                                            }
-                                                                                                          ],
-                                                                                                          "pricePerWeek": 50,
-                                                                                                          "bikeTourPlus": {
-                                                                                                            "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                                          },
-                                                                                                          "comboItems": [
-                                                                                                            {
-                                                                                                              "ComboItem": {
-                                                                                                                "quantity": 3,
-                                                                                                                "bikeTourPlus": {
-                                                                                                                  "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                                                },
-                                                                                                                "combo": {
-                                                                                                                  "@reference": "../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                                                },
-                                                                                                                "gear": {
-                                                                                                                  "@reference": "../../.."
-                                                                                                                },
-                                                                                                                "cachedHashCode": -1,
-                                                                                                                "canSetCombo": true,
-                                                                                                                "canSetGear": true
-                                                                                                              }
-                                                                                                            }
-                                                                                                          ]
-                                                                                                        },
-                                                                                                        "cachedHashCode": -1,
-                                                                                                        "canSetParticipant": true,
-                                                                                                        "canSetItem": true
-                                                                                                      }
-                                                                                                    ]
-                                                                                                  }
-                                                                                                ]
-                                                                                              },
-                                                                                              "item": {
-                                                                                                "@class": "Gear",
-                                                                                                "@reference": "../../.."
-                                                                                              },
-                                                                                              "cachedHashCode": -1,
-                                                                                              "canSetParticipant": true,
-                                                                                              "canSetItem": true
-                                                                                            }
-                                                                                          ]
-                                                                                        }
-                                                                                      ],
-                                                                                      "pricePerWeek": 30,
-                                                                                      "bikeTourPlus": {
-                                                                                        "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                      },
-                                                                                      "comboItems": [
-                                                                                        {
-                                                                                          "ComboItem": [
-                                                                                            {
-                                                                                              "quantity": 2,
-                                                                                              "bikeTourPlus": {
-                                                                                                "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                              },
-                                                                                              "combo": {
-                                                                                                "@reference": "../../../../../../../../../../../.."
-                                                                                              },
-                                                                                              "gear": {
-                                                                                                "@reference": "../../.."
-                                                                                              },
-                                                                                              "cachedHashCode": -1,
-                                                                                              "canSetCombo": true,
-                                                                                              "canSetGear": true
-                                                                                            },
-                                                                                            {
-                                                                                              "quantity": 4,
-                                                                                              "bikeTourPlus": {
-                                                                                                "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../../.."
-                                                                                              },
-                                                                                              "combo": {
-                                                                                                "@reference": "../../../../../../../../../../../../../../../../../.."
-                                                                                              },
-                                                                                              "gear": {
-                                                                                                "@reference": "../../.."
-                                                                                              },
-                                                                                              "cachedHashCode": -1,
-                                                                                              "canSetCombo": true,
-                                                                                              "canSetGear": true
-                                                                                            }
-                                                                                          ]
-                                                                                        }
-                                                                                      ]
-                                                                                    },
-                                                                                    "cachedHashCode": -1,
-                                                                                    "canSetParticipant": true,
-                                                                                    "canSetItem": true
-                                                                                  },
-                                                                                  {
-                                                                                    "@reference": "../../.."
-                                                                                  },
-                                                                                  {
-                                                                                    "@reference": "../BookedItem/item/bookedItems/BookedItem[3]/participant/bookedItems/BookedItem[3]/item/bookedItems/BookedItem"
-                                                                                  }
-                                                                                ]
-                                                                              }
-                                                                            ]
-                                                                          },
-                                                                          "item": {
-                                                                            "@class": "Gear",
-                                                                            "@reference": "../../.."
-                                                                          },
-                                                                          "cachedHashCode": -1,
-                                                                          "canSetParticipant": true,
-                                                                          "canSetItem": true
-                                                                        },
-                                                                        {
-                                                                          "@reference": "../BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bookedItems/BookedItem[2]"
-                                                                        }
-                                                                      ]
-                                                                    }
-                                                                  ],
-                                                                  "pricePerWeek": 100,
-                                                                  "bikeTourPlus": {
-                                                                    "@reference": "../../../../../../../../../../../../../../../../../../.."
-                                                                  },
-                                                                  "comboItems": [
-                                                                    {
-                                                                      "ComboItem": [
-                                                                        {
-                                                                          "@reference": "../../.."
-                                                                        },
-                                                                        {
-                                                                          "quantity": 2,
-                                                                          "bikeTourPlus": {
-                                                                            "@reference": "../../../../../../../../../../../../../../../../../../../../.."
-                                                                          },
-                                                                          "combo": {
-                                                                            "@reference": "../../../../../../../../../../../.."
-                                                                          },
-                                                                          "gear": {
-                                                                            "@reference": "../../.."
-                                                                          },
-                                                                          "cachedHashCode": -1,
-                                                                          "canSetCombo": true,
-                                                                          "canSetGear": true
-                                                                        }
-                                                                      ]
-                                                                    }
-                                                                  ]
-                                                                },
-                                                                "cachedHashCode": -1,
-                                                                "canSetCombo": true,
-                                                                "canSetGear": true
-                                                              },
-                                                              {
-                                                                "@reference": "../ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/comboItems/ComboItem"
-                                                              }
-                                                            ]
-                                                          }
-                                                        ]
-                                                      },
-                                                      "cachedHashCode": -1,
-                                                      "canSetParticipant": true,
-                                                      "canSetItem": true
-                                                    },
-                                                    {
-                                                      "@reference": "../../.."
-                                                    }
-                                                  ]
-                                                }
-                                              ]
-                                            },
-                                            "item": {
-                                              "@class": "Combo",
-                                              "@reference": "../../.."
-                                            },
-                                            "cachedHashCode": -1,
-                                            "canSetParticipant": true,
-                                            "canSetItem": true
-                                          }
-                                        ]
-                                      }
-                                    ],
-                                    "discount": 30,
-                                    "bikeTourPlus": {
-                                      "@reference": "../../../../../../../../../.."
-                                    },
-                                    "comboItems": [
-                                      {
-                                        "ComboItem": [
-                                          {
-                                            "@reference": "../../bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/comboItems/ComboItem[2]"
-                                          },
-                                          {
-                                            "@reference": "../../bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/comboItems/ComboItem[2]"
-                                          },
-                                          {
-                                            "@reference": "../../bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bookedItems/BookedItem[3]/item/comboItems/ComboItem"
-                                          }
-                                        ]
-                                      }
-                                    ]
-                                  },
-                                  "cachedHashCode": -1,
-                                  "canSetParticipant": true,
-                                  "canSetItem": true
-                                },
-                                {
-                                  "@reference": "../BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem"
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      }
-                    ],
-                    "guide": {
-                      "@reference": "../../.."
-                    },
-                    "bikeTourPlus": {
-                      "@reference": "../../../../.."
-                    }
-                  },
-                  {
-                    "@reference": "../BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bikeTour"
-                  },
-                  {
-                    "id": 3,
-                    "startWeek": 1,
-                    "endWeek": 1,
-                    "participants": [
-                      {
-                        "Participant": {
-                          "email": "jeremy@hotmail.com",
-                          "password": 4444,
-                          "name": "Jeremy Black",
-                          "emergencyContact": 2229876545,
-                          "nrWeeks": 1,
-                          "weekAvailableFrom": 1,
-                          "weekAvailableUntil": 6,
-                          "lodgeRequired": true,
-                          "refundedPercentageAmount": 0,
-                          "tourStatus": "Assigned",
-                          "bikeTourPlus": {
-                            "@reference": "../../../../../../.."
-                          },
-                          "bikeTour": {
-                            "@reference": "../../.."
-                          },
-                          "bookedItems": [
-                            ""
-                          ]
-                        }
-                      }
-                    ],
-                    "guide": {
-                      "@reference": "../../.."
-                    },
-                    "bikeTourPlus": {
-                      "@reference": "../../../../.."
-                    }
-                  }
-                ]
-              }
+              ""
             ]
-          },
-          {
-            "@reference": "../Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bikeTour/guide"
-          },
-          {
-            "@reference": "../Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bikeTour/guide"
           }
         ]
       }
@@ -632,22 +44,462 @@
       {
         "Participant": [
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant"
+            "email": "joe@hotmail.com",
+            "password": 1234,
+            "name": "Joe Black",
+            "emergencyContact": "(222) 987-6540",
+            "nrWeeks": 2,
+            "weekAvailableFrom": 2,
+            "weekAvailableUntil": 6,
+            "lodgeRequired": false,
+            "refundedPercentageAmount": 0,
+            "tourStatus": "NotAssigned",
+            "bikeTourPlus": {
+              "@reference": "../../.."
+            },
+            "bookedItems": [
+              {
+                "BookedItem": [
+                  {
+                    "quantity": 1,
+                    "bikeTourPlus": {
+                      "@reference": "../../../../.."
+                    },
+                    "participant": {
+                      "@reference": "../../.."
+                    },
+                    "item": {
+                      "@class": "Combo",
+                      "name": "plus",
+                      "bookedItems": [
+                        {
+                          "BookedItem": [
+                            {
+                              "@reference": "../../.."
+                            },
+                            {
+                              "quantity": 1,
+                              "bikeTourPlus": {
+                                "@reference": "../../../../../../../.."
+                              },
+                              "participant": {
+                                "email": "jack@hotmail.com",
+                                "password": 1234,
+                                "name": "Jack Black",
+                                "emergencyContact": "(222) 987-6542",
+                                "nrWeeks": 4,
+                                "weekAvailableFrom": 1,
+                                "weekAvailableUntil": 6,
+                                "lodgeRequired": true,
+                                "refundedPercentageAmount": 0,
+                                "tourStatus": "NotAssigned",
+                                "bikeTourPlus": {
+                                  "@reference": "../../../../../../../../.."
+                                },
+                                "bookedItems": [
+                                  {
+                                    "BookedItem": [
+                                      {
+                                        "quantity": 1,
+                                        "bikeTourPlus": {
+                                          "@reference": "../../../../../../../../../../.."
+                                        },
+                                        "participant": {
+                                          "@reference": "../../.."
+                                        },
+                                        "item": {
+                                          "@class": "Combo",
+                                          "name": "standard",
+                                          "bookedItems": [
+                                            {
+                                              "BookedItem": {
+                                                "@reference": "../../.."
+                                              }
+                                            }
+                                          ],
+                                          "discount": 20,
+                                          "bikeTourPlus": {
+                                            "@reference": "../../../../../../../../../../../.."
+                                          },
+                                          "comboItems": [
+                                            {
+                                              "ComboItem": [
+                                                {
+                                                  "quantity": 1,
+                                                  "bikeTourPlus": {
+                                                    "@reference": "../../../../../../../../../../../../../.."
+                                                  },
+                                                  "combo": {
+                                                    "@reference": "../../.."
+                                                  },
+                                                  "gear": {
+                                                    "name": "spare tire",
+                                                    "bookedItems": [
+                                                      {
+                                                        "BookedItem": [
+                                                          {
+                                                            "quantity": 1,
+                                                            "bikeTourPlus": {
+                                                              "@reference": "../../../../../../../../../../../../../../../../.."
+                                                            },
+                                                            "participant": {
+                                                              "email": "jane@hotmail.com",
+                                                              "password": 1234,
+                                                              "name": "Jane Black",
+                                                              "emergencyContact": "(222) 987-6541",
+                                                              "nrWeeks": 3,
+                                                              "weekAvailableFrom": 3,
+                                                              "weekAvailableUntil": 5,
+                                                              "lodgeRequired": false,
+                                                              "refundedPercentageAmount": 0,
+                                                              "tourStatus": "NotAssigned",
+                                                              "bikeTourPlus": {
+                                                                "@reference": "../../../../../../../../../../../../../../../../../.."
+                                                              },
+                                                              "bookedItems": [
+                                                                {
+                                                                  "BookedItem": [
+                                                                    {
+                                                                      "quantity": 1,
+                                                                      "bikeTourPlus": {
+                                                                        "@reference": "../../../../../../../../../../../../../../../../../../../.."
+                                                                      },
+                                                                      "participant": {
+                                                                        "@reference": "../../.."
+                                                                      },
+                                                                      "item": {
+                                                                        "@class": "Gear",
+                                                                        "name": "repair kit",
+                                                                        "bookedItems": [
+                                                                          {
+                                                                            "BookedItem": [
+                                                                              {
+                                                                                "quantity": 2,
+                                                                                "bikeTourPlus": {
+                                                                                  "@reference": "../../../../../../../../../../../../../../../../../../../../../../.."
+                                                                                },
+                                                                                "participant": {
+                                                                                  "@reference": "../../../../../../../../../../../../../../../../../../../../.."
+                                                                                },
+                                                                                "item": {
+                                                                                  "@class": "Gear",
+                                                                                  "@reference": "../../.."
+                                                                                },
+                                                                                "cachedHashCode": -1,
+                                                                                "canSetParticipant": true,
+                                                                                "canSetItem": true
+                                                                              },
+                                                                              {
+                                                                                "@reference": "../../.."
+                                                                              },
+                                                                              {
+                                                                                "quantity": 3,
+                                                                                "bikeTourPlus": {
+                                                                                  "@reference": "../../../../../../../../../../../../../../../../../../../../../../.."
+                                                                                },
+                                                                                "participant": {
+                                                                                  "email": "jon@hotmail.com",
+                                                                                  "password": 1234,
+                                                                                  "name": "Jon Black",
+                                                                                  "emergencyContact": "(222) 987-6544",
+                                                                                  "nrWeeks": 3,
+                                                                                  "weekAvailableFrom": 1,
+                                                                                  "weekAvailableUntil": 6,
+                                                                                  "lodgeRequired": false,
+                                                                                  "refundedPercentageAmount": 0,
+                                                                                  "tourStatus": "NotAssigned",
+                                                                                  "bikeTourPlus": {
+                                                                                    "@reference": "../../../../../../../../../../../../../../../../../../../../../../../.."
+                                                                                  },
+                                                                                  "bookedItems": [
+                                                                                    {
+                                                                                      "BookedItem": [
+                                                                                        {
+                                                                                          "@reference": "../../.."
+                                                                                        },
+                                                                                        {
+                                                                                          "quantity": 1,
+                                                                                          "bikeTourPlus": {
+                                                                                            "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../.."
+                                                                                          },
+                                                                                          "participant": {
+                                                                                            "@reference": "../../.."
+                                                                                          },
+                                                                                          "item": {
+                                                                                            "@class": "Gear",
+                                                                                            "@reference": "../../../../../../../../../../../.."
+                                                                                          },
+                                                                                          "cachedHashCode": -1,
+                                                                                          "canSetParticipant": true,
+                                                                                          "canSetItem": true
+                                                                                        },
+                                                                                        {
+                                                                                          "quantity": 2,
+                                                                                          "bikeTourPlus": {
+                                                                                            "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../.."
+                                                                                          },
+                                                                                          "participant": {
+                                                                                            "@reference": "../../.."
+                                                                                          },
+                                                                                          "item": {
+                                                                                            "@class": "Gear",
+                                                                                            "name": "helmet",
+                                                                                            "bookedItems": [
+                                                                                              {
+                                                                                                "BookedItem": [
+                                                                                                  {
+                                                                                                    "quantity": 1,
+                                                                                                    "bikeTourPlus": {
+                                                                                                      "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../../../../.."
+                                                                                                    },
+                                                                                                    "participant": {
+                                                                                                      "@reference": "../../../../../../../../../../../.."
+                                                                                                    },
+                                                                                                    "item": {
+                                                                                                      "@class": "Gear",
+                                                                                                      "@reference": "../../.."
+                                                                                                    },
+                                                                                                    "cachedHashCode": -1,
+                                                                                                    "canSetParticipant": true,
+                                                                                                    "canSetItem": true
+                                                                                                  },
+                                                                                                  {
+                                                                                                    "@reference": "../../.."
+                                                                                                  }
+                                                                                                ]
+                                                                                              }
+                                                                                            ],
+                                                                                            "pricePerWeek": 50,
+                                                                                            "bikeTourPlus": {
+                                                                                              "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../../.."
+                                                                                            },
+                                                                                            "comboItems": [
+                                                                                              {
+                                                                                                "ComboItem": {
+                                                                                                  "quantity": 3,
+                                                                                                  "bikeTourPlus": {
+                                                                                                    "@reference": "../../../../../../../../../../../../../../../../../../../../../../../../../../../../.."
+                                                                                                  },
+                                                                                                  "combo": {
+                                                                                                    "@reference": "../../../../../../../../../../../../../../../../../../../../../../../.."
+                                                                                                  },
+                                                                                                  "gear": {
+                                                                                                    "@reference": "../../.."
+                                                                                                  },
+                                                                                                  "cachedHashCode": -1,
+                                                                                                  "canSetCombo": true,
+                                                                                                  "canSetGear": true
+                                                                                                }
+                                                                                              }
+                                                                                            ]
+                                                                                          },
+                                                                                          "cachedHashCode": -1,
+                                                                                          "canSetParticipant": true,
+                                                                                          "canSetItem": true
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                },
+                                                                                "item": {
+                                                                                  "@class": "Gear",
+                                                                                  "@reference": "../../.."
+                                                                                },
+                                                                                "cachedHashCode": -1,
+                                                                                "canSetParticipant": true,
+                                                                                "canSetItem": true
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ],
+                                                                        "pricePerWeek": 30,
+                                                                        "bikeTourPlus": {
+                                                                          "@reference": "../../../../../../../../../../../../../../../../../../../../.."
+                                                                        },
+                                                                        "comboItems": [
+                                                                          {
+                                                                            "ComboItem": [
+                                                                              {
+                                                                                "quantity": 2,
+                                                                                "bikeTourPlus": {
+                                                                                  "@reference": "../../../../../../../../../../../../../../../../../../../../../../.."
+                                                                                },
+                                                                                "combo": {
+                                                                                  "@reference": "../../../../../../../../../../../.."
+                                                                                },
+                                                                                "gear": {
+                                                                                  "@reference": "../../.."
+                                                                                },
+                                                                                "cachedHashCode": -1,
+                                                                                "canSetCombo": true,
+                                                                                "canSetGear": true
+                                                                              },
+                                                                              {
+                                                                                "quantity": 4,
+                                                                                "bikeTourPlus": {
+                                                                                  "@reference": "../../../../../../../../../../../../../../../../../../../../../../.."
+                                                                                },
+                                                                                "combo": {
+                                                                                  "@reference": "../../../../../../../../../../../../../../../../../.."
+                                                                                },
+                                                                                "gear": {
+                                                                                  "@reference": "../../.."
+                                                                                },
+                                                                                "cachedHashCode": -1,
+                                                                                "canSetCombo": true,
+                                                                                "canSetGear": true
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      },
+                                                                      "cachedHashCode": -1,
+                                                                      "canSetParticipant": true,
+                                                                      "canSetItem": true
+                                                                    },
+                                                                    {
+                                                                      "@reference": "../../.."
+                                                                    },
+                                                                    {
+                                                                      "@reference": "../BookedItem/item/bookedItems/BookedItem[3]/participant/bookedItems/BookedItem[3]/item/bookedItems/BookedItem"
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            },
+                                                            "item": {
+                                                              "@class": "Gear",
+                                                              "@reference": "../../.."
+                                                            },
+                                                            "cachedHashCode": -1,
+                                                            "canSetParticipant": true,
+                                                            "canSetItem": true
+                                                          },
+                                                          {
+                                                            "@reference": "../BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bookedItems/BookedItem[2]"
+                                                          }
+                                                        ]
+                                                      }
+                                                    ],
+                                                    "pricePerWeek": 100,
+                                                    "bikeTourPlus": {
+                                                      "@reference": "../../../../../../../../../../../../../../.."
+                                                    },
+                                                    "comboItems": [
+                                                      {
+                                                        "ComboItem": [
+                                                          {
+                                                            "@reference": "../../.."
+                                                          },
+                                                          {
+                                                            "quantity": 2,
+                                                            "bikeTourPlus": {
+                                                              "@reference": "../../../../../../../../../../../../../../../../.."
+                                                            },
+                                                            "combo": {
+                                                              "@reference": "../../../../../../../../../../../.."
+                                                            },
+                                                            "gear": {
+                                                              "@reference": "../../.."
+                                                            },
+                                                            "cachedHashCode": -1,
+                                                            "canSetCombo": true,
+                                                            "canSetGear": true
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  "cachedHashCode": -1,
+                                                  "canSetCombo": true,
+                                                  "canSetGear": true
+                                                },
+                                                {
+                                                  "@reference": "../ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/comboItems/ComboItem"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        "cachedHashCode": -1,
+                                        "canSetParticipant": true,
+                                        "canSetItem": true
+                                      },
+                                      {
+                                        "@reference": "../../.."
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              "item": {
+                                "@class": "Combo",
+                                "@reference": "../../.."
+                              },
+                              "cachedHashCode": -1,
+                              "canSetParticipant": true,
+                              "canSetItem": true
+                            }
+                          ]
+                        }
+                      ],
+                      "discount": 30,
+                      "bikeTourPlus": {
+                        "@reference": "../../../../../.."
+                      },
+                      "comboItems": [
+                        {
+                          "ComboItem": [
+                            {
+                              "@reference": "../../bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/comboItems/ComboItem[2]"
+                            },
+                            {
+                              "@reference": "../../bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/comboItems/ComboItem[2]"
+                            },
+                            {
+                              "@reference": "../../bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bookedItems/BookedItem[3]/item/comboItems/ComboItem"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "cachedHashCode": -1,
+                    "canSetParticipant": true,
+                    "canSetItem": true
+                  },
+                  {
+                    "@reference": "../BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem"
+                  }
+                ]
+              }
+            ]
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant"
+            "@reference": "../Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant"
+            "@reference": "../Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant"
+            "email": "julie@hotmail.com",
+            "password": 1234,
+            "name": "Julie Black",
+            "emergencyContact": "(222) 987-6543",
+            "nrWeeks": 1,
+            "weekAvailableFrom": 1,
+            "weekAvailableUntil": 6,
+            "lodgeRequired": false,
+            "refundedPercentageAmount": 0,
+            "tourStatus": "NotAssigned",
+            "bikeTourPlus": {
+              "@reference": "../../.."
+            },
+            "bookedItems": [
+              ""
+            ]
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bikeTour/participants/Participant[2]"
-          },
-          {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour[3]/participants/Participant"
+            "@reference": "../Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant"
           }
         ]
       }
@@ -656,34 +508,34 @@
       {
         "BookedItem": [
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bookedItems/BookedItem[3]/item/bookedItems/BookedItem"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bookedItems/BookedItem[3]/item/bookedItems/BookedItem"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bookedItems/BookedItem[2]"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bookedItems/BookedItem[2]"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bookedItems/BookedItem[3]"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bookedItems/BookedItem[3]"
           }
         ]
       }
@@ -692,26 +544,13 @@
       {
         "Gear": [
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bookedItems/BookedItem[3]/item"
-          },
-          {
-            "name": "bike bag",
-            "bookedItems": [
-              ""
-            ],
-            "pricePerWeek": 8000,
-            "bikeTourPlus": {
-              "@reference": "../../.."
-            },
-            "comboItems": [
-              ""
-            ]
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bookedItems/BookedItem[3]/item"
           }
         ]
       }
@@ -720,10 +559,10 @@
       {
         "Combo": [
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item"
           }
         ]
       }
@@ -732,19 +571,19 @@
       {
         "ComboItem": [
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/comboItems/ComboItem"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/comboItems/ComboItem"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/comboItems/ComboItem[2]"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/comboItems/ComboItem[2]"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/comboItems/ComboItem[2]"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/comboItems/ComboItem[2]"
           },
           {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bookedItems/BookedItem[3]/item/comboItems/ComboItem"
+            "@reference": "../../participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bookedItems/BookedItem[3]/item/comboItems/ComboItem"
           }
         ]
       }
@@ -778,25 +617,7 @@
       }
     ],
     "bikeTours": [
-      {
-        "BikeTour": [
-          {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour"
-          },
-          {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bookedItems/BookedItem/item/bookedItems/BookedItem[3]/participant/bikeTour"
-          },
-          {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour[3]"
-          },
-          {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bookedItems/BookedItem/item/comboItems/ComboItem/gear/bookedItems/BookedItem/participant/bikeTour"
-          },
-          {
-            "@reference": "../../guides/Guide/bikeTours/BikeTour/participants/Participant/bookedItems/BookedItem/item/bookedItems/BookedItem[2]/participant/bikeTour"
-          }
-        ]
-      }
+      ""
     ]
   }
 }
