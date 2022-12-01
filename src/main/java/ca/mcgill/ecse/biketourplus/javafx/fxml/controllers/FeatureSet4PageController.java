@@ -5,10 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
-import javax.swing.JOptionPane;
 import ca.mcgill.ecse.biketourplus.controller.BikeTourPlusFeatureSet4Controller;
 import ca.mcgill.ecse.biketourplus.controller.InvalidInputException;
-import ca.mcgill.ecse.biketourplus.javafx.fxml.controllers.ViewUtils;
 import javafx.event.ActionEvent;
 
 /**

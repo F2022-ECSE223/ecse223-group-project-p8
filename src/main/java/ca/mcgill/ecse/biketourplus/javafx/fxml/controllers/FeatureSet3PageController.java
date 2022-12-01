@@ -35,12 +35,12 @@ public class FeatureSet3PageController {
   private TextField addEndWeek;
   @FXML
   private TextField addItemTextField;
-  
+
   // Event Listener on Button[#registerParticipantButton].onAction
   @FXML
   /**
-   * This method will register the info of a participant by calling the controller when the user presses
-   * the button
+   * This method will register the info of a participant by calling the controller when the user
+   * presses the button
    * 
    * @param event - press of the register button
    * @author Jacques Zaarour
@@ -56,7 +56,8 @@ public class FeatureSet3PageController {
     boolean lodge = lodgeRequiredCheck.isSelected();
 
     // Check if information entered is not empty
-    if (AddFirstName.getText().equals("") || AddLastName.getText().equals("") || email.equals("")|| password.equals("") || emergency.equals("")) {
+    if (AddFirstName.getText().equals("") || AddLastName.getText().equals("") || email.equals("")
+        || password.equals("") || emergency.equals("")) {
       ViewUtils.showError("The input fields must not be empty.");
       return;
     }
@@ -106,9 +107,9 @@ public class FeatureSet3PageController {
         numberOfWeeksWanted, startweek, endweek, lodge);
 
 
-    if (error.equals("")){
+    if (error.equals("")) {
       ViewUtils.showSuccess("Registration successfully processed for member " + name + "." + '\n');
-    }else{
+    } else {
       ViewUtils.showError(error);
     }
 
@@ -120,8 +121,8 @@ public class FeatureSet3PageController {
   // Event Listener on Button[#updateParticipantButton].onAction
   @FXML
   /**
-   * This method will update the info of a participant by calling the controller when the user presses
-   * the button
+   * This method will update the info of a participant by calling the controller when the user
+   * presses the button
    * 
    * @param event - press of the update button
    * @author Jacques Zaarour
@@ -174,8 +175,8 @@ public class FeatureSet3PageController {
     }
 
     // Check if information entered is not empty
-    if (AddFirstName.getText().equals("") || AddLastName.getText().equals("")
-        || email.equals("") || password.equals("") || emergency.equals("")) {
+    if (AddFirstName.getText().equals("") || AddLastName.getText().equals("") || email.equals("")
+        || password.equals("") || emergency.equals("")) {
 
       ViewUtils.showError("The input fields must not be empty.");
       return;
@@ -184,12 +185,13 @@ public class FeatureSet3PageController {
     // Try to update the participant
 
     String error;
-    error = BikeTourPlusFeatureSet3Controller.updateParticipant(email, password, name, emergency,numberOfWeeksWanted, startweek, endweek, lodge);
+    error = BikeTourPlusFeatureSet3Controller.updateParticipant(email, password, name, emergency,
+        numberOfWeeksWanted, startweek, endweek, lodge);
 
 
-    if (error.equals("")){
+    if (error.equals("")) {
       ViewUtils.showSuccess("Registration successfully processed for member " + name + "." + '\n');
-    }else{
+    } else {
       ViewUtils.showError(error);
     }
 
@@ -201,14 +203,15 @@ public class FeatureSet3PageController {
   // Event Listener on Button[#addItemButton].onAction
   @FXML
   /**
-   * This method will add the gear to a participant by adding it to a temp list when the user presses the
-   * button
+   * This method will add the gear to a participant by adding it to a temp list when the user
+   * presses the button
    * 
    * @param event - press of the add button
    * @author Jacques Zaarour
    */
   public void addItem(ActionEvent event) {
-      ViewUtils.callController(BikeTourPlusFeatureSet3Controller.addBookableItemToParticipant(addEmail.getText(), addItemTextField.getText()));
+    ViewUtils.callController(BikeTourPlusFeatureSet3Controller
+        .addBookableItemToParticipant(addEmail.getText(), addItemTextField.getText()));
   }
 
 
@@ -221,7 +224,8 @@ public class FeatureSet3PageController {
    * @author Jacques Zaarour
    */
   public void removeItem(ActionEvent event) {
-      ViewUtils.callController(BikeTourPlusFeatureSet3Controller.removeBookableItemFromParticipant(addEmail.getText(), addItemTextField.getText()));
+    ViewUtils.callController(BikeTourPlusFeatureSet3Controller
+        .removeBookableItemFromParticipant(addEmail.getText(), addItemTextField.getText()));
   }
 
 

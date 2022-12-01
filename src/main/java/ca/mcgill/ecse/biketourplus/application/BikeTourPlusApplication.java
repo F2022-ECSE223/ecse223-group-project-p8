@@ -13,11 +13,13 @@ public class BikeTourPlusApplication {
   public static final UIMode UI_MODE = UIMode.JAVAFX_FXML;
 
   public static void main(String[] args) {
-    
     // TODO Start the application user interface here
     Application.launch(BikeTourPlusFXMLView.class, args);
   }
 
+  /**
+   * @return the instance of BikeTourPlus from the persistence file btp.data
+   */
   public static BikeTourPlus getBikeTourPlus() {
     if (bikeTourPlus == null) {
       // these attributes are default, you should set them later with the setters

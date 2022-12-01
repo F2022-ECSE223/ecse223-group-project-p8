@@ -7,12 +7,18 @@ import javafx.scene.control.Button;
 
 public class FeatureSet7PageController {
 
-    @FXML
-    private Button beginTourCreationButton;
+  @FXML
+  private Button beginTourCreationButton;
 
-    @FXML
-    void beginTourCreationClicked(ActionEvent event) {
-      ViewUtils.callController(BikeToursFeatureSetController.initiateBikeTourCreationProcess());
-    }
+  /**
+   * This initiates the bike tour creation when the user clicks the button
+   * 
+   * @param event
+   * @author LukeBebee
+   */
+  @FXML
+  void beginTourCreationClicked(ActionEvent event) {
+    ViewUtils.callController(BikeToursFeatureSetController.initiateBikeTourCreationProcess());
+  }
 
 }

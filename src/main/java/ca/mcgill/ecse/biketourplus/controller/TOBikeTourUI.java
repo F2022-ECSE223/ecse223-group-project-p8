@@ -1,14 +1,14 @@
 package ca.mcgill.ecse.biketourplus.controller;
+
 import java.util.*;
 
-public class TOBikeTourUI
-{
+public class TOBikeTourUI {
 
-  //------------------------
+  // ------------------------
   // MEMBER VARIABLES
-  //------------------------
+  // ------------------------
 
-  //TOBikeTour Attributes
+  // TOBikeTour Attributes
   private int id;
   private String guideName;
   private int startWeek;
@@ -16,12 +16,12 @@ public class TOBikeTourUI
   private String participants;
   private int guideTourCost;
 
-  //------------------------
+  // ------------------------
   // CONSTRUCTOR
-  //------------------------
+  // ------------------------
 
-  public TOBikeTourUI(int aId, String aGuideName, int aStartWeek, int aEndWeek,  String apaticipants, int aGuideTourCost)
-  {
+  public TOBikeTourUI(int aId, String aGuideName, int aStartWeek, int aEndWeek, String apaticipants,
+      int aGuideTourCost) {
     id = aId;
     startWeek = aStartWeek;
     endWeek = aEndWeek;
@@ -29,32 +29,31 @@ public class TOBikeTourUI
     participants = apaticipants;
     guideTourCost = aGuideTourCost;
   }
-  public int getGuideTourCost()
-  {
+
+  public int getGuideTourCost() {
     return guideTourCost;
   }
-  public int getId()
-  {
+
+  public int getId() {
     return id;
   }
-  public String getGuideName()
-  {
+
+  public String getGuideName() {
     return guideName;
   }
-  public int getStartWeek()
-  {
+
+  public int getStartWeek() {
     return startWeek;
   }
-  public int getEndWeek()
-  {
+
+  public int getEndWeek() {
     return endWeek;
   }
-  public String getParticipants()
-  {
+
+  public String getParticipants() {
     return participants;
   }
-  
-  
-  
-  
+
+
+
 }

@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class FeatureSet2PageController {
-  
+
   @FXML
   private TextField emailParticipantRemoveTextField;
 
@@ -26,10 +26,11 @@ public class FeatureSet2PageController {
   private Button updateSeasonButton;
 
 
-  
+
   /**
-   * This method is called  when the user clicks on remove participant
-   * It calls on ViewUtils to show the proper message
+   * This method is called when the user clicks on remove participant It calls on ViewUtils to show
+   * the proper message
+   * 
    * @param event
    * @author LukeBebee
    */
@@ -43,54 +44,56 @@ public class FeatureSet2PageController {
       error += e.getMessage();
     }
     ViewUtils.callController(error);
-    
+
   }
 
   /**
-   * This method is called  when the user clicks on updateSeason
-   * It calls on ViewUtils to show the proper message
+   * This method is called when the user clicks on updateSeason It calls on ViewUtils to show the
+   * proper message
+   * 
    * @param event
    * @author LukeBebee
    */
   @FXML
   void updateSeasonClicked(ActionEvent event) {
 
-    
-    if(newStartDateTextField.getText().equals("")) {
+
+    if (newStartDateTextField.getText().equals("")) {
       ViewUtils.makePopupWindow("ERROR", "Enter a start date");
-    }else if(newNrWeeksTextField.getText().equals("")) {
+    } else if (newNrWeeksTextField.getText().equals("")) {
       ViewUtils.makePopupWindow("ERROR", "Enter a number of weeks");
-    }else if(newGuidePriceTextField.getText().equals("")) {
+    } else if (newGuidePriceTextField.getText().equals("")) {
       ViewUtils.makePopupWindow("ERROR", "Enter a price");
-    }else{
-      
-      try {
-        Date date = Date.valueOf(newStartDateTextField.getText()); 
-      }catch(Exception e) {
-        ViewUtils.makePopupWindow("ERROR", "Invalid Date Entry");
-      }
-      
-      try {
-        int weeks = Integer.parseInt(newNrWeeksTextField.getText()); 
-      }catch(Exception e) {
-        ViewUtils.makePopupWindow("ERROR", "Invalid Number of Weeks Entry");
-      }
-      
-      try {
-        int guidePrice = Integer.parseInt(newGuidePriceTextField.getText()); 
-      }catch(Exception e) {
-        ViewUtils.makePopupWindow("ERROR", "Invalid Price Entry");
-      }
-      
+    } else {
+
       try {
         Date date = Date.valueOf(newStartDateTextField.getText());
-        int weeks = Integer.parseInt(newNrWeeksTextField.getText()); 
-        int guidePrice = Integer.parseInt(newGuidePriceTextField.getText()); 
-        ViewUtils.callController(BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(date, weeks, guidePrice));
-      }catch(Exception e) {
-        ViewUtils.makePopupWindow("ERROR", "ERROR\n" +e);
+      } catch (Exception e) {
+        ViewUtils.makePopupWindow("ERROR", "Invalid Date Entry");
+      }
+
+      try {
+        int weeks = Integer.parseInt(newNrWeeksTextField.getText());
+      } catch (Exception e) {
+        ViewUtils.makePopupWindow("ERROR", "Invalid Number of Weeks Entry");
+      }
+
+      try {
+        int guidePrice = Integer.parseInt(newGuidePriceTextField.getText());
+      } catch (Exception e) {
+        ViewUtils.makePopupWindow("ERROR", "Invalid Price Entry");
+      }
+
+      try {
+        Date date = Date.valueOf(newStartDateTextField.getText());
+        int weeks = Integer.parseInt(newNrWeeksTextField.getText());
+        int guidePrice = Integer.parseInt(newGuidePriceTextField.getText());
+        ViewUtils.callController(
+            BikeTourPlusFeatureSet2Controller.updateBikeTourPlus(date, weeks, guidePrice));
+      } catch (Exception e) {
+        ViewUtils.makePopupWindow("ERROR", "ERROR\n" + e);
       }
     }
-  } 
-  
+  }
+
 }
