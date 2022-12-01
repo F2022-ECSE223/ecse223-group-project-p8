@@ -244,6 +244,7 @@ public class BikeTourPlusFeatureSet1Controller {
     var startWeek = btp.getBikeTour(id).getStartWeek();
     var endWeek = btp.getBikeTour(id).getEndWeek();
     var guideName = btp.getBikeTour(id).getGuide().getName();
+    int guideTourCost = btp.getPriceOfGuidePerWeek() * (btp.getBikeTour(id).getEndWeek() - btp.getBikeTour(id).getStartWeek() + 1);
 
     // create a list of participants
     var participantsList = btp.getBikeTour(id).getParticipants();
@@ -255,11 +256,10 @@ public class BikeTourPlusFeatureSet1Controller {
       participantsNames+=", ";
     }
 
-
     // return the ID to the correct value
 
     id += 1;
-    TOBikeTourUI tobereturned = new TOBikeTourUI(id,guideName, startWeek, endWeek, participantsNames);
+    TOBikeTourUI tobereturned = new TOBikeTourUI(id,guideName, startWeek, endWeek, participantsNames, guideTourCost);
 
     try {
       BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());

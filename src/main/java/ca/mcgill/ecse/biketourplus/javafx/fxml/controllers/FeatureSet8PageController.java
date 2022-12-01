@@ -52,7 +52,7 @@ public class FeatureSet8PageController {
 	        TOBikeTour bikeTourTO = BikeTourPlusFeatureSet1Controller.getBikeTour(id);
 	        int indexOfParticipant = BikeToursFeatureSetController.getParticipantIndex(emailTextField.getText());
 	        int costCents = bikeTourTO.getParticipantCost(indexOfParticipant).getTotalCostForBikingTour();
-	        totalPriceTextField.setText("$" + Double.toString(costCents/100.));
+	        totalPriceTextField.setText("$" + Double.toString(costCents));
 	      } catch (InvalidInputException e) {
 	        //JOptionPane.showMessageDialog(null, "Invalid participant email","ERROR",JOptionPane.ERROR_MESSAGE);
 	        ViewUtils.makePopupWindow("ERROR","Invalid participant email");

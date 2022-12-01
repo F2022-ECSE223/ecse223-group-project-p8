@@ -53,7 +53,8 @@
                                     <TableColumn fx:id="guideCol" prefWidth="93.0" text="Guide" />
                                     <TableColumn fx:id="startCol" prefWidth="70.0" text="Start Week" />
                                     <TableColumn fx:id="endCol" prefWidth="96.0" text="End Week" />
-                                    <TableColumn fx:id="participantsCol" prefWidth="488.0" text="Participants" />
+                                    <TableColumn fx:id="participantsCol" prefWidth="373.0" text="Participants" />
+                                    <TableColumn fx:id="guideTourCost" prefWidth="128.0" text="Guide Cost for Tour" />
                                  </columns>
                               </TableView>
                            </children>

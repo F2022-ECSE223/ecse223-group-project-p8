@@ -14,20 +14,25 @@ public class TOBikeTourUI
   private int startWeek;
   private int endWeek;
   private String participants;
+  private int guideTourCost;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOBikeTourUI(int aId, String aGuideName, int aStartWeek, int aEndWeek,  String apaticipants)
+  public TOBikeTourUI(int aId, String aGuideName, int aStartWeek, int aEndWeek,  String apaticipants, int aGuideTourCost)
   {
     id = aId;
     startWeek = aStartWeek;
     endWeek = aEndWeek;
     guideName = aGuideName;
     participants = apaticipants;
+    guideTourCost = aGuideTourCost;
   }
-  
+  public int getGuideTourCost()
+  {
+    return guideTourCost;
+  }
   public int getId()
   {
     return id;

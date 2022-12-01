@@ -35,6 +35,10 @@ public class FeatureSet1PageController{
     private TableColumn<TOBikeTourUI, String> participantsCol;
     
     @FXML
+    private TableColumn<TOBikeTourUI, Integer> guideTourCost;
+    
+    
+    @FXML
     private TableView<TOParticipantCost> participantTable; 
     
     @FXML
@@ -135,6 +139,7 @@ public class FeatureSet1PageController{
       startCol.setCellValueFactory(new PropertyValueFactory<TOBikeTourUI, Integer>("startWeek"));
       endCol.setCellValueFactory(new PropertyValueFactory<TOBikeTourUI, Integer>("endWeek"));
       participantsCol.setCellValueFactory(new PropertyValueFactory<TOBikeTourUI, String>("participants"));
+      guideTourCost.setCellValueFactory(new PropertyValueFactory<TOBikeTourUI, Integer>("guideTourCost"));
       
       
       
