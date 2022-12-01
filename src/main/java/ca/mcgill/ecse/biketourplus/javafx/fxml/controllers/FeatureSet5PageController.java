@@ -95,7 +95,7 @@ public class FeatureSet5PageController {
 	       ViewUtils.makePopupWindow("ERROR","Gear price text field is empty.");
 	  }else {
 	    try {
-	      String msg = BikeTourPlusFeatureSet5Controller.addGear(gearNameTextField.getText(), (int) (100*Double.parseDouble(gearPriceTextField.getText())));  
+	      String msg = BikeTourPlusFeatureSet5Controller.addGear(gearNameTextField.getText(), (int) (Double.parseDouble(gearPriceTextField.getText())));  
 	      if(! msg.equals("")) {
 	          //JOptionPane.showMessageDialog(null, msg,"ERROR",JOptionPane.ERROR_MESSAGE);
 	          ViewUtils.makePopupWindow("ERROR",msg);

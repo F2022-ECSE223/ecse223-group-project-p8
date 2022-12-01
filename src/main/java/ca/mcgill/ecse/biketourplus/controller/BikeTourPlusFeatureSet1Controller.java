@@ -126,19 +126,23 @@ public class BikeTourPlusFeatureSet1Controller {
 
 
     // create a list of participants
-    var participantsList = btp.getBikeTour(id).getParticipants();
+    List<Participant> participantsList = new ArrayList();
+    participantsList.addAll(btp.getBikeTour(id).getParticipants());
 
-    // get emails of participants
+    // get attributes of participants
     List<String> participantsEmails = new ArrayList<String>();
+    List<String> participantsNames = new ArrayList<String>();
+//    List<String> participantsStatus = new ArrayList<String>();
+//    List<String> participantsAuth = new ArrayList<String>();
+//    List<Integer> participantsRefund = new ArrayList<Integer>();
     for (Participant p : participantsList) {
       participantsEmails.add(p.getEmail());
+      participantsNames.add(p.getName());
+//      participantsNames.add(p.getTourStatusFullName());
+//      participantsAuth.add(p.getAuthorizationCode());
+//      participantsRefund.add(p.getRefundedPercentageAmount());
     }
 
-    // get names of participants
-    List<String> participantsNames = new ArrayList<String>();
-    for (Participant p : participantsList) {
-      participantsNames.add(p.getName());
-    }
 
     // add an empty array ot TOParticipantCost in order to accomodate differnet costs for each
     // individual person
@@ -179,10 +183,23 @@ public class BikeTourPlusFeatureSet1Controller {
           participantcost += b.getQuantity() * pricefinal * discount;
         }
       }
+      
+      
+      String status = "Unset";
+      String auth = "Unset";
+      int refund = -1;
+      
+      status = participantsList.get(i).getTourStatusFullName();
+      auth = participantsList.get(i).getAuthorizationCode();
+      refund = participantsList.get(i).getRefundedPercentageAmount();
 
-      TOParticipantCost toParticipants =
-          new TOParticipantCost(participantsEmails.get(i), participantsNames.get(i),
-              numberofWeeks * participantcost, numberofWeeks * participantcost + totalCostForGuide);
+//      TOParticipantCost toParticipants =
+//          new TOParticipantCost(participantsEmails.get(i), participantsNames.get(i), participantsStatus.get(i),
+//              numberofWeeks * participantcost, numberofWeeks * participantcost + totalCostForGuide, participantsAuth.get(i), participantsRefund.get(i));
+    TOParticipantCost toParticipants =
+    new TOParticipantCost(participantsEmails.get(i), participantsNames.get(i),
+        numberofWeeks * participantcost, numberofWeeks * participantcost + totalCostForGuide, participantsList.get(i).getBikeTour().getId(), status, auth, refund);
+
       TOParticipantsArray[i] = toParticipants;
     }
 
@@ -203,4 +220,60 @@ public class BikeTourPlusFeatureSet1Controller {
 
 
   }
+  
+  
+  
+  
+  
+  
+  /**
+   * Populate the TOBikeTourUI for the UI table generation
+   * 
+   * @param id the id of the bike tour the manager wants to view
+   * @return a populated TOBikeTour object with all the bike tour information needed
+   * @author Jacques Zaarour
+   */
+
+  public static TOBikeTourUI populateTOBikeTourUI(int id) throws InvalidInputException {
+
+    // The ID is indexed in the list rather than following the actual id of the app (could be a
+    // mistake :/)
+    id -= 1;
+
+    // basic information attainable from the class diagram
+    var startWeek = btp.getBikeTour(id).getStartWeek();
+    var endWeek = btp.getBikeTour(id).getEndWeek();
+    var guideName = btp.getBikeTour(id).getGuide().getName();
+    int guideTourCost = btp.getPriceOfGuidePerWeek() * (btp.getBikeTour(id).getEndWeek() - btp.getBikeTour(id).getStartWeek() + 1);
+
+    // create a list of participants
+    var participantsList = btp.getBikeTour(id).getParticipants();
+
+    // get names of participants
+    String participantsNames = "";
+    for (Participant p : participantsList) {
+      participantsNames+=p.getName();
+      participantsNames+=", ";
+    }
+
+    // return the ID to the correct value
+
+    id += 1;
+    TOBikeTourUI tobereturned = new TOBikeTourUI(id,guideName, startWeek, endWeek, participantsNames, guideTourCost);
+
+    try {
+      BikeTourPlusPersistence.save(BikeTourPlusApplication.getBikeTourPlus());
+    }catch (Exception e){
+      throw new InvalidInputException(e.getMessage());
+    }
+
+    return tobereturned;
+  }
+  
+  
+  
+  
+  
+  
+  
 }

@@ -15,9 +15,10 @@ class TOParticipantCost {
   immutable;
   participantEmail;
   participantName;
-  status;
   Integer totalCostForBookableItems;
   Integer totalCostForBikingTour;
+  Integer tourID;
+  status;
   authorizationCode;
   Integer refundedPercentageAmount;
 }
